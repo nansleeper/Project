@@ -3,7 +3,7 @@ gamemap_size = (46, 30)
 gameblock_size = 300
 
 i = 0
-with open("map.txt", "r") as gamemap:
+with open("mapinfo.txt", "r") as gamemap:
     for line in gamemap:
         if i % 2 == 0:
             straight_array.append(line)
