@@ -1,4 +1,4 @@
-from pygame.constants import K_DOWN, K_LEFT, K_RIGHT, K_UP, K_d
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d
 from map_array.map import map_array
 from Core.draw_core import calculate_coard, map_compile
 from Player.player import Player
@@ -51,12 +51,14 @@ finished = False
 
 while not finished:
     screen.fill(WHITE)
-    for x in range(player.sector[0] - 3, player.sector[0] + 4):
+    for x in (player.sector[0] - 3, player.sector[0] - 2,\
+        player.sector[0] -1, player.sector[0], player.sector[0] + 3,\
+             player.sector[0] + 2, player.sector[0] + 1):
         for y in (player.sector[1] - 1,\
             player.sector[1] + 1, player.sector[1]):
                 if type(Map_objects[y][x]) != Road:
                     Map_objects[y][x].move((player.x, player.y))
-                    Map_objects[y][x].draw((player.x, player.y, 1000))
+                    Map_objects[y][x].draw((900, 450, 1000))
     pygame.display.update()
     clock.tick(FPS)
     for event in pygame.event.get():
@@ -71,6 +73,8 @@ while not finished:
         elif event.type == pygame.KEYDOWN:
             if event.key == K_RIGHT:
                 player.vx = 30
+            elif event.key == K_ESCAPE:
+                finished = True
             elif event.key == K_LEFT:
                 player.vx = - 30
             elif event.key == K_DOWN:
@@ -87,7 +91,7 @@ while not finished:
             elif event.key == K_UP:
                 player.vy = 0
     player.move()
-    print(player.x, player.y)
+    print(player.sector)
 
     '''
     calculate_coard(objects, Player)

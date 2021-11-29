@@ -31,6 +31,8 @@ class House:
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
+            self.localx = self.x
+            self.localy = self.y
 
         def draw_roof(self, spect_coord):
             '''
@@ -155,8 +157,8 @@ class House:
             player_coord - коррдинаты игрока, двумерный список/кортеж
             '''
             System_coord = (player_coord[0] - 900, player_coord[1] - 450)
-            self.x = self.x - System_coord[0]
-            self.y = self.y - System_coord[1]
+            self.localx = self.x - System_coord[0]
+            self.localy = self.y - System_coord[1]
 
 def proect(coord, spect_coord):
     '''Проецирует точку трехмерную на плоскость двумерную
