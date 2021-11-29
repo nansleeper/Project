@@ -1,6 +1,13 @@
 #from ..map_array.map import map_array  #FIXIT
 #print(map_array[1][1])
 
+class DrawCore:
+
+    def __init__(self, map_object, objects, player):
+        self.objects = objects
+        self.player = player
+        self.map_object = map_object
+
 def calculate_coard(objects, player):
     
     for object_type in objects:
