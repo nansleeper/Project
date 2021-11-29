@@ -64,7 +64,7 @@ class House:
             pygame.draw.polygon(self.screen, (0, 0, 0), xwall, 1)
 
             for i in range(self.floors):
-                for j in range(self.xwin):
+                for j in range(self.ywin):
                     window = [[xwall[0][0], win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + i * height],
                             [xwall[0][0], 4*win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + i * height],
                             [xwall[0][0], 4*win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + height//2 + i * height],
@@ -97,7 +97,7 @@ class House:
             pygame.draw.polygon(self.screen, (0, 0, 0), ywall, 1)
 
             for i in range(self.floors):
-                for j in range(self.ywin):
+                for j in range(self.xwin):
                     window = [[win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + i * height],
                             [4*win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + i * height],
                             [4*win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + height//2 + i * height],
@@ -135,7 +135,9 @@ def proect(coord, spect_coord):
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((600, 600))
-house = House(screen, 5, 5, 5, (300, 300))
+house1 = House(screen, 5, 5, 5, (150, 150))
+house2 = House(screen, 6, 4, 7, (450, 450))
+house3 = House(screen, 3, 4, 3, (150, 450))
 finished = False
 
 evx = 0
@@ -143,7 +145,9 @@ evy = 0
 
 while not finished:
     screen.fill((255, 255, 255))
-    house.draw((evx, evy, spect))
+    house1.draw((evx, evy, spect))
+    house2.draw((evx, evy, spect))
+    house3.draw((evx, evy, spect))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
