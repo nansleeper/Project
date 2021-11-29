@@ -148,6 +148,16 @@ class House:
                 self.draw_xwall(spect_coord)
                 self.draw_ywall(spect_coord)
             self.draw_roof(spect_coord)
+
+        def move(self, player_coord):
+            '''
+            Пересчитывает координаты дома в систему отсчёта игрока
+            player_coord - коррдинаты игрока, двумерный список/кортеж
+            '''
+            System_coord = (player_coord[0] - 900, player_coord - 450)
+            self.x = self.x - System_coord[0]
+            self.y = self.y - System_coord[1]
+
 def proect(coord, spect_coord):
     '''Проецирует точку трехмерную на плоскость двумерную
     coord - трехмерные координаты точки
