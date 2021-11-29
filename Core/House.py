@@ -9,13 +9,15 @@ spect = 1000 #высота обзора
 FPS = 30
 
 class House:
-        def __init__(self, screen, floors, xwin, ywin, cent):
+        def __init__(self, screen, floors, xwin, ywin, cent, doors = (0, 0, 0, 0)):
             '''Класс домов, переменные:
             screen - экран на котором дом отображается
             floors - высота дома в этажах
             xwin, ywin - количество окон помещающееся на этаже,
             по оси х и у соответсвенно
-            cent - координаты центра - список/кортеж из двух эл-тов'''
+            cent - координаты центра - список/кортеж из двух эл-тов
+            doors - координаты на месте которых будут двери, по правой, нижней, левой и верзней стене,
+            указываеться в таких же координатах'''
             self.screen = screen
             self.floors = floors
             self.z = floors*height + 2*brdr
@@ -27,6 +29,8 @@ class House:
             self.color_roof = (140, 140, 140)
             self.color_wall = (190, 50, 40)
             self.color_win = (210, 240, 240)
+            self.color_door = (50, 20, 10)
+            self.doors = doors
 
         def draw_roof(self, spect_coord):
             '''
@@ -48,11 +52,13 @@ class House:
             отрисовывает левую/правую стену
             '''
             if spect_coord[0] > self.cent[0]:
+                door_coord = self.doors[0]
                 xwall = [[self.cent[0] + 0.5*self.x, self.cent[1] + 0.5*self.y, 0],
                     [self.cent[0] + 0.5*self.x, self.cent[1] - 0.5*self.y, 0],
                     [self.cent[0] + 0.5*self.x, self.cent[1] - 0.5*self.y, self.z],
                     [self.cent[0] + 0.5*self.x, self.cent[1] + 0.5*self.y, self.z]]
             else:
+                door_coord = self.doors[2]
                 xwall = [[self.cent[0] - 0.5 * self.x, self.cent[1] + 0.5 * self.y, 0],
                     [self.cent[0] - 0.5 * self.x, self.cent[1] - 0.5 * self.y, 0],
                     [self.cent[0] - 0.5 * self.x, self.cent[1] - 0.5 * self.y, self.z],
@@ -65,6 +71,17 @@ class House:
 
             for i in range(self.floors):
                 for j in range(self.ywin):
+                    if j == door_coord - 1 and i == 0:
+                        door = [[xwall[0][0], win // 5 + brdr + j * win + xwall[1][1], i * height],
+                                [xwall[0][0], 4 * win // 5 + brdr + j * win + xwall[1][1], i * height],
+                                [xwall[0][0], 4 * win // 5 + brdr + j * win + xwall[1][1], 6*height//7 + i * height],
+                                [xwall[0][0], win // 5 + brdr + j * win + xwall[1][1], 6*height//7 + i * height]]
+                        for k in range(len(door)):
+                            door[k] = proect(door[k], spect_coord)
+                        pygame.draw.polygon(self.screen, self.color_door, door)
+                        pygame.draw.polygon(self.screen, (0, 0, 0), door, 1)
+                        continue
+
                     window = [[xwall[0][0], win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + i * height],
                             [xwall[0][0], 4*win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + i * height],
                             [xwall[0][0], 4*win//5 + brdr + j * win + xwall[1][1], height//3 + brdr + height//2 + i * height],
@@ -81,11 +98,13 @@ class House:
             отрисовывает верхнюю/нижнюю стену
             '''
             if spect_coord[1] > self.cent[1]:
+                door_coord = self.doors[1]
                 ywall = [[self.cent[0] + 0.5*self.x, self.cent[1] + 0.5*self.y, 0],
                     [self.cent[0] - 0.5*self.x, self.cent[1] + 0.5*self.y, 0],
                     [self.cent[0] - 0.5*self.x, self.cent[1] + 0.5*self.y, self.z],
                     [self.cent[0] + 0.5*self.x, self.cent[1] + 0.5*self.y, self.z]]
             else:
+                door_coord = self.doors[3]
                 ywall = [[self.cent[0] + 0.5 * self.x, self.cent[1] - 0.5 * self.y, 0],
                     [self.cent[0] - 0.5 * self.x, self.cent[1] - 0.5 * self.y, 0],
                     [self.cent[0] - 0.5 * self.x, self.cent[1] - 0.5 * self.y, self.z],
@@ -98,6 +117,16 @@ class House:
 
             for i in range(self.floors):
                 for j in range(self.xwin):
+                    if j == door_coord - 1 and i == 0:
+                        door = [[win // 5 + brdr + j * win + ywall[1][0], ywall[0][1], i * height],
+                                [4 * win // 5 + brdr + j * win + ywall[1][0], ywall[0][1], i * height],
+                                [4 * win // 5 + brdr + j * win + ywall[1][0], ywall[0][1], 6 * height // 7 + i * height],
+                                [win // 5 + brdr + j * win + ywall[1][0], ywall[0][1], 6 * height // 7 + i * height]]
+                        for k in range(len(door)):
+                            door[k] = proect(door[k], spect_coord)
+                        pygame.draw.polygon(self.screen, self.color_door, door)
+                        pygame.draw.polygon(self.screen, (0, 0, 0), door, 1)
+                        continue
                     window = [[win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + i * height],
                             [4*win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + i * height],
                             [4*win//5 + brdr + j * win + ywall[1][0], ywall[0][1], height//3 + brdr + height//2 + i * height],
@@ -135,9 +164,9 @@ def proect(coord, spect_coord):
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((1000, 700))
-house1 = House(screen, 5, 5, 5, (250, 150))
-house2 = House(screen, 6, 4, 7, (600, 450))
-house3 = House(screen, 3, 4, 3, (300, 450))
+house1 = House(screen, 5, 5, 5, (250, 150), (2, 0, 0, 0))
+house2 = House(screen, 6, 4, 7, (600, 450), (0, 3, 0, 0))
+house3 = House(screen, 3, 4, 3, (300, 450), (0, 0, 3, 0))
 finished = False
 
 evx = 0
