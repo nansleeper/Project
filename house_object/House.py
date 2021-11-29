@@ -161,7 +161,7 @@ def proect(coord, spect_coord):
 
 '''Дальнейший код написан для тестировки и отладки этого класса, для работы программы в целом -
 достаточно просто импортировать отсюда класс домов и функцию проецирования'''
-
+"""
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((1000, 700))
 house1 = House(screen, 5, 5, 5, (250, 150), (2, 0, 0, 0))
@@ -188,3 +188,4 @@ while not finished:
     clock.tick(FPS)
 
 pygame.quit()
+"""
