@@ -52,9 +52,10 @@ finished = False
 while not finished:
     screen.fill(WHITE)
     for x in range(player.sector[0] - 3, player.sector[0] + 4):
-        for y in (player.sector[1] - 2, player.sector[1] - 1,\
-            player.sector[1], player.sector[1] + 1, player.sector[1] + 2):
+        for y in (player.sector[1] - 1,\
+            player.sector[1] + 1, player.sector[1]):
                 if type(Map_objects[y][x]) != Road:
+                    Map_objects[y][x].move((player.x, player.y))
                     Map_objects[y][x].draw((player.x, player.y, 1000))
     pygame.display.update()
     clock.tick(FPS)
@@ -86,6 +87,7 @@ while not finished:
             elif event.key == K_UP:
                 player.vy = 0
     player.move()
+    print(player.x, player.y)
 
     '''
     calculate_coard(objects, Player)
