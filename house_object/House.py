@@ -154,7 +154,7 @@ class House:
             Пересчитывает координаты дома в систему отсчёта игрока
             player_coord - коррдинаты игрока, двумерный список/кортеж
             '''
-            System_coord = (player_coord[0] - 900, player_coord - 450)
+            System_coord = (player_coord[0] - 900, player_coord[1] - 450)
             self.x = self.x - System_coord[0]
             self.y = self.y - System_coord[1]
 
