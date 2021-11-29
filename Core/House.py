@@ -134,10 +134,10 @@ def proect(coord, spect_coord):
 достаточно просто импортировать отсюда класс домов и функцию проецирования'''
 
 clock = pygame.time.Clock()
-screen = pygame.display.set_mode((600, 600))
-house1 = House(screen, 5, 5, 5, (150, 150))
-house2 = House(screen, 6, 4, 7, (450, 450))
-house3 = House(screen, 3, 4, 3, (150, 450))
+screen = pygame.display.set_mode((1000, 700))
+house1 = House(screen, 5, 5, 5, (250, 150))
+house2 = House(screen, 6, 4, 7, (600, 450))
+house3 = House(screen, 3, 4, 3, (300, 450))
 finished = False
 
 evx = 0
