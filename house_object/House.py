@@ -31,8 +31,8 @@ class House:
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
-            self.localx = self.x
-            self.localy = self.y
+            self.globalx = cent[0]
+            self.globaly = cent[1]
 
         def draw_roof(self, spect_coord):
             '''
@@ -157,8 +157,8 @@ class House:
             player_coord - коррдинаты игрока, двумерный список/кортеж
             '''
             System_coord = (player_coord[0] - 900, player_coord[1] - 450)
-            self.localx = self.x - System_coord[0]
-            self.localy = self.y - System_coord[1]
+            self.cent = (self.globalx - System_coord[0],\
+                self.globaly - System_coord[1])
 
 def proect(coord, spect_coord):
     '''Проецирует точку трехмерную на плоскость двумерную
@@ -173,7 +173,7 @@ def proect(coord, spect_coord):
 
 '''Дальнейший код написан для тестировки и отладки этого класса, для работы программы в целом -
 достаточно просто импортировать отсюда класс домов и функцию проецирования'''
-"""
+
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((1000, 700))
 house1 = House(screen, 5, 5, 5, (250, 150), (2, 0, 0, 0))
@@ -183,7 +183,7 @@ finished = False
 
 evx = 0
 evy = 0
-
+"""
 while not finished:
     screen.fill((255, 255, 255))
     house1.draw((evx, evy, spect))

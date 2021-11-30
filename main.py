@@ -10,7 +10,7 @@ player = Player()
 WIDTH = 1800
 HEIGHT = 900
 WHITE = (255, 255, 255)
-FPS = 60
+FPS = 100
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
@@ -24,18 +24,18 @@ class Road:
         self.y = coard[1]
 
 
-
-for y_sector in range(30):
+for y_sector in range(31):
     Building_line = []
-    for x_sector in range(46):
+    for x_sector in range(47):
         if map_array[y_sector][x_sector] == "Building":
-            Building_line.append(House(screen, 10, 11, 11, (150 + x_sector * 300, 150 + y_sector * 300)))
+            Building_line.append(House(screen, 6, 11, 11,\
+                 (150 + x_sector * 300, 150 + y_sector * 300)))
         else:
-            Building_line.append(Road((150 + x_sector * 300, 150 + y_sector * 300)))
+            Building_line.append(Road((150 + x_sector * 300,\
+                 150 + y_sector * 300)))
     Map_objects.append(Building_line)
-    print(len(Building_line))
 
-print(len(Map_objects))
+
 
 
         
@@ -52,10 +52,10 @@ finished = False
 while not finished:
     screen.fill(WHITE)
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
-        player.sector[0] -1, player.sector[0], player.sector[0] + 3,\
-             player.sector[0] + 2, player.sector[0] + 1):
-        for y in (player.sector[1] - 1,\
-            player.sector[1] + 1, player.sector[1]):
+        player.sector[0] -1, player.sector[0] + 3,\
+             player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
+        for y in (player.sector[1], - 2, player.sector[1] - 1,\
+            player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 if type(Map_objects[y][x]) != Road:
                     Map_objects[y][x].move((player.x, player.y))
                     Map_objects[y][x].draw((900, 450, 1000))
@@ -72,15 +72,15 @@ while not finished:
             mouse_coard = event.pos
         elif event.type == pygame.KEYDOWN:
             if event.key == K_RIGHT:
-                player.vx = 30
+                player.vx = 10
             elif event.key == K_ESCAPE:
                 finished = True
             elif event.key == K_LEFT:
-                player.vx = - 30
+                player.vx = - 10
             elif event.key == K_DOWN:
-                player.vy = 30
+                player.vy = 10
             elif event.key == K_UP:
-                player.vy = - 30
+                player.vy = - 10
         elif event.type == pygame.KEYUP:
             if event.key == K_RIGHT:
                 player.vx = 0
@@ -91,7 +91,6 @@ while not finished:
             elif event.key == K_UP:
                 player.vy = 0
     player.move()
-    print(player.sector)
 
     '''
     calculate_coard(objects, Player)

@@ -1,3 +1,99 @@
+0 0  Road
+
+0 1  Road
+
+0 2  Road
+
+0 3  Road
+
+0 4  Road
+
+0 5  Road
+
+0 6  Road
+
+0 7  Road
+
+0 8  Road
+
+0 9  Road
+
+0 10  Road
+
+0 11  Road
+
+0 12  Road
+
+0 13  Road
+
+0 14  Road
+
+0 15  Road
+
+0 16  Road
+
+0 17  Road
+
+0 18  Road
+
+0 19  Road
+
+0 20  Road
+
+0 21  Road
+
+0 22  Road
+
+0 23  Road
+
+0 24  Road
+
+0 25  Road
+
+0 26  Road
+
+0 27  Road
+
+0 28  Road
+
+0 29  Road
+
+0 30  Road
+
+0 31  Road
+
+0 32  Road
+
+0 33  Road
+
+0 34  Road
+
+0 35  Road
+
+0 36  Road
+
+0 37  Road
+
+0 38  Road
+
+0 39  Road
+
+0 40  Road
+
+0 41  Road
+
+0 42  Road
+
+0 43  Road
+
+0 44  Road
+
+0 45  Road
+
+0 46  Road
+
+1 0  Road
+
 1 1  Building
 
 1 2  Building
@@ -89,6 +185,8 @@
 1 45  Building
 
 1 46  Building
+
+2 0  Road
 
 2 1  Building
 
@@ -182,6 +280,8 @@
 
 2 46  Building
 
+3 0  Road
+
 3 1  Building
 
 3 2  Building
@@ -273,6 +373,8 @@
 3 45  Building
 
 3 46  Building
+
+4 0  Road
 
 4 1  Building
 
@@ -366,6 +468,8 @@
 
 4 46  Building
 
+5 0  Road
+
 5 1  Road
 
 5 2  Road
@@ -457,6 +561,8 @@
 5 45  Road
 
 5 46  Road
+
+6 0  Road
 
 6 1  Road
 
@@ -550,6 +656,8 @@
 
 6 46  Road
 
+7 0  Road
+
 7 1  Building
 
 7 2  Building
@@ -641,6 +749,8 @@
 7 45  Building
 
 7 46  Building
+
+8 0  Road
 
 8 1  Building
 
@@ -734,6 +844,8 @@
 
 8 46  Building
 
+9 0  Road
+
 9 1  Building
 
 9 2  Building
@@ -825,6 +937,8 @@
 9 45  Building
 
 9 46  Building
+
+10 0  Road
 
 10 1  Building
 
@@ -918,6 +1032,8 @@
 
 10 46  Building
 
+11 0  Road
+
 11 1  Road
 
 11 2  Road
@@ -1009,6 +1125,8 @@
 11 45  Road
 
 11 46  Road
+
+12 0  Road
 
 12 1  Road
 
@@ -1102,6 +1220,8 @@
 
 12 46  Road
 
+13 0  Road
+
 13 1  Building
 
 13 2  Building
@@ -1193,6 +1313,8 @@
 13 45  Building
 
 13 46  Building
+
+14 0  Road
 
 14 1  Building
 
@@ -1286,6 +1408,8 @@
 
 14 46  Building
 
+15 0  Road
+
 15 1  Building
 
 15 2  Building
@@ -1377,6 +1501,8 @@
 15 45  Building
 
 15 46  Building
+
+16 0  Road
 
 16 1  Building
 
@@ -1470,6 +1596,8 @@
 
 16 46  Building
 
+17 0  Road
+
 17 1  Road
 
 17 2  Road
@@ -1561,6 +1689,8 @@
 17 45  Road
 
 17 46  Road
+
+18 0  Road
 
 18 1  Road
 
@@ -1654,6 +1784,8 @@
 
 18 46  Road
 
+19 0  Road
+
 19 1  Building
 
 19 2  Building
@@ -1745,6 +1877,8 @@
 19 45  Building
 
 19 46  Building
+
+20 0  Road
 
 20 1  Building
 
@@ -1838,6 +1972,8 @@
 
 20 46  Building
 
+21 0  Road
+
 21 1  Building
 
 21 2  Building
@@ -1929,6 +2065,8 @@
 21 45  Building
 
 21 46  Building
+
+22 0  Road
 
 22 1  Building
 
@@ -2022,6 +2160,8 @@
 
 22 46  Building
 
+23 0  Road
+
 23 1  Road
 
 23 2  Road
@@ -2113,6 +2253,8 @@
 23 45  Road
 
 23 46  Road
+
+24 0  Road
 
 24 1  Road
 
@@ -2206,6 +2348,8 @@
 
 24 46  Road
 
+25 0  Road
+
 25 1  Building
 
 25 2  Building
@@ -2297,6 +2441,8 @@
 25 45  Building
 
 25 46  Building
+
+26 0  Road
 
 26 1  Building
 
@@ -2390,6 +2536,8 @@
 
 26 46  Building
 
+27 0  Road
+
 27 1  Building
 
 27 2  Building
@@ -2481,6 +2629,8 @@
 27 45  Building
 
 27 46  Building
+
+28 0  Road
 
 28 1  Building
 
@@ -2574,6 +2724,8 @@
 
 28 46  Building
 
+29 0  Road
+
 29 1  Road
 
 29 2  Road
@@ -2666,6 +2818,8 @@
 
 29 46  Road
 
+30 0  Road
+
 30 1  Road
 
 30 2  Road
@@ -2757,4 +2911,3 @@
 30 45  Road
 
 30 46  Road
-
