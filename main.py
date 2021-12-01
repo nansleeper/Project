@@ -17,6 +17,8 @@ import pygame
 
 Map_objects = []
 
+backspace = 'textur/fon.bmp'
+
 class Road:
 
     def __init__(self, coard):
@@ -29,7 +31,7 @@ for y_sector in range(31):
     for x_sector in range(47):
         if map_array[y_sector][x_sector] == "Building":
             Building_line.append(House(screen, 6, 11, 11,\
-                 (150 + x_sector * 300, 150 + y_sector * 300)))
+                 (150 + x_sector * 300, 150 + y_sector * 300), backspace))
         else:
             Building_line.append(Road((150 + x_sector * 300,\
                  150 + y_sector * 300)))

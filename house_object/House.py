@@ -9,7 +9,7 @@ spect = 1000 #высота обзора
 FPS = 30
 
 class House:
-        def __init__(self, screen, floors, xwin, ywin, cent, doors = (0, 0, 0, 0)):
+        def __init__(self, screen, floors, xwin, ywin, cent, textures, doors = (0, 0, 0, 0)):
             '''Класс домов, переменные:
             screen - экран на котором дом отображается
             floors - высота дома в этажах
@@ -31,6 +31,7 @@ class House:
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
+            self.textures = textures
             self.globalx = cent[0]
             self.globaly = cent[1]
 
@@ -143,7 +144,10 @@ class House:
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает дом вцелом, вызывая функции в правильном порядке
             '''
-            if (self.cent[0] - spect_coord[0])**2 > (self.cent[1] - spect_coord[1])**2:
+
+            tex = pygame.image.load(self.textures)
+            self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
+            if (self.cent[0] - spect_coord[0]) ** 2 > (self.cent[1] - spect_coord[1])**2:
                 self.draw_ywall(spect_coord)
                 self.draw_xwall(spect_coord)
             else:
