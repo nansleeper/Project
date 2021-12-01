@@ -3,6 +3,7 @@ from map_array.map import map_array
 from Core.draw_core import calculate_coard, map_compile
 from Player.player import Player
 from house_object.House import House
+from Road.road import Road
 import pygame
 
 player = Player()
@@ -10,32 +11,27 @@ player = Player()
 WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
-FPS = 100
+FPS = 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
 
 Map_objects = []
 
-backspace = 'textur/fon.bmp'
-
-class Road:
-
-    def __init__(self, coard):
-        self.x = coard[0]
-        self.y = coard[1]
+backspace = 'Road/fon.bmp'
 
 
 for y_sector in range(31):
     Building_line = []
     for x_sector in range(47):
         if map_array[y_sector][x_sector] == "Building":
-            Building_line.append(House(screen, 6, 11, 11,\
+            Building_line.append(House(screen, 5, 10, 10,\
                  (150 + x_sector * 300, 150 + y_sector * 300), backspace))
         else:
-            Building_line.append(Road((150 + x_sector * 300,\
+            Building_line.append(Road(screen, (150 + x_sector * 300,\
                  150 + y_sector * 300)))
     Map_objects.append(Building_line)
+
 
 
 
@@ -56,11 +52,14 @@ while not finished:
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
         player.sector[0] -1, player.sector[0] + 3,\
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
-        for y in (player.sector[1], - 2, player.sector[1] - 1,\
+        for y in (player.sector[1] - 1,\
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
-                if type(Map_objects[y][x]) != Road:
-                    Map_objects[y][x].move((player.x, player.y))
+                Map_objects[y][x].move((player.x, player.y))
+                if type(Map_objects[y][x]) == type(Map_objects[1][1]):
                     Map_objects[y][x].draw((900, 450, 750))
+                else:
+                    print(type(Map_objects[y][x]), type(Map_objects[1][1]))
+                    Map_objects[y][x].draw()
     pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1800, 150), 0)
     pygame.display.update()
     clock.tick(FPS)
