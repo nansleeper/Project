@@ -119,21 +119,21 @@ class Square_main(Square):
       self.rect.center = center
 
       if event == 134:
-        self.rect.y -= 2 * math.cos(math.radians(360-self.angle))
-        self.rect.x += 2 * math.sin(math.radians(360-self.angle))  
+        self.rect.y -= 3 * math.cos(math.radians(360-self.angle))
+        self.rect.x += 3 * math.sin(math.radians(360-self.angle))  
 
       if event == 234:
-        self.rect.y += 2 * math.cos(math.radians(360-self.angle))
-        self.rect.x -= 2 * math.sin(math.radians(360-self.angle))  
+        self.rect.y += 3 * math.cos(math.radians(360-self.angle))
+        self.rect.x -= 3 * math.sin(math.radians(360-self.angle))  
       
       if event == 1:
-          self.rect.y -= 2 * math.cos(math.radians(360-self.angle))
-          self.rect.x += 2 * math.sin(math.radians(360-self.angle))  
+          self.rect.y -= 3 * math.cos(math.radians(360-self.angle))
+          self.rect.x += 3 * math.sin(math.radians(360-self.angle))  
           print(self.rect.x, self.rect.y, 360 - self.angle, math.cos(math.radians(360-self.angle)),  math.sin(math.radians(360-self.angle)))
 
       if event == 2:
-          self.rect.y += 2 * math.cos(math.radians(360-self.angle))
-          self.rect.x -= 2 * math.sin(math.radians(360-self.angle))
+          self.rect.y += 3 * math.cos(math.radians(360-self.angle))
+          self.rect.x -= 3 * math.sin(math.radians(360-self.angle))
 
         
 
@@ -143,6 +143,7 @@ class Square_main(Square):
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
 
+  #def collisions(self, obj):
 
 
 
