@@ -119,21 +119,21 @@ class Square_main(Square):
       self.rect.center = center
 
       if event == 134:
-        self.rect.y -= 1.5 * math.cos(math.radians(360-self.angle))
-        self.rect.x += 1.5 * math.sin(math.radians(360-self.angle))  
+        self.rect.y -= 2 * math.cos(math.radians(360-self.angle))
+        self.rect.x += 2 * math.sin(math.radians(360-self.angle))  
 
       if event == 234:
-        self.rect.y += 1.5 * math.cos(math.radians(360-self.angle))
-        self.rect.x -= 1.5 * math.sin(math.radians(360-self.angle))  
+        self.rect.y += 2 * math.cos(math.radians(360-self.angle))
+        self.rect.x -= 2 * math.sin(math.radians(360-self.angle))  
       
       if event == 1:
-          self.rect.y -= 1.5 * math.cos(math.radians(360-self.angle))
-          self.rect.x += 1.5 * math.sin(math.radians(360-self.angle))  
-          print(self.rect.x, self.rect.y, 360 - self.angle)
+          self.rect.y -= 2 * math.cos(math.radians(360-self.angle))
+          self.rect.x += 2 * math.sin(math.radians(360-self.angle))  
+          print(self.rect.x, self.rect.y, 360 - self.angle, math.cos(math.radians(360-self.angle)),  math.sin(math.radians(360-self.angle)))
 
       if event == 2:
-          self.rect.y += 1.5 * math.cos(math.radians(360-self.angle))
-          self.rect.x -= 1.5 * math.sin(math.radians(360-self.angle))
+          self.rect.y += 2 * math.cos(math.radians(360-self.angle))
+          self.rect.x -= 2 * math.sin(math.radians(360-self.angle))
 
         
 
@@ -142,6 +142,9 @@ class Square_main(Square):
 
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
+
+
+
 
 
 road1 = Road(100, 0)
@@ -174,7 +177,7 @@ if __name__ == '__main__':
         count += 1
         if count % 100 == 0:
           if i == 0:
-            car_main = Square_main(100, 100)
+            car_main = Square_main(200, 300)
             square_group_main.add(car_main)
             i += 1 
           x = choice(roads_ver1 + roads_ver2 + coord_gor)
@@ -214,6 +217,7 @@ if __name__ == '__main__':
 
           if keys[pygame.K_w] :
             motion = 1
+
           if keys[pygame.K_s]:
             motion = 2
           if keys[pygame.K_d]:
@@ -238,7 +242,7 @@ if __name__ == '__main__':
             #if event.key in [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a]:
           if not keys[pygame.K_w] and not keys[pygame.K_d] and not keys[pygame.K_a] and not keys[pygame.K_s]: 
             motion = 0
-            print(1)
+            
 
 
         square_group_main.update(win, motion, n)
