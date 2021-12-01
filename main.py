@@ -8,7 +8,7 @@ import pygame
 player = Player()
 #screen = 1800 * 900
 WIDTH = 1800
-HEIGHT = 900
+HEIGHT = 1000
 WHITE = (255, 255, 255)
 FPS = 100
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -59,6 +59,7 @@ while not finished:
                 if type(Map_objects[y][x]) != Road:
                     Map_objects[y][x].move((player.x, player.y))
                     Map_objects[y][x].draw((900, 450, 1000))
+    pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1800, 120), 0)
     pygame.display.update()
     clock.tick(FPS)
     for event in pygame.event.get():
@@ -98,7 +99,8 @@ while not finished:
     for object_type in objects:
         for obj in object_type:
             obj.draw
-            '''
+    '''
+    
 
 
 
