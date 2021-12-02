@@ -18,15 +18,15 @@ import pygame
 
 Map_objects = []
 
-backspace = 'Road/fon.bmp'
+house_tex =('Road/kysha.bmp', 'Road/fon.bmp')
 
 
 for y_sector in range(31):
     Building_line = []
     for x_sector in range(47):
         if map_array[y_sector][x_sector] == "Building":
-            Building_line.append(House(screen, 5, 10, 10,\
-                 (150 + x_sector * 300, 150 + y_sector * 300), backspace))
+            Building_line.append(House(screen, 5, 12, 9,\
+                 (150 + x_sector * 300, 150 + y_sector * 300), house_tex))
         else:
             Building_line.append(Road(screen, (150 + x_sector * 300,\
                  150 + y_sector * 300)))
@@ -56,9 +56,8 @@ while not finished:
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_objects[y][x].move((player.x, player.y))
                 if type(Map_objects[y][x]) == type(Map_objects[1][1]):
-                    Map_objects[y][x].draw((900, 450, 750))
+                    Map_objects[y][x].draw((900, 500, 600))
                 else:
-                    print(type(Map_objects[y][x]), type(Map_objects[1][1]))
                     Map_objects[y][x].draw()
     pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1800, 150), 0)
     pygame.display.update()

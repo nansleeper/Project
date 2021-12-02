@@ -17,7 +17,8 @@ class House:
             по оси х и у соответсвенно
             cent - координаты центра - список/кортеж из двух эл-тов
             doors - координаты на месте которых будут двери, по правой, нижней, левой и верзней стене,
-            указываеться в таких же координатах'''
+            указываеться в таких же координатах
+            textures - (roof, back)'''
             self.screen = screen
             self.floors = floors
             self.z = floors*height + 2*brdr
@@ -27,7 +28,7 @@ class House:
             self.y = ywin*win + 2*brdr
             self.cent = cent
             self.color_roof = (140, 140, 140)
-            self.color_wall = (190, 50, 40)
+            self.color_wall = (157, 158, 152)
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
@@ -40,14 +41,17 @@ class House:
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает крышу
             '''
+
+            
             roof = [[self.cent[0] + 0.5*self.x, self.cent[1] + 0.5*self.y, self.z],
                     [self.cent[0] + 0.5*self.x, self.cent[1] - 0.5*self.y, self.z],
                     [self.cent[0] - 0.5*self.x, self.cent[1] - 0.5*self.y, self.z],
                     [self.cent[0] - 0.5*self.x, self.cent[1] + 0.5*self.y, self.z]]
             for i in range(len(roof)):
                 roof[i] = proect(roof[i], spect_coord)
-            pygame.draw.polygon(self.screen, self.color_roof, roof)
-            pygame.draw.polygon(self.screen, (0, 0, 0), roof, 1)
+            tex = pygame.image.load(self.textures[0])
+            tex = pygame.transform.scale(tex, (roof[1][0] - roof[2][0], roof[0][1] - roof[1][1]))
+            self.screen.blit(tex, (roof[2]))
 
         def draw_xwall(self, spect_coord):
             '''
@@ -144,8 +148,8 @@ class House:
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает дом вцелом, вызывая функции в правильном порядке
             '''
-
-            tex = pygame.image.load(self.textures)
+            print(self.textures[1])
+            tex = pygame.image.load(self.textures[1])
             self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
             if (self.cent[0] - spect_coord[0]) ** 2 > (self.cent[1] - spect_coord[1])**2:
                 self.draw_ywall(spect_coord)
@@ -177,7 +181,7 @@ def proect(coord, spect_coord):
 
 '''Дальнейший код написан для тестировки и отладки этого класса, для работы программы в целом -
 достаточно просто импортировать отсюда класс домов и функцию проецирования'''
-
+"""
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((1000, 700))
 house1 = House(screen, 5, 5, 5, (250, 150), (2, 0, 0, 0))
@@ -187,7 +191,7 @@ finished = False
 
 evx = 0
 evy = 0
-"""
+
 while not finished:
     screen.fill((255, 255, 255))
     house1.draw((evx, evy, spect))
