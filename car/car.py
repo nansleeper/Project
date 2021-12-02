@@ -124,21 +124,21 @@ class Square_main(Square):
 
       if event == 134:
 
-        self.y0 -= 15 * math.cos(math.radians(360-self.angle))
-        self.x0 += 15 * math.sin(math.radians(360-self.angle))
+        self.y0 -= 5 * math.cos(math.radians(360-self.angle))
+        self.x0 += 5 * math.sin(math.radians(360-self.angle))
         self.rect.y = self.y0
         self.rect.x = self.x0
 
 
       if event == 234:
-        self.y0 += 15 * math.cos(math.radians(360-self.angle))
-        self.x0 -= 15 * math.sin(math.radians(360-self.angle))
+        self.y0 += 5 * math.cos(math.radians(360-self.angle))
+        self.x0 -= 5 * math.sin(math.radians(360-self.angle))
         self.rect.y = self.y0
         self.rect.x = self.x0  
       
       if event == 1:
-          self.y0 -= 15 * math.cos(math.radians(360-self.angle))
-          self.x0 += 15 * math.sin(math.radians(360-self.angle))
+          self.y0 -= 5 * math.cos(math.radians(360-self.angle))
+          self.x0 += 5 * math.sin(math.radians(360-self.angle))
 
           self.rect.y = self.y0
           self.rect.x = self.x0
@@ -146,8 +146,8 @@ class Square_main(Square):
           
          
       if event == 2:
-          self.y0 += 15 * math.cos(math.radians(360-self.angle))
-          self.x0 -= 15 * math.sin(math.radians(360-self.angle))
+          self.y0 += 5 * math.cos(math.radians(360-self.angle))
+          self.x0 -= 5  * math.sin(math.radians(360-self.angle))
           self.rect.y = self.y0
           self.rect.x = self.x0
 
