@@ -31,8 +31,4 @@ class Road:
     def draw(self):
         tex = pygame.image.load(self.tex)
         self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
-
-
-
-
         
