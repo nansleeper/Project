@@ -1,12 +1,12 @@
 import pygame
-
-pygame.init()
+from random import choice
 
 win = 20 #ширина окон
 brdr = 5 #ширина края дома
 height = 40 #высота этажа
 spect = 1000 #высота обзора
 FPS = 30
+
 
 class House:
         def __init__(self, screen, floors, xwin, ywin, cent, textures, doors = (0, 0, 0, 0)):
@@ -18,7 +18,8 @@ class House:
             cent - координаты центра - список/кортеж из двух эл-тов
             doors - координаты на месте которых будут двери, по правой, нижней, левой и верзней стене,
             указываеться в таких же координатах
-            textures - (roof, back)'''
+            textures - back '''
+
             self.screen = screen
             self.floors = floors
             self.z = floors*height + 2*brdr
@@ -32,7 +33,7 @@ class House:
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
-            self.textures = textures
+            self.textures = (choice(('Road/kysha.bmp', 'Road/krysha1.bmp')),textures)
             self.globalx = cent[0]
             self.globaly = cent[1]
 

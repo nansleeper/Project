@@ -18,23 +18,19 @@ import pygame
 
 Map_objects = []
 
-house_tex =('Road/kysha.bmp', 'Road/fon.bmp')
+house_tex ='Road/fon.bmp'
 
 
 for y_sector in range(31):
     Building_line = []
     for x_sector in range(47):
         if map_array[y_sector][x_sector] == "Building":
-            Building_line.append(House(screen, 5, 12, 9,\
+            Building_line.append(House(screen, 5, 9, 9,\
                  (150 + x_sector * 300, 150 + y_sector * 300), house_tex))
         else:
             Building_line.append(Road(screen, (150 + x_sector * 300,\
                  150 + y_sector * 300)))
     Map_objects.append(Building_line)
-
-
-
-
 
         
 
