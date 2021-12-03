@@ -1,0 +1,2914 @@
+0 0  Road
+
+0 1  Road
+
+0 2  Road
+
+0 3  Road
+
+0 4  Road
+
+0 5  Road
+
+0 6  Road
+
+0 7  Road
+
+0 8  Road
+
+0 9  Road
+
+0 10  Road
+
+0 11  Road
+
+0 12  Road
+
+0 13  Road
+
+0 14  Road
+
+0 15  Road
+
+0 16  Road
+
+0 17  Road
+
+0 18  Road
+
+0 19  Road
+
+0 20  Road
+
+0 21  Road
+
+0 22  Road
+
+0 23  Road
+
+0 24  Road
+
+0 25  Road
+
+0 26  Road
+
+0 27  Road
+
+0 28  Road
+
+0 29  Road
+
+0 30  Road
+
+0 31  Road
+
+0 32  Road
+
+0 33  Road
+
+0 34  Road
+
+0 35  Road
+
+0 36  Road
+
+0 37  Road
+
+0 38  Road
+
+0 39  Road
+
+0 40  Road
+
+0 41  Road
+
+0 42  Road
+
+0 43  Road
+
+0 44  Road
+
+0 45  Road
+
+0 46  Road
+
+1 0  Road
+
+1 1  Building
+
+1 2  Building
+
+1 3  Building
+
+1 4  Building
+
+1 5  Road
+
+1 6  Building
+
+1 7  Building
+
+1 8  Building
+
+1 9  Building
+
+1 10  Road
+
+1 11  Building
+
+1 12  Building
+
+1 13  Building
+
+1 14  Building
+
+1 15  Road
+
+1 16  Building
+
+1 17  Building
+
+1 18  Building
+
+1 19  Building
+
+1 20  Road
+
+1 21  Building
+
+1 22  Building
+
+1 23  Building
+
+1 24  Building
+
+1 25  Road
+
+1 26  Building
+
+1 27  Building
+
+1 28  Building
+
+1 29  Building
+
+1 30  Road
+
+1 31  Building
+
+1 32  Building
+
+1 33  Building
+
+1 34  Building
+
+1 35  Road
+
+1 36  Building
+
+1 37  Building
+
+1 38  Building
+
+1 39  Building
+
+1 40  Road
+
+1 41  Building
+
+1 42  Building
+
+1 43  Building
+
+1 44  Building
+
+1 45  Road
+
+1 46  Building
+
+2 0  Road
+
+2 1  Building
+
+2 2  Building
+
+2 3  Building
+
+2 4  Building
+
+2 5  Road
+
+2 6  Building
+
+2 7  Building
+
+2 8  Building
+
+2 9  Building
+
+2 10  Road
+
+2 11  Building
+
+2 12  Building
+
+2 13  Building
+
+2 14  Building
+
+2 15  Road
+
+2 16  Building
+
+2 17  Building
+
+2 18  Building
+
+2 19  Building
+
+2 20  Road
+
+2 21  Building
+
+2 22  Building
+
+2 23  Building
+
+2 24  Building
+
+2 25  Road
+
+2 26  Building
+
+2 27  Building
+
+2 28  Building
+
+2 29  Building
+
+2 30  Road
+
+2 31  Building
+
+2 32  Building
+
+2 33  Building
+
+2 34  Building
+
+2 35  Road
+
+2 36  Building
+
+2 37  Building
+
+2 38  Building
+
+2 39  Building
+
+2 40  Road
+
+2 41  Building
+
+2 42  Building
+
+2 43  Building
+
+2 44  Building
+
+2 45  Road
+
+2 46  Building
+
+3 0  Road
+
+3 1  Building
+
+3 2  Building
+
+3 3  Building
+
+3 4  Building
+
+3 5  Road
+
+3 6  Building
+
+3 7  Building
+
+3 8  Building
+
+3 9  Building
+
+3 10  Road
+
+3 11  Building
+
+3 12  Building
+
+3 13  Building
+
+3 14  Building
+
+3 15  Road
+
+3 16  Building
+
+3 17  Building
+
+3 18  Building
+
+3 19  Building
+
+3 20  Road
+
+3 21  Building
+
+3 22  Building
+
+3 23  Building
+
+3 24  Building
+
+3 25  Road
+
+3 26  Building
+
+3 27  Building
+
+3 28  Building
+
+3 29  Building
+
+3 30  Road
+
+3 31  Building
+
+3 32  Building
+
+3 33  Building
+
+3 34  Building
+
+3 35  Road
+
+3 36  Building
+
+3 37  Building
+
+3 38  Building
+
+3 39  Building
+
+3 40  Road
+
+3 41  Building
+
+3 42  Building
+
+3 43  Building
+
+3 44  Building
+
+3 45  Road
+
+3 46  Building
+
+4 0  Road
+
+4 1  Building
+
+4 2  Building
+
+4 3  Building
+
+4 4  Building
+
+4 5  Road
+
+4 6  Building
+
+4 7  Building
+
+4 8  Building
+
+4 9  Building
+
+4 10  Road
+
+4 11  Building
+
+4 12  Building
+
+4 13  Building
+
+4 14  Building
+
+4 15  Road
+
+4 16  Building
+
+4 17  Building
+
+4 18  Building
+
+4 19  Building
+
+4 20  Road
+
+4 21  Building
+
+4 22  Building
+
+4 23  Building
+
+4 24  Building
+
+4 25  Road
+
+4 26  Building
+
+4 27  Building
+
+4 28  Building
+
+4 29  Building
+
+4 30  Road
+
+4 31  Building
+
+4 32  Building
+
+4 33  Building
+
+4 34  Building
+
+4 35  Road
+
+4 36  Building
+
+4 37  Building
+
+4 38  Building
+
+4 39  Building
+
+4 40  Road
+
+4 41  Building
+
+4 42  Building
+
+4 43  Building
+
+4 44  Building
+
+4 45  Road
+
+4 46  Building
+
+5 0  Road
+
+5 1  Road
+
+5 2  Road
+
+5 3  Road
+
+5 4  Road
+
+5 5  Road
+
+5 6  Road
+
+5 7  Road
+
+5 8  Road
+
+5 9  Road
+
+5 10  Road
+
+5 11  Road
+
+5 12  Road
+
+5 13  Road
+
+5 14  Road
+
+5 15  Road
+
+5 16  Road
+
+5 17  Road
+
+5 18  Road
+
+5 19  Road
+
+5 20  Road
+
+5 21  Road
+
+5 22  Road
+
+5 23  Road
+
+5 24  Road
+
+5 25  Road
+
+5 26  Road
+
+5 27  Road
+
+5 28  Road
+
+5 29  Road
+
+5 30  Road
+
+5 31  Road
+
+5 32  Road
+
+5 33  Road
+
+5 34  Road
+
+5 35  Road
+
+5 36  Road
+
+5 37  Road
+
+5 38  Road
+
+5 39  Road
+
+5 40  Road
+
+5 41  Road
+
+5 42  Road
+
+5 43  Road
+
+5 44  Road
+
+5 45  Road
+
+5 46  Road
+
+6 0  Road
+
+6 1  Building
+
+6 2  Building
+
+6 3  Building
+
+6 4  Building
+
+6 5  Road
+
+6 6  Building
+
+6 7  Building
+
+6 8  Building
+
+6 9  Building
+
+6 10  Road
+
+6 11  Building
+
+6 12  Building
+
+6 13  Building
+
+6 14  Building
+
+6 15  Road
+
+6 16  Building
+
+6 17  Building
+
+6 18  Building
+
+6 19  Building
+
+6 20  Road
+
+6 21  Building
+
+6 22  Building
+
+6 23  Building
+
+6 24  Building
+
+6 25  Road
+
+6 26  Building
+
+6 27  Building
+
+6 28  Building
+
+6 29  Building
+
+6 30  Road
+
+6 31  Building
+
+6 32  Building
+
+6 33  Building
+
+6 34  Building
+
+6 35  Road
+
+6 36  Building
+
+6 37  Building
+
+6 38  Building
+
+6 39  Building
+
+6 40  Road
+
+6 41  Building
+
+6 42  Building
+
+6 43  Building
+
+6 44  Building
+
+6 45  Road
+
+6 46  Building
+
+7 0  Road
+
+7 1  Building
+
+7 2  Building
+
+7 3  Building
+
+7 4  Building
+
+7 5  Road
+
+7 6  Building
+
+7 7  Building
+
+7 8  Building
+
+7 9  Building
+
+7 10  Road
+
+7 11  Building
+
+7 12  Building
+
+7 13  Building
+
+7 14  Building
+
+7 15  Road
+
+7 16  Building
+
+7 17  Building
+
+7 18  Building
+
+7 19  Building
+
+7 20  Road
+
+7 21  Building
+
+7 22  Building
+
+7 23  Building
+
+7 24  Building
+
+7 25  Road
+
+7 26  Building
+
+7 27  Building
+
+7 28  Building
+
+7 29  Building
+
+7 30  Road
+
+7 31  Building
+
+7 32  Building
+
+7 33  Building
+
+7 34  Building
+
+7 35  Road
+
+7 36  Building
+
+7 37  Building
+
+7 38  Building
+
+7 39  Building
+
+7 40  Road
+
+7 41  Building
+
+7 42  Building
+
+7 43  Building
+
+7 44  Building
+
+7 45  Road
+
+7 46  Building
+
+8 0  Road
+
+8 1  Building
+
+8 2  Building
+
+8 3  Building
+
+8 4  Building
+
+8 5  Road
+
+8 6  Building
+
+8 7  Building
+
+8 8  Building
+
+8 9  Building
+
+8 10  Road
+
+8 11  Building
+
+8 12  Building
+
+8 13  Building
+
+8 14  Building
+
+8 15  Road
+
+8 16  Building
+
+8 17  Building
+
+8 18  Building
+
+8 19  Building
+
+8 20  Road
+
+8 21  Building
+
+8 22  Building
+
+8 23  Building
+
+8 24  Building
+
+8 25  Road
+
+8 26  Building
+
+8 27  Building
+
+8 28  Building
+
+8 29  Building
+
+8 30  Road
+
+8 31  Building
+
+8 32  Building
+
+8 33  Building
+
+8 34  Building
+
+8 35  Road
+
+8 36  Building
+
+8 37  Building
+
+8 38  Building
+
+8 39  Building
+
+8 40  Road
+
+8 41  Building
+
+8 42  Building
+
+8 43  Building
+
+8 44  Building
+
+8 45  Road
+
+8 46  Building
+
+9 0  Road
+
+9 1  Building
+
+9 2  Building
+
+9 3  Building
+
+9 4  Building
+
+9 5  Road
+
+9 6  Building
+
+9 7  Building
+
+9 8  Building
+
+9 9  Building
+
+9 10  Road
+
+9 11  Building
+
+9 12  Building
+
+9 13  Building
+
+9 14  Building
+
+9 15  Road
+
+9 16  Building
+
+9 17  Building
+
+9 18  Building
+
+9 19  Building
+
+9 20  Road
+
+9 21  Building
+
+9 22  Building
+
+9 23  Building
+
+9 24  Building
+
+9 25  Road
+
+9 26  Building
+
+9 27  Building
+
+9 28  Building
+
+9 29  Building
+
+9 30  Road
+
+9 31  Building
+
+9 32  Building
+
+9 33  Building
+
+9 34  Building
+
+9 35  Road
+
+9 36  Building
+
+9 37  Building
+
+9 38  Building
+
+9 39  Building
+
+9 40  Road
+
+9 41  Building
+
+9 42  Building
+
+9 43  Building
+
+9 44  Building
+
+9 45  Road
+
+9 46  Building
+
+10 0  Road
+
+10 1  Road
+
+10 2  Road
+
+10 3  Road
+
+10 4  Road
+
+10 5  Road
+
+10 6  Road
+
+10 7  Road
+
+10 8  Road
+
+10 9  Road
+
+10 10  Road
+
+10 11  Road
+
+10 12  Road
+
+10 13  Road
+
+10 14  Road
+
+10 15  Road
+
+10 16  Road
+
+10 17  Road
+
+10 18  Road
+
+10 19  Road
+
+10 20  Road
+
+10 21  Road
+
+10 22  Road
+
+10 23  Road
+
+10 24  Road
+
+10 25  Road
+
+10 26  Road
+
+10 27  Road
+
+10 28  Road
+
+10 29  Road
+
+10 30  Road
+
+10 31  Road
+
+10 32  Road
+
+10 33  Road
+
+10 34  Road
+
+10 35  Road
+
+10 36  Road
+
+10 37  Road
+
+10 38  Road
+
+10 39  Road
+
+10 40  Road
+
+10 41  Road
+
+10 42  Road
+
+10 43  Road
+
+10 44  Road
+
+10 45  Road
+
+10 46  Road
+
+11 0  Road
+
+11 1  Building
+
+11 2  Building
+
+11 3  Building
+
+11 4  Building
+
+11 5  Road
+
+11 6  Building
+
+11 7  Building
+
+11 8  Building
+
+11 9  Building
+
+11 10  Road
+
+11 11  Building
+
+11 12  Building
+
+11 13  Building
+
+11 14  Building
+
+11 15  Road
+
+11 16  Building
+
+11 17  Building
+
+11 18  Building
+
+11 19  Building
+
+11 20  Road
+
+11 21  Building
+
+11 22  Building
+
+11 23  Building
+
+11 24  Building
+
+11 25  Road
+
+11 26  Building
+
+11 27  Building
+
+11 28  Building
+
+11 29  Building
+
+11 30  Road
+
+11 31  Building
+
+11 32  Building
+
+11 33  Building
+
+11 34  Building
+
+11 35  Road
+
+11 36  Building
+
+11 37  Building
+
+11 38  Building
+
+11 39  Building
+
+11 40  Road
+
+11 41  Building
+
+11 42  Building
+
+11 43  Building
+
+11 44  Building
+
+11 45  Road
+
+11 46  Building
+
+12 0  Road
+
+12 1  Building
+
+12 2  Building
+
+12 3  Building
+
+12 4  Building
+
+12 5  Road
+
+12 6  Building
+
+12 7  Building
+
+12 8  Building
+
+12 9  Building
+
+12 10  Road
+
+12 11  Building
+
+12 12  Building
+
+12 13  Building
+
+12 14  Building
+
+12 15  Road
+
+12 16  Building
+
+12 17  Building
+
+12 18  Building
+
+12 19  Building
+
+12 20  Road
+
+12 21  Building
+
+12 22  Building
+
+12 23  Building
+
+12 24  Building
+
+12 25  Road
+
+12 26  Building
+
+12 27  Building
+
+12 28  Building
+
+12 29  Building
+
+12 30  Road
+
+12 31  Building
+
+12 32  Building
+
+12 33  Building
+
+12 34  Building
+
+12 35  Road
+
+12 36  Building
+
+12 37  Building
+
+12 38  Building
+
+12 39  Building
+
+12 40  Road
+
+12 41  Building
+
+12 42  Building
+
+12 43  Building
+
+12 44  Building
+
+12 45  Road
+
+12 46  Building
+
+13 0  Road
+
+13 1  Building
+
+13 2  Building
+
+13 3  Building
+
+13 4  Building
+
+13 5  Road
+
+13 6  Building
+
+13 7  Building
+
+13 8  Building
+
+13 9  Building
+
+13 10  Road
+
+13 11  Building
+
+13 12  Building
+
+13 13  Building
+
+13 14  Building
+
+13 15  Road
+
+13 16  Building
+
+13 17  Building
+
+13 18  Building
+
+13 19  Building
+
+13 20  Road
+
+13 21  Building
+
+13 22  Building
+
+13 23  Building
+
+13 24  Building
+
+13 25  Road
+
+13 26  Building
+
+13 27  Building
+
+13 28  Building
+
+13 29  Building
+
+13 30  Road
+
+13 31  Building
+
+13 32  Building
+
+13 33  Building
+
+13 34  Building
+
+13 35  Road
+
+13 36  Building
+
+13 37  Building
+
+13 38  Building
+
+13 39  Building
+
+13 40  Road
+
+13 41  Building
+
+13 42  Building
+
+13 43  Building
+
+13 44  Building
+
+13 45  Road
+
+13 46  Building
+
+14 0  Road
+
+14 1  Building
+
+14 2  Building
+
+14 3  Building
+
+14 4  Building
+
+14 5  Road
+
+14 6  Building
+
+14 7  Building
+
+14 8  Building
+
+14 9  Building
+
+14 10  Road
+
+14 11  Building
+
+14 12  Building
+
+14 13  Building
+
+14 14  Building
+
+14 15  Road
+
+14 16  Building
+
+14 17  Building
+
+14 18  Building
+
+14 19  Building
+
+14 20  Road
+
+14 21  Building
+
+14 22  Building
+
+14 23  Building
+
+14 24  Building
+
+14 25  Road
+
+14 26  Building
+
+14 27  Building
+
+14 28  Building
+
+14 29  Building
+
+14 30  Road
+
+14 31  Building
+
+14 32  Building
+
+14 33  Building
+
+14 34  Building
+
+14 35  Road
+
+14 36  Building
+
+14 37  Building
+
+14 38  Building
+
+14 39  Building
+
+14 40  Road
+
+14 41  Building
+
+14 42  Building
+
+14 43  Building
+
+14 44  Building
+
+14 45  Road
+
+14 46  Building
+
+15 0  Road
+
+15 1  Road
+
+15 2  Road
+
+15 3  Road
+
+15 4  Road
+
+15 5  Road
+
+15 6  Road
+
+15 7  Road
+
+15 8  Road
+
+15 9  Road
+
+15 10  Road
+
+15 11  Road
+
+15 12  Road
+
+15 13  Road
+
+15 14  Road
+
+15 15  Road
+
+15 16  Road
+
+15 17  Road
+
+15 18  Road
+
+15 19  Road
+
+15 20  Road
+
+15 21  Road
+
+15 22  Road
+
+15 23  Road
+
+15 24  Road
+
+15 25  Road
+
+15 26  Road
+
+15 27  Road
+
+15 28  Road
+
+15 29  Road
+
+15 30  Road
+
+15 31  Road
+
+15 32  Road
+
+15 33  Road
+
+15 34  Road
+
+15 35  Road
+
+15 36  Road
+
+15 37  Road
+
+15 38  Road
+
+15 39  Road
+
+15 40  Road
+
+15 41  Road
+
+15 42  Road
+
+15 43  Road
+
+15 44  Road
+
+15 45  Road
+
+15 46  Road
+
+16 0  Road
+
+16 1  Building
+
+16 2  Building
+
+16 3  Building
+
+16 4  Building
+
+16 5  Road
+
+16 6  Building
+
+16 7  Building
+
+16 8  Building
+
+16 9  Building
+
+16 10  Road
+
+16 11  Building
+
+16 12  Building
+
+16 13  Building
+
+16 14  Building
+
+16 15  Road
+
+16 16  Building
+
+16 17  Building
+
+16 18  Building
+
+16 19  Building
+
+16 20  Road
+
+16 21  Building
+
+16 22  Building
+
+16 23  Building
+
+16 24  Building
+
+16 25  Road
+
+16 26  Building
+
+16 27  Building
+
+16 28  Building
+
+16 29  Building
+
+16 30  Road
+
+16 31  Building
+
+16 32  Building
+
+16 33  Building
+
+16 34  Building
+
+16 35  Road
+
+16 36  Building
+
+16 37  Building
+
+16 38  Building
+
+16 39  Building
+
+16 40  Road
+
+16 41  Building
+
+16 42  Building
+
+16 43  Building
+
+16 44  Building
+
+16 45  Road
+
+16 46  Building
+
+17 0  Road
+
+17 1  Building
+
+17 2  Building
+
+17 3  Building
+
+17 4  Building
+
+17 5  Road
+
+17 6  Building
+
+17 7  Building
+
+17 8  Building
+
+17 9  Building
+
+17 10  Road
+
+17 11  Building
+
+17 12  Building
+
+17 13  Building
+
+17 14  Building
+
+17 15  Road
+
+17 16  Building
+
+17 17  Building
+
+17 18  Building
+
+17 19  Building
+
+17 20  Road
+
+17 21  Building
+
+17 22  Building
+
+17 23  Building
+
+17 24  Building
+
+17 25  Road
+
+17 26  Building
+
+17 27  Building
+
+17 28  Building
+
+17 29  Building
+
+17 30  Road
+
+17 31  Building
+
+17 32  Building
+
+17 33  Building
+
+17 34  Building
+
+17 35  Road
+
+17 36  Building
+
+17 37  Building
+
+17 38  Building
+
+17 39  Building
+
+17 40  Road
+
+17 41  Building
+
+17 42  Building
+
+17 43  Building
+
+17 44  Building
+
+17 45  Road
+
+17 46  Building
+
+18 0  Road
+
+18 1  Building
+
+18 2  Building
+
+18 3  Building
+
+18 4  Building
+
+18 5  Road
+
+18 6  Building
+
+18 7  Building
+
+18 8  Building
+
+18 9  Building
+
+18 10  Road
+
+18 11  Building
+
+18 12  Building
+
+18 13  Building
+
+18 14  Building
+
+18 15  Road
+
+18 16  Building
+
+18 17  Building
+
+18 18  Building
+
+18 19  Building
+
+18 20  Road
+
+18 21  Building
+
+18 22  Building
+
+18 23  Building
+
+18 24  Building
+
+18 25  Road
+
+18 26  Building
+
+18 27  Building
+
+18 28  Building
+
+18 29  Building
+
+18 30  Road
+
+18 31  Building
+
+18 32  Building
+
+18 33  Building
+
+18 34  Building
+
+18 35  Road
+
+18 36  Building
+
+18 37  Building
+
+18 38  Building
+
+18 39  Building
+
+18 40  Road
+
+18 41  Building
+
+18 42  Building
+
+18 43  Building
+
+18 44  Building
+
+18 45  Road
+
+18 46  Building
+
+19 0  Road
+
+19 1  Building
+
+19 2  Building
+
+19 3  Building
+
+19 4  Building
+
+19 5  Road
+
+19 6  Building
+
+19 7  Building
+
+19 8  Building
+
+19 9  Building
+
+19 10  Road
+
+19 11  Building
+
+19 12  Building
+
+19 13  Building
+
+19 14  Building
+
+19 15  Road
+
+19 16  Building
+
+19 17  Building
+
+19 18  Building
+
+19 19  Building
+
+19 20  Road
+
+19 21  Building
+
+19 22  Building
+
+19 23  Building
+
+19 24  Building
+
+19 25  Road
+
+19 26  Building
+
+19 27  Building
+
+19 28  Building
+
+19 29  Building
+
+19 30  Road
+
+19 31  Building
+
+19 32  Building
+
+19 33  Building
+
+19 34  Building
+
+19 35  Road
+
+19 36  Building
+
+19 37  Building
+
+19 38  Building
+
+19 39  Building
+
+19 40  Road
+
+19 41  Building
+
+19 42  Building
+
+19 43  Building
+
+19 44  Building
+
+19 45  Road
+
+19 46  Building
+
+20 0  Road
+
+20 1  Road
+
+20 2  Road
+
+20 3  Road
+
+20 4  Road
+
+20 5  Road
+
+20 6  Road
+
+20 7  Road
+
+20 8  Road
+
+20 9  Road
+
+20 10  Road
+
+20 11  Road
+
+20 12  Road
+
+20 13  Road
+
+20 14  Road
+
+20 15  Road
+
+20 16  Road
+
+20 17  Road
+
+20 18  Road
+
+20 19  Road
+
+20 20  Road
+
+20 21  Road
+
+20 22  Road
+
+20 23  Road
+
+20 24  Road
+
+20 25  Road
+
+20 26  Road
+
+20 27  Road
+
+20 28  Road
+
+20 29  Road
+
+20 30  Road
+
+20 31  Road
+
+20 32  Road
+
+20 33  Road
+
+20 34  Road
+
+20 35  Road
+
+20 36  Road
+
+20 37  Road
+
+20 38  Road
+
+20 39  Road
+
+20 40  Road
+
+20 41  Road
+
+20 42  Road
+
+20 43  Road
+
+20 44  Road
+
+20 45  Road
+
+20 46  Road
+
+21 0  Road
+
+21 1  Building
+
+21 2  Building
+
+21 3  Building
+
+21 4  Building
+
+21 5  Road
+
+21 6  Building
+
+21 7  Building
+
+21 8  Building
+
+21 9  Building
+
+21 10  Road
+
+21 11  Building
+
+21 12  Building
+
+21 13  Building
+
+21 14  Building
+
+21 15  Road
+
+21 16  Building
+
+21 17  Building
+
+21 18  Building
+
+21 19  Building
+
+21 20  Road
+
+21 21  Building
+
+21 22  Building
+
+21 23  Building
+
+21 24  Building
+
+21 25  Road
+
+21 26  Building
+
+21 27  Building
+
+21 28  Building
+
+21 29  Building
+
+21 30  Road
+
+21 31  Building
+
+21 32  Building
+
+21 33  Building
+
+21 34  Building
+
+21 35  Road
+
+21 36  Building
+
+21 37  Building
+
+21 38  Building
+
+21 39  Building
+
+21 40  Road
+
+21 41  Building
+
+21 42  Building
+
+21 43  Building
+
+21 44  Building
+
+21 45  Road
+
+21 46  Building
+
+22 0  Road
+
+22 1  Building
+
+22 2  Building
+
+22 3  Building
+
+22 4  Building
+
+22 5  Road
+
+22 6  Building
+
+22 7  Building
+
+22 8  Building
+
+22 9  Building
+
+22 10  Road
+
+22 11  Building
+
+22 12  Building
+
+22 13  Building
+
+22 14  Building
+
+22 15  Road
+
+22 16  Building
+
+22 17  Building
+
+22 18  Building
+
+22 19  Building
+
+22 20  Road
+
+22 21  Building
+
+22 22  Building
+
+22 23  Building
+
+22 24  Building
+
+22 25  Road
+
+22 26  Building
+
+22 27  Building
+
+22 28  Building
+
+22 29  Building
+
+22 30  Road
+
+22 31  Building
+
+22 32  Building
+
+22 33  Building
+
+22 34  Building
+
+22 35  Road
+
+22 36  Building
+
+22 37  Building
+
+22 38  Building
+
+22 39  Building
+
+22 40  Road
+
+22 41  Building
+
+22 42  Building
+
+22 43  Building
+
+22 44  Building
+
+22 45  Road
+
+22 46  Building
+
+23 0  Road
+
+23 1  Building
+
+23 2  Building
+
+23 3  Building
+
+23 4  Building
+
+23 5  Road
+
+23 6  Building
+
+23 7  Building
+
+23 8  Building
+
+23 9  Building
+
+23 10  Road
+
+23 11  Building
+
+23 12  Building
+
+23 13  Building
+
+23 14  Building
+
+23 15  Road
+
+23 16  Building
+
+23 17  Building
+
+23 18  Building
+
+23 19  Building
+
+23 20  Road
+
+23 21  Building
+
+23 22  Building
+
+23 23  Building
+
+23 24  Building
+
+23 25  Road
+
+23 26  Building
+
+23 27  Building
+
+23 28  Building
+
+23 29  Building
+
+23 30  Road
+
+23 31  Building
+
+23 32  Building
+
+23 33  Building
+
+23 34  Building
+
+23 35  Road
+
+23 36  Building
+
+23 37  Building
+
+23 38  Building
+
+23 39  Building
+
+23 40  Road
+
+23 41  Building
+
+23 42  Building
+
+23 43  Building
+
+23 44  Building
+
+23 45  Road
+
+23 46  Building
+
+24 0  Road
+
+24 1  Building
+
+24 2  Building
+
+24 3  Building
+
+24 4  Building
+
+24 5  Road
+
+24 6  Building
+
+24 7  Building
+
+24 8  Building
+
+24 9  Building
+
+24 10  Road
+
+24 11  Building
+
+24 12  Building
+
+24 13  Building
+
+24 14  Building
+
+24 15  Road
+
+24 16  Building
+
+24 17  Building
+
+24 18  Building
+
+24 19  Building
+
+24 20  Road
+
+24 21  Building
+
+24 22  Building
+
+24 23  Building
+
+24 24  Building
+
+24 25  Road
+
+24 26  Building
+
+24 27  Building
+
+24 28  Building
+
+24 29  Building
+
+24 30  Road
+
+24 31  Building
+
+24 32  Building
+
+24 33  Building
+
+24 34  Building
+
+24 35  Road
+
+24 36  Building
+
+24 37  Building
+
+24 38  Building
+
+24 39  Building
+
+24 40  Road
+
+24 41  Building
+
+24 42  Building
+
+24 43  Building
+
+24 44  Building
+
+24 45  Road
+
+24 46  Building
+
+25 0  Road
+
+25 1  Road
+
+25 2  Road
+
+25 3  Road
+
+25 4  Road
+
+25 5  Road
+
+25 6  Road
+
+25 7  Road
+
+25 8  Road
+
+25 9  Road
+
+25 10  Road
+
+25 11  Road
+
+25 12  Road
+
+25 13  Road
+
+25 14  Road
+
+25 15  Road
+
+25 16  Road
+
+25 17  Road
+
+25 18  Road
+
+25 19  Road
+
+25 20  Road
+
+25 21  Road
+
+25 22  Road
+
+25 23  Road
+
+25 24  Road
+
+25 25  Road
+
+25 26  Road
+
+25 27  Road
+
+25 28  Road
+
+25 29  Road
+
+25 30  Road
+
+25 31  Road
+
+25 32  Road
+
+25 33  Road
+
+25 34  Road
+
+25 35  Road
+
+25 36  Road
+
+25 37  Road
+
+25 38  Road
+
+25 39  Road
+
+25 40  Road
+
+25 41  Road
+
+25 42  Road
+
+25 43  Road
+
+25 44  Road
+
+25 45  Road
+
+25 46  Road
+
+26 0  Road
+
+26 1  Building
+
+26 2  Building
+
+26 3  Building
+
+26 4  Building
+
+26 5  Road
+
+26 6  Building
+
+26 7  Building
+
+26 8  Building
+
+26 9  Building
+
+26 10  Road
+
+26 11  Building
+
+26 12  Building
+
+26 13  Building
+
+26 14  Building
+
+26 15  Road
+
+26 16  Building
+
+26 17  Building
+
+26 18  Building
+
+26 19  Building
+
+26 20  Road
+
+26 21  Building
+
+26 22  Building
+
+26 23  Building
+
+26 24  Building
+
+26 25  Road
+
+26 26  Building
+
+26 27  Building
+
+26 28  Building
+
+26 29  Building
+
+26 30  Road
+
+26 31  Building
+
+26 32  Building
+
+26 33  Building
+
+26 34  Building
+
+26 35  Road
+
+26 36  Building
+
+26 37  Building
+
+26 38  Building
+
+26 39  Building
+
+26 40  Road
+
+26 41  Building
+
+26 42  Building
+
+26 43  Building
+
+26 44  Building
+
+26 45  Road
+
+26 46  Building
+
+27 0  Road
+
+27 1  Building
+
+27 2  Building
+
+27 3  Building
+
+27 4  Building
+
+27 5  Road
+
+27 6  Building
+
+27 7  Building
+
+27 8  Building
+
+27 9  Building
+
+27 10  Road
+
+27 11  Building
+
+27 12  Building
+
+27 13  Building
+
+27 14  Building
+
+27 15  Road
+
+27 16  Building
+
+27 17  Building
+
+27 18  Building
+
+27 19  Building
+
+27 20  Road
+
+27 21  Building
+
+27 22  Building
+
+27 23  Building
+
+27 24  Building
+
+27 25  Road
+
+27 26  Building
+
+27 27  Building
+
+27 28  Building
+
+27 29  Building
+
+27 30  Road
+
+27 31  Building
+
+27 32  Building
+
+27 33  Building
+
+27 34  Building
+
+27 35  Road
+
+27 36  Building
+
+27 37  Building
+
+27 38  Building
+
+27 39  Building
+
+27 40  Road
+
+27 41  Building
+
+27 42  Building
+
+27 43  Building
+
+27 44  Building
+
+27 45  Road
+
+27 46  Building
+
+28 0  Road
+
+28 1  Building
+
+28 2  Building
+
+28 3  Building
+
+28 4  Building
+
+28 5  Road
+
+28 6  Building
+
+28 7  Building
+
+28 8  Building
+
+28 9  Building
+
+28 10  Road
+
+28 11  Building
+
+28 12  Building
+
+28 13  Building
+
+28 14  Building
+
+28 15  Road
+
+28 16  Building
+
+28 17  Building
+
+28 18  Building
+
+28 19  Building
+
+28 20  Road
+
+28 21  Building
+
+28 22  Building
+
+28 23  Building
+
+28 24  Building
+
+28 25  Road
+
+28 26  Building
+
+28 27  Building
+
+28 28  Building
+
+28 29  Building
+
+28 30  Road
+
+28 31  Building
+
+28 32  Building
+
+28 33  Building
+
+28 34  Building
+
+28 35  Road
+
+28 36  Building
+
+28 37  Building
+
+28 38  Building
+
+28 39  Building
+
+28 40  Road
+
+28 41  Building
+
+28 42  Building
+
+28 43  Building
+
+28 44  Building
+
+28 45  Road
+
+28 46  Building
+
+29 0  Road
+
+29 1  Building
+
+29 2  Building
+
+29 3  Building
+
+29 4  Building
+
+29 5  Road
+
+29 6  Building
+
+29 7  Building
+
+29 8  Building
+
+29 9  Building
+
+29 10  Road
+
+29 11  Building
+
+29 12  Building
+
+29 13  Building
+
+29 14  Building
+
+29 15  Road
+
+29 16  Building
+
+29 17  Building
+
+29 18  Building
+
+29 19  Building
+
+29 20  Road
+
+29 21  Building
+
+29 22  Building
+
+29 23  Building
+
+29 24  Building
+
+29 25  Road
+
+29 26  Building
+
+29 27  Building
+
+29 28  Building
+
+29 29  Building
+
+29 30  Road
+
+29 31  Building
+
+29 32  Building
+
+29 33  Building
+
+29 34  Building
+
+29 35  Road
+
+29 36  Building
+
+29 37  Building
+
+29 38  Building
+
+29 39  Building
+
+29 40  Road
+
+29 41  Building
+
+29 42  Building
+
+29 43  Building
+
+29 44  Building
+
+29 45  Road
+
+29 46  Building
+
+30 0  Road
+
+30 1  Road
+
+30 2  Road
+
+30 3  Road
+
+30 4  Road
+
+30 5  Road
+
+30 6  Road
+
+30 7  Road
+
+30 8  Road
+
+30 9  Road
+
+30 10  Road
+
+30 11  Road
+
+30 12  Road
+
+30 13  Road
+
+30 14  Road
+
+30 15  Road
+
+30 16  Road
+
+30 17  Road
+
+30 18  Road
+
+30 19  Road
+
+30 20  Road
+
+30 21  Road
+
+30 22  Road
+
+30 23  Road
+
+30 24  Road
+
+30 25  Road
+
+30 26  Road
+
+30 27  Road
+
+30 28  Road
+
+30 29  Road
+
+30 30  Road
+
+30 31  Road
+
+30 32  Road
+
+30 33  Road
+
+30 34  Road
+
+30 35  Road
+
+30 36  Road
+
+30 37  Road
+
+30 38  Road
+
+30 39  Road
+
+30 40  Road
+
+30 41  Road
+
+30 42  Road
+
+30 43  Road
+
+30 44  Road
+
+30 45  Road
+
+30 46  Road
+
