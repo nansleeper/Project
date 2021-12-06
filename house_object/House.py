@@ -33,7 +33,7 @@ class House:
             self.color_win = (210, 240, 240)
             self.color_door = (50, 20, 10)
             self.doors = doors
-            self.textures = (choice(('Road/kysha.bmp', 'Road/krysha1.bmp')),textures)
+            self.textures = (choice(('textur/kysha.bmp', 'textur/krysha1.bmp')),textures)
             self.globalx = cent[0]
             self.globaly = cent[1]
 

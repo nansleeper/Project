@@ -12,12 +12,12 @@ class Road:
         self.cent = cent
         self.sector =(self.globalx // 300, self.globaly // 300)
         if self.sector[0] % 5 == 0 and self.sector[1] % 5 == 0:
-            self.tex = 'Road/cross.bmp'
+            self.tex = 'textur/cross.bmp'
         else:
             if self.sector[0] % 5 == 0:
-                self.tex = 'Road/vert.bmp'
+                self.tex = 'textur/vert.bmp'
             else:
-                self.tex = 'Road/hor.bmp'
+                self.tex = 'textur/hor.bmp'
 
     def move(self, player_coord):
             '''
