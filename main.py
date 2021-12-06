@@ -7,7 +7,7 @@ from Road.road import Road
 import pygame
 
 player = Player()
-#screen = 1800 * 900
+#screen = 1800 * 1000
 WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
@@ -18,7 +18,7 @@ import pygame
 
 Map_objects = []
 
-house_tex ='Road/fon.bmp'
+house_tex ='textur/fon.bmp'
 
 
 for y_sector in range(31):
