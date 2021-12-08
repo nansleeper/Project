@@ -149,7 +149,6 @@ class House:
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает дом вцелом, вызывая функции в правильном порядке
             '''
-            print(self.textures[1])
             tex = pygame.image.load(self.textures[1])
             self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
             if (self.cent[0] - spect_coord[0]) ** 2 > (self.cent[1] - spect_coord[1])**2:

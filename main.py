@@ -1,21 +1,24 @@
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER
 from map_array.map import map_array
 from Core.draw_core import calculate_coard, map_compile
 from Player.player import Player
 from house_object.House import House
 from Road.road import Road
 import pygame
+from Menu.menu import Menu
+
 
 player = Player()
 #screen = 1800 * 1000
 WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 FPS = 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
-
+menu = Menu(screen)
 Map_objects = []
 
 house_tex ='textur/fon.bmp'
@@ -31,7 +34,6 @@ for y_sector in range(31):
             Building_line.append(Road(screen, (150 + x_sector * 300,\
                  150 + y_sector * 300)))
     Map_objects.append(Building_line)
-
         
 
 
@@ -42,9 +44,18 @@ pygame.init()
 
 clock = pygame.time.Clock()
 finished = False
+menu_pos = 0
+gamestatus = 'new'
 
 while not finished:
+    while menu.status:
+        menu.draw(gamestatus)
+        pygame.display.update()
     screen.fill(WHITE)
+    if menu.finished:
+        finished = menu.finished
+        break
+    gamestatus = 'continue'
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
         player.sector[0] -1, player.sector[0] + 3,\
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
@@ -71,7 +82,10 @@ while not finished:
             if event.key == K_RIGHT:
                 player.vx = 10
             elif event.key == K_ESCAPE:
-                finished = True
+                if menu.status:
+                    menu.status = False
+                else:
+                    menu.status = True
             elif event.key == K_LEFT:
                 player.vx = - 10
             elif event.key == K_DOWN:
