@@ -57,7 +57,7 @@ while not finished:
         break
     gamestatus = 'continue'
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
-        player.sector[0] -1, player.sector[0] + 3,\
+        player.sector[0] - 1, player.sector[0] + 3,\
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
         for y in (player.sector[1] - 1,\
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
