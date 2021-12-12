@@ -58,7 +58,7 @@ class Ball:
     def render(self):
         surface=self.surface
         if self.is_alive:
-            koldunov = pygame.image.load('//home//rubo//Project//people//koldunov.jpg')
+            koldunov = pygame.image.load('people//koldunov.jpg')
             koldunov.set_colorkey((0,0,0))
             koldunov = koldunov.convert_alpha()
             correct_scale = 2 * self.r
