@@ -10,8 +10,8 @@ class Player:
         self.vy = 0
     
     def move(self):
-        if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 1) \
-            and ((self.x + self.vx) // 300 <= 43) and ((self.y + self.vy) // 300 <= 28):
+        if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
+            and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
             self.x += self.vx
             self.y += self.vy
         self.sector = (self.x // 300, self.y // 300)

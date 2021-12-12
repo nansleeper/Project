@@ -1,15 +1,13 @@
 from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER
-from map_array.map import map_array
-from Core.draw_core import calculate_coard, map_compile
+from map_array.globalmap import main_map
+from Core.draw_core import *
 from Player.player import Player
-from house_object.House import House
-from Road.road import Road
 import pygame
 from Menu.menu import Menu
 
 
 player = Player()
-#screen = 1800 * 1000
+#screen = 1800 * 1000 and 48 * 33 map
 WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
@@ -21,22 +19,47 @@ import pygame
 menu = Menu(screen)
 Map_objects = []
 
-house_tex ='textur/fon.bmp'
-
-
-for y_sector in range(31):
+for y_sector in range(33):
     Building_line = []
-    for x_sector in range(47):
-        if map_array[y_sector][x_sector] == "Building":
-            Building_line.append(House(screen, 5, 9, 9,\
-                 (150 + x_sector * 300, 150 + y_sector * 300), house_tex))
-        else:
-            Building_line.append(Road(screen, (150 + x_sector * 300,\
-                 150 + y_sector * 300)))
-    Map_objects.append(Building_line)
+    for x_sector in range(48):
         
-
-
+        if main_map[y_sector][x_sector] == "House1":
+            Building_line.append(House(screen, (x_sector, y_sector), 1))
+        elif main_map[y_sector][x_sector] == "House2":
+            Building_line.append(House(screen, (x_sector, y_sector), 2))
+        elif main_map[y_sector][x_sector] == "House3":
+            Building_line.append(House(screen, (x_sector, y_sector), 3))
+        elif main_map[y_sector][x_sector] == "Walk_road":
+            Building_line.append(WalkingRoad(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "CrossRoad":
+            Building_line.append(Road(screen, (x_sector, y_sector), "cross", True))
+        elif main_map[y_sector][x_sector] == "HorRoad":
+            Building_line.append(Road(screen, (x_sector, y_sector), 'hor', True))
+        elif main_map[y_sector][x_sector] == "VertRoad":
+            Building_line.append(Road(screen, (x_sector, y_sector), 'vert', True))
+        elif main_map[y_sector][x_sector] == "HorRoadUnable":
+            Building_line.append(Road(screen, (x_sector, y_sector), 'hor', False))
+        elif main_map[y_sector][x_sector] == "VertRoadUnable":
+            Building_line.append(Road(screen, (x_sector, y_sector), 'vert', False))
+        elif main_map[y_sector][x_sector] == "DownBorder":
+            Building_line.append(DownBorder(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "LeftBorder":
+            Building_line.append(LeftBorder(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "RightBorder":
+            Building_line.append(RightBorder(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "UpBorder":
+            Building_line.append(UpBorder(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "Park":
+            Building_line.append(Park(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "Beach":
+            Building_line.append(Beach(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "Water":
+            Building_line.append(Water(screen, (x_sector, y_sector)))
+        elif main_map[y_sector][x_sector] == "Bridge":
+            Building_line.append(Bridge(screen, (x_sector, y_sector)))
+        else:
+            print(main_map[y_sector][x_sector],'ERROR')
+    Map_objects.append(Building_line)
 
 
 pygame.init()
@@ -59,13 +82,10 @@ while not finished:
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
         player.sector[0] - 1, player.sector[0] + 3,\
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
-        for y in (player.sector[1] - 1,\
+        for y in (player.sector[1] - 2, player.sector[1] - 1,\
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_objects[y][x].move((player.x, player.y))
-                if type(Map_objects[y][x]) == type(Map_objects[1][1]):
-                    Map_objects[y][x].draw((900, 500, 600))
-                else:
-                    Map_objects[y][x].draw()
+                Map_objects[y][x].draw()
     pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1800, 150), 0)
     pygame.display.update()
     clock.tick(FPS)
