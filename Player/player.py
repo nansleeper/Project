@@ -5,6 +5,7 @@ class Player:
         self.y = 1800
         self.car = False
         self.fire = False
+        self.health = 100
         self.sector = (self.x // 300, self.y // 300)
         self.vx = 0
         self.vy = 0
