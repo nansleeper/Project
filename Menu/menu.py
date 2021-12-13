@@ -26,6 +26,7 @@ class Menu:
         self.period = 500
         self.mapstatus = False
         self.player = player
+        self.gamestatus = "new"
 
     def start(self):
         self.status = False
@@ -38,7 +39,9 @@ class Menu:
             start_text = fontstart.render('Start new game', True, (255, 255, 255))
         else:
             start_text = fontstart.render('Continue game', True, (255, 255, 255))
+            self.gamestatus = "continue"
         self.screen.blit(start_text, (100, self.start_y + self.width / 2))
+            
 
     def exit(self):
         self.status = False
@@ -130,10 +133,11 @@ class Menu:
                 self.but_now = (self.pos[1] - self.menu_y) // 100
             elif event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
-                    if self.status:
-                        self.status = False
-                    else:
-                        self.status = True
+                    if self.gamestatus == "continue":
+                        if self.status:
+                            self.status = False
+                        else:
+                            self.status = True
                 elif event.key == 13:  # actually it is Enter
                     if self.but_now == 0:
                         self.start()
