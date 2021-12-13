@@ -1,12 +1,12 @@
 import pygame
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m
 
 
 
 class Menu:
 
-    def __init__(self, screen):
-        self.but_num = 2
+    def __init__(self, screen, player):
+        self.but_num = 3
         self.but_now = -1
         self.pos = [0, 0]
         self.m_push = 0
@@ -14,14 +14,18 @@ class Menu:
         self.menu_y = 300
         self.start_num = 0
         self.width = 100
+        self.map_num = 1
         self.length = 600
         self.start_y = self.menu_y + self.width * self.start_num
-        self.exit_num = 1
+        self.exit_num = 2
         self.exit_y = self.menu_y + self.width * self.exit_num
+        self.map_y = self.menu_y + self.width * self.map_num
         self.status = True
         self.finished = False
         self.time = 0
         self.period = 500
+        self.mapstatus = False
+        self.player = player
 
     def start(self):
         self.status = False
@@ -41,7 +45,7 @@ class Menu:
         self.finished = True
 
     def exit_draw(self):
-        if self.but_now == 1:
+        if self.but_now == 2:
             pygame.draw.rect(self.screen, (50, 50, 50), (30, self.exit_y, self.length, self.width))
         fontstart = pygame.font.Font(None, 60)
         start_text = fontstart.render('Exit', True, (255, 255, 255))
@@ -66,6 +70,12 @@ class Menu:
         backspace = pygame.transform.scale(backspace, (1800, 1000))
         self.screen.blit(backspace, (0, 0))
 
+    def map_draw(self):
+        if self.but_now == 1:
+            pygame.draw.rect(self.screen, (50, 50, 50), (30, self.map_y, self.length, self.width))
+        fontstart = pygame.font.Font(None, 60)
+        start_text = fontstart.render('Map', True, (255, 255, 255))
+        self.screen.blit(start_text, (100, self.map_y + self.width / 2))
 
         
 
@@ -76,7 +86,32 @@ class Menu:
         pygame.draw.polygon(self.screen, (0, 0, 0), ((0,0), (600, 0), (800, 1000), (0, 1000)))
         self.start_draw(gamestatus)
         self.exit_draw()
+        self.map_draw()
         self.time += 1
+    
+
+    def open_map(self):
+        self.mapstatus = True
+        while self.mapstatus:
+            maps = pygame.image.load("Menu/map_menu.bmp")
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(maps, (180, 50))
+            pygame.draw.circle(self.screen, (255, 0, 0), (180 + self.player.x / 10, 50 + self.player.y/ 10), 5)
+            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == K_m:
+                        self.mapstatus = False
+                        self.player.vx = self.player.vy = 0
+                    elif event.key == K_ESCAPE:
+                        self.mapstatus = False
+                        self.player.vx = self.player.vy = 0
+                elif event.type == pygame.QUIT:
+                    self.mapstatus = False
+                    self.exit()
+            
+                    
+
         
 
     def calculate(self):
@@ -87,6 +122,8 @@ class Menu:
                 if self.but_now / 1 == 0:
                     self.start()
                 elif self.but_now / 1 == 1:
+                    self.open_map()
+                elif self.but_now / 1 == 2:
                     self.exit()
             elif event.type == pygame.MOUSEMOTION:
                 self.pos = event.pos

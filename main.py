@@ -1,4 +1,4 @@
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m
 from map_array.globalmap import main_map
 from Core.draw_core import *
 from Player.player import Player
@@ -16,7 +16,7 @@ FPS = 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
-menu = Menu(screen)
+menu = Menu(screen, player)
 Map_objects = []
 
 for y_sector in range(33):
@@ -122,6 +122,10 @@ while not finished:
         elif event.type == pygame.KEYDOWN:
             if event.key == K_RIGHT:
                 player.vx = 10
+            elif event.key == K_m:
+                menu.mapstatus = True
+                while menu.mapstatus:
+                    menu.open_map()
             elif event.key == K_ESCAPE:
                 if menu.status:
                     menu.status = False
@@ -142,6 +146,7 @@ while not finished:
                 player.vy = 0
             elif event.key == K_UP:
                 player.vy = 0
+
     player.move()
 
     '''
