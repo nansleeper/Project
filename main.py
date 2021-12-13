@@ -5,7 +5,7 @@ from Player.player import Player
 import pygame
 from Menu.menu import Menu
 
-
+pygame.mixer.init()
 player = Player()
 #screen = 1800 * 1000 and 48 * 33 map
 WIDTH = 1800
@@ -162,6 +162,7 @@ while not finished:
 
 
 
+pygame.mixer.quit()
 pygame.quit()
 
 

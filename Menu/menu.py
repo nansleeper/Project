@@ -2,7 +2,6 @@ import pygame
 from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m
 
 
-
 class Menu:
 
     def __init__(self, screen, player):
@@ -27,6 +26,7 @@ class Menu:
         self.mapstatus = False
         self.player = player
         self.gamestatus = "new"
+        self.click = pygame.mixer.Sound("Menu/click.ogg")
 
     def start(self):
         self.status = False
@@ -130,7 +130,11 @@ class Menu:
                     self.exit()
             elif event.type == pygame.MOUSEMOTION:
                 self.pos = event.pos
-                self.but_now = (self.pos[1] - self.menu_y) // 100
+                if self.but_now != (self.pos[1] - self.menu_y) // 100:
+                    self.but_now = (self.pos[1] - self.menu_y) // 100
+                    if self.but_now >= 0 and self.but_now < self.but_num:
+                        pygame.mixer.stop()
+                        self.click.play()
             elif event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
                     if self.gamestatus == "continue":
@@ -142,13 +146,19 @@ class Menu:
                     if self.but_now == 0:
                         self.start()
                     elif self.but_now == 1:
+                        self.open_map()
+                    elif self.but_now == 2:
                         self.exit()
                 elif event.key == K_UP:
+                    pygame.mixer.stop()
+                    self.click.play()
                     if self.but_now > 0 and self.but_now < self.but_num:
                         self.but_now -= 1
                     elif self.but_now <= 0 or self.but_num >= self.but_num:
                         self.but_now = self.but_num - 1
                 elif event.key == K_DOWN:
+                    pygame.mixer.stop()
+                    self.click.play()
                     if self.but_now >= 0 and self.but_now < self.but_num - 1:
                         self.but_now += 1
                     elif self.but_now < 0 or self.but_num >= self.but_num - 1:
