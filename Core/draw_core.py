@@ -152,7 +152,7 @@ class House(Drawableobject):
                     pygame.draw.polygon(self.screen, self.color_win, window)
                     pygame.draw.polygon(self.screen, (0, 0, 0), window, 1)
 
-        def draw(self, spect_coord = (900, 500, 500)):
+        def draw(self, spect_coord = (900, 500, 700)):
             '''
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает дом вцелом, вызывая функции в правильном порядке
