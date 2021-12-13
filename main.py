@@ -12,7 +12,7 @@ WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-FPS = 1000
+FPS = 20
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
