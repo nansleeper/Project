@@ -11,10 +11,11 @@ height = 800
 width = 1000
 score = 0
 i = 0
-motion = 0
 n = 2
+motion = 0
 cars = []
 car1 = []
+collis = False
 
 coord_gor = [0, width]
 
@@ -130,15 +131,18 @@ class Square(pygame.sprite.Sprite):
       center = self.rect.center
       self.hit = 1
       self.t = 0
+      '''
       if self.rect.x > obj.x:
         self.angle = (self.angle + self.speed) % 360
-
+      '''
       image = pygame.transform.rotate(self.surface, self.angle)
       self.rect = image.get_rect()
       self.rect.center = center
 
+      '''
       self.rect.x += (self.rect.x - obj.x)/abs(self.rect.x - obj.x) * 20 * math.sin(math.radians(360-self.angle)) * (-1)**n
       self.rect.y -= (self.rect.y - obj.y)/abs(self.rect.y - obj.y) * 20 * math.cos(math.radians(360-self.angle)) * (-1)**n
+      '''
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
 
@@ -150,10 +154,15 @@ class Square_main(Square):
     self.x = self.rect.x
     self.y = self.rect.y
     self.start = 0
+    self.vx = 5
+    self.vy = 5
+    self.angle = 360
     self.rect = self.surface.get_rect(center=(self.rect.x - pygame.Surface.get_width(self.surface)/2, self.rect.y - pygame.Surface.get_height(self.surface)/2))
 
+    self.main_speed = [self.vx, self.vy, self.angle]
 
-  def update(self, win, event, n = 2, angle = 360):
+
+  def move(self, win, event, n = 2):
       center = self.rect.center
 
       if event == 3:
@@ -260,21 +269,37 @@ class Square_main(Square):
 
 
   def collisions(self, obj):
-    if pygame.sprite.collide_rect(obj, self):
+    if self.rect.colliderect(obj.rect):
+      '''
       image = pygame.transform.rotate(self.surface, self.angle)
       self.rect = image.get_rect()
       #print(self.rect.x, obj.rect.x, self.rect.y, obj.rect.y, self.x - obj.rect.x )
+      
       self.x += (self.x - obj.rect.x)/abs(self.x - obj.rect.x) * math.sin(math.radians(360-self.angle))
       self.y -=(-1) * (self.y - obj.rect.y)/abs(self.y - obj.rect.y) * math.cos(math.radians(360-self.angle))
+      
       self.rect.x = self.x
       self.rect.y = self.y
+      
       self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
       #print(self.rect.y, self.rect.x, obj.rect.x, obj.rect.y)
+      
 
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
+      '''
+      collis = pygame.sprite.collide_rect(obj, self)
+  
 
-      return pygame.sprite.collide_rect(obj, self)
+  def update(self, win, motion, n):
+    if collis:
+      self.col_update()
+    else:
+      self.move(win, motion, n)
+
+  def col_update(self):
+
+    print(d)
 
      
 
