@@ -1,3 +1,5 @@
+import pygame
+
 class Player:
 
     def __init__(self):
@@ -16,4 +18,16 @@ class Player:
             self.x += self.vx
             self.y += self.vy
         self.sector = (self.x // 300, self.y // 300)
-        
+
+    def draw(self, screen):
+        v = (self.vx)**2 + (self.vy)**2
+        if v == 0:
+            player_screen = pygame.image.load('Core/texture/player.bmp')
+            player_screen.set_colorkey((255, 255, 255))
+            screen.blit(player_screen, (900 - 20, 500 - 16))
+
+        elif v > 0:
+            #игрок идёт
+            print(1)
+        else:
+            print('Сворачивай программу, мы в поле комплексных чисел попали!')

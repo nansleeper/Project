@@ -108,8 +108,8 @@ while not finished:
         icon_screen = pygame.image.load('Core/texture/playerico.bmp')
         icon_screen.set_colorkey((248, 250, 251))
         screen.blit(icon_screen, (70, 30))
-    pygame.display.update()
-    clock.tick(FPS)
+    #pygame.display.update()
+    #clock.tick(FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
@@ -148,7 +148,9 @@ while not finished:
                 player.vy = 0
 
     player.move()
-
+    player.draw(screen)
+    pygame.display.update()
+    clock.tick(FPS)
     '''
     calculate_coard(objects, Player)
 
