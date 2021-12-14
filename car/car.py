@@ -15,7 +15,7 @@ n = 2
 motion = 0
 cars = []
 car1 = []
-collis = False
+
 
 coord_gor = [0, width]
 
@@ -88,7 +88,6 @@ class Square(pygame.sprite.Sprite):
         win.blit(image, self.rect)
 
         self.t += 0.01
-        print(self.t)
 
       else:
 
@@ -156,7 +155,16 @@ class Square_main(Square):
     self.start = 0
     self.vx = 5
     self.vy = 5
+    self.a = 1
+    self.t = 1
+    self.dt = 0.02
+    self.collis = False
+    self.not_colid = True
+    self.first_collid = False
+    self.motion0 = 0
     self.angle = 360
+    self.angle_col = 0
+    self.after_collid = 0
     self.rect = self.surface.get_rect(center=(self.rect.x - pygame.Surface.get_width(self.surface)/2, self.rect.y - pygame.Surface.get_height(self.surface)/2))
 
     self.main_speed = [self.vx, self.vy, self.angle]
@@ -196,8 +204,8 @@ class Square_main(Square):
 
       if event == 134:
 
-        self.y -= 5 * math.cos(math.radians(360-self.angle))
-        self.x += 5 * math.sin(math.radians(360-self.angle))
+        self.y -= self.vx * math.cos(math.radians(360-self.angle))
+        self.x += self.vy * math.sin(math.radians(360-self.angle))
         self.rect.y = self.y
         self.rect.x = self.x
         if self.start > 0:
@@ -210,8 +218,8 @@ class Square_main(Square):
 
       if event == 234:
 
-        self.y += 5 * math.cos(math.radians(360-self.angle))
-        self.x -= 5 * math.sin(math.radians(360-self.angle))
+        self.y += self.vx * math.cos(math.radians(360-self.angle))
+        self.x -= self.vy * math.sin(math.radians(360-self.angle))
         self.rect.y = self.y
         self.rect.x = self.x 
         if self.start > 0:
@@ -229,8 +237,8 @@ class Square_main(Square):
           #if self.start == 1:
            # self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
-          self.y -= 5 * math.cos(math.radians(360-self.angle))
-          self.x += 5 * math.sin(math.radians(360-self.angle))
+          self.y -= self.vy * math.cos(math.radians(360-self.angle))
+          self.x += self.vx * math.sin(math.radians(360-self.angle))
           self.rect.y = self.y
           self.rect.x = self.x
           #print(self.x, ' ', self.y)
@@ -247,8 +255,8 @@ class Square_main(Square):
           
          
       if event == 2:
-        self.y += 5 * math.cos(math.radians(360-self.angle))
-        self.x -= 5  * math.sin(math.radians(360-self.angle))
+        self.y += self.vy * math.cos(math.radians(360-self.angle))
+        self.x -= self.vx  * math.sin(math.radians(360-self.angle))
         self.rect.y = self.y
         self.rect.x = self.x
         if self.start > 0:
@@ -270,6 +278,8 @@ class Square_main(Square):
 
   def collisions(self, obj):
     if self.rect.colliderect(obj.rect):
+      self.angle_col = abs(self.angle - obj.angle)
+
       '''
       image = pygame.transform.rotate(self.surface, self.angle)
       self.rect = image.get_rect()
@@ -288,18 +298,73 @@ class Square_main(Square):
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
       '''
-      collis = pygame.sprite.collide_rect(obj, self)
-  
-
-  def update(self, win, motion, n):
-    if collis:
-      self.col_update()
-    else:
-      self.move(win, motion, n)
-
+      self.collis = True
+      
+      return obj
+ 
   def col_update(self):
+    
+    self.t += self.dt
+    print(self.t)
 
-    print(d)
+    
+    if self.vx <= 5 and self.vy <= 5:
+      self.vy += 2
+      self.vx += 2
+      
+
+
+    image = pygame.transform.rotate(self.surface, self.angle)
+    self.rect = image.get_rect()
+
+    self.rect.x = self.x
+    self.rect.y = self.y
+    
+    self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
+
+    pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
+    win.blit(image, self.rect)
+
+    if self.t >= 1:
+      self.not_colid = True
+      self.collis = False
+      self.after_collid = 1
+      print("111111111111")
+
+
+
+   
+  def update(self, win, motion, n):
+    print(self.collis, self.not_colid, self.t)
+    if self.collis and self.t >= 1:
+      print(222222222)
+      self.t = 0
+      self.vx = 0
+      self.vy = 0
+      self.not_colid = False
+    if self.not_colid == False:
+      self.after_collid = 0
+      self.col_update()
+    if self.not_colid == True:
+      print("!!!", motion)
+
+      if self.after_collid == 1 and (motion == self.motion0 or int(motion/100) == self.motion0):
+        print(3333333)
+        self.t = 0
+        self.vx = 0
+        self.vy = 0
+        self.col_update()
+        self.not_colid = False
+        print("!!!!!!!", self.motion0)
+
+      else:
+        self.move(win, motion, n)
+        self.after_collid = 0
+        if motion > 0:
+          self.motion0 = motion
+          print("!", self.motion0)
+
+ 
 
      
 
@@ -330,7 +395,7 @@ if __name__ == '__main__':
     while running:
         win.fill((255,255,255))
 
-        count += 1
+        count += 0.5
         if count % 100 == 0:
           if i == 0:
             car_main = Square_main(200 , 300)
