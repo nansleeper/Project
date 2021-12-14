@@ -1,5 +1,5 @@
 import pygame
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m, K_s, K_w
 
 
 class Menu:
@@ -149,14 +149,14 @@ class Menu:
                         self.open_map()
                     elif self.but_now == 2:
                         self.exit()
-                elif event.key == K_UP:
+                elif event.key == K_w:
                     pygame.mixer.stop()
                     self.click.play()
                     if self.but_now > 0 and self.but_now < self.but_num:
                         self.but_now -= 1
                     elif self.but_now <= 0 or self.but_num >= self.but_num:
                         self.but_now = self.but_num - 1
-                elif event.key == K_DOWN:
+                elif event.key == K_s:
                     pygame.mixer.stop()
                     self.click.play()
                     if self.but_now >= 0 and self.but_now < self.but_num - 1:

@@ -1,4 +1,4 @@
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER, K_m
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_KP_ENTER, K_m, K_s, K_w
 from map_array.globalmap import main_map
 from Core.draw_core import *
 from Player.player import Player
@@ -12,7 +12,7 @@ WIDTH = 1800
 HEIGHT = 1000
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-FPS = 20
+FPS = 15
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 import pygame
@@ -71,6 +71,7 @@ menu_pos = 0
 gamestatus = 'new'
 
 while not finished:
+    Map_activesectors = []
     while menu.status:
         menu.draw(gamestatus)
         pygame.display.update()
@@ -84,8 +85,10 @@ while not finished:
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
         for y in (player.sector[1] - 2, player.sector[1] - 1,\
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
-                Map_objects[y][x].move((player.x, player.y))
-                Map_objects[y][x].draw()
+                Map_activesectors.append(Map_objects[y][x])
+    for i in range(len(Map_activesectors)):
+        Map_activesectors[i].move((player.x, player.y))
+        Map_activesectors[i].draw()
     info_screen = pygame.image.load('Core/texture/fonmain.bmp')
     screen.blit(info_screen, (0, 0))
     pygame.draw.polygon(screen, (255, 250, 0),
@@ -120,7 +123,7 @@ while not finished:
         elif event.type == pygame.MOUSEMOTION:
             mouse_coard = event.pos
         elif event.type == pygame.KEYDOWN:
-            if event.key == K_RIGHT:
+            if event.key == K_d:
                 player.vx = 10
             elif event.key == K_m:
                 menu.mapstatus = True
@@ -131,23 +134,23 @@ while not finished:
                     menu.status = False
                 else:
                     menu.status = True
-            elif event.key == K_LEFT:
+            elif event.key == K_a:
                 player.vx = - 10
-            elif event.key == K_DOWN:
+            elif event.key == K_s:
                 player.vy = 10
-            elif event.key == K_UP:
+            elif event.key == K_w:
                 player.vy = - 10
         elif event.type == pygame.KEYUP:
-            if event.key == K_RIGHT:
+            if event.key == K_d:
                 player.vx = 0
-            elif event.key == K_LEFT:
+            elif event.key == K_a:
                 player.vx = 0
-            elif event.key == K_DOWN:
+            elif event.key == K_s:
                 player.vy = 0
-            elif event.key == K_UP:
+            elif event.key == K_w:
                 player.vy = 0
 
-    player.move()
+    player.move(Map_activesectors)
     player.draw(screen)
     pygame.display.update()
     clock.tick(FPS)

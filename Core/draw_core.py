@@ -9,6 +9,7 @@ class Drawableobject:
         self.globalcent = (self.cent[0], self.cent[1])
         self.screen = screen
         self.tex = tex
+        self.hitbox = (0, 0)
 
 
 
@@ -55,6 +56,7 @@ class House(Drawableobject):
             self.y = 8 * win + 2 * brdr
             self.color_win = (210, 240, 240)
             self.model = model
+            self.hitbox = (self.x / 2, self.y / 2)
             if self.model == 1:
                 self.color_wall = (157, 158, 152)
                 self.textures = ('Core/texture/roof1.bmp', 'Core/texture/Walk_road.bmp')
@@ -251,6 +253,7 @@ class Water(Drawableobject):
     def __init__(self, screen, sector):
         super().__init__(screen, sector)
         self.time = 0
+        self.hitbox = (150, 150)
 
     def move(self, player_coord):
             '''

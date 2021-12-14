@@ -15,13 +15,21 @@ class Player:
         self.vx = 0
         self.vy = 0
         self.napravl = [0.0, 1.0]
+        self.hitbox = 10
     
-    def move(self):
+    def move(self, objects):
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
-            self.x += self.vx
-            self.y += self.vy
+            Flag = True
+            for obj in objects:
+                if obj.hitbox[0] > abs(obj.cent[0] - 900 - self.vx) - self.hitbox and \
+                    obj.hitbox[1] > abs(obj.cent[1] - 500 - self.vy) - self.hitbox:
+                        Flag = False
+            if Flag == True:
+                self.x += self.vx
+                self.y += self.vy
         self.sector = (self.x // 300, self.y // 300)
+        
 
     def draw(self, screen):
         global iter
