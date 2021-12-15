@@ -1,5 +1,6 @@
 import pygame
 from random import choice
+from Core.car import Car
 
 class Drawableobject:
 
@@ -10,6 +11,13 @@ class Drawableobject:
         self.screen = screen
         self.tex = tex
         self.hitbox = (0, 0)
+        self.name = 'Drawable.object'
+        self.time = 0
+
+    
+    def __str__(self):
+        return self.name
+    
 
 
 
@@ -21,6 +29,7 @@ class Drawableobject:
             System_coord = (player_coord[0] - 900, player_coord[1] - 500)
             self.cent = (self.globalcent[0] - System_coord[0],\
                 self.globalcent[1] - System_coord[1])
+            self.time += 1
     
     def draw(self):
         tex = pygame.image.load(self.tex)
@@ -48,6 +57,8 @@ class House(Drawableobject):
             textures - back '''
 
             super().__init__(screen, sector)
+
+            self.name = "House"
             self.floors = 6
             self.z = self.floors * height + 2 * brdr
             self.xwin = 8
@@ -187,7 +198,9 @@ class Road(Drawableobject):
 
         'orientation - vert, hor or cross'
 
+
         super().__init__(screen, sector)
+        self.name = orient
         if orient == "hor":
             self.ways = (True, False, True, False)
             self.tex = 'Core/texture/hor.bmp'
@@ -196,8 +209,82 @@ class Road(Drawableobject):
             self.tex = 'Core/texture/vert.bmp'
         elif orient == "cross":
             self.tex = 'Core/texture/cross.bmp'
-            self.ways = (True, True, True, True)
+            self.ways = [[True, True, True, True], [0, 0, 0, 0]]
+            self.movestatus = True
         self.able = ability
+
+    def parametrs(self, maparray):
+        if str(maparray[self.sector[1] - 1][self.sector[0]]) == 'vert':
+            if maparray[self.sector[1] - 1][self.sector[0]].able == True:
+                self.ways[0][0] = True
+                self.ways[1][0] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 0)
+            else:
+                self.ways[0][0] = False
+                self.ways[0][1] = False
+        if str(maparray[self.sector[1] + 1][self.sector[0]]) == 'vert':
+            if maparray[self.sector[1] + 1][self.sector[0]].able == True:
+                self.ways[0][2] = True
+                self.ways[1][2] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 180)
+            else:
+                self.ways[0][2] = False
+                self.ways[0][1] = False
+        if str(maparray[self.sector[1]][self.sector[0] + 1]) == 'hor':
+            if maparray[self.sector[1]][self.sector[0] + 1].able == True:
+                self.ways[0][1] = True
+                self.ways[1][1] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 90)
+            else:
+                self.ways[0][1] = False
+                self.ways[0][1] = False
+        if str(maparray[self.sector[1]][self.sector[0] - 1]) == 'hor':
+            if maparray[self.sector[1]][self.sector[0] - 1].able == True:
+                self.ways[0][3] = True
+                self.ways[1][3] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 270)
+            else:
+                self.ways[0][3] = False
+                self.ways[0][1] = False
+
+        def spawncar(self, cars):
+            i = 0
+            for obj in cars:
+                i += 1
+                if obj.t_unable > 200 or abs(obj.cent[0] - 900) < 1200 or abs(obj.cent[1] - 500 < 800):
+                    if self.name == 'hor':
+                        if self.cent > 900:
+                            cars[i] = Car(self.globalcent[0], self.globalcent[1] - 37)
+                            cars[i].angle = 270
+                        else:
+                            cars[i] = Car(self.globalcent[0], self.globalcent[1] + 37)
+                            self.angle = 90
+                    if self.name == 'vert':
+                        if self.cent > 500:
+                            cars[i] = Car(self.globalcent[0] + 37, self.globalcent[1])
+                            cars[i].angle = 0
+                        else:
+                            cars[i] = Car(self.globalcent[0] - 37, self.globalcent[1])
+                            self.angle = 180
+        def move(self, player_coord):
+            '''
+            Пересчитывает координаты дома в систему отсчёта игрока
+            player_coord - коррдинаты игрока, двумерный список/кортеж
+            '''
+            System_coord = (player_coord[0] - 900, player_coord[1] - 500)
+            self.cent = (self.globalcent[0] - System_coord[0],\
+                self.globalcent[1] - System_coord[1])
+            self.time += 1
+            if self.time % 200 < 40:
+                self.angle = 0
+            elif self.time % 200 < 90 and self.time % 200 > 100:
+                self.angle = 90
+            elif self.time % 200 < 140 and self.time % 200 > 150:
+                self.angle = 180
+            elif self.time % 200 < 190 and self.time % 200 > 200:
+                self.angle = 270
+
+
+                
+
+
+
         
         
 
@@ -205,8 +292,8 @@ class Beach(Drawableobject):
 
     def __init__(self, screen, sector):
 
-        
         super().__init__(screen, sector)
+        self.name = "Beach"
         self.tex = 'Core/texture/beach.bmp'
 
 class Park(Drawableobject):
@@ -215,6 +302,7 @@ class Park(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "Park"
         self.tex = 'Core/texture/park.bmp'
 
 class DownBorder(Drawableobject):
@@ -223,6 +311,7 @@ class DownBorder(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "Border"
         self.tex = 'Core/texture/downborder.bmp'
 
 class UpBorder(Drawableobject):
@@ -231,6 +320,7 @@ class UpBorder(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "Border"
         self.tex = 'Core/texture/upborder.bmp'
 
 class LeftBorder(Drawableobject):
@@ -238,6 +328,7 @@ class LeftBorder(Drawableobject):
     def __init__(self, screen, sector):
         
         super().__init__(screen, sector)
+        self.name = "Border"
         self.tex = 'Core/texture/leftborder.bmp'
 
 class RightBorder(Drawableobject):
@@ -246,12 +337,14 @@ class RightBorder(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "Border"
         self.tex = 'Core/texture/rightborder.bmp'
 
 class Water(Drawableobject):
 
     def __init__(self, screen, sector):
         super().__init__(screen, sector)
+        self.name = "Water"
         self.time = 0
         self.hitbox = (150, 150)
 
@@ -280,6 +373,7 @@ class WalkingRoad(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "WalkingRoad"
         self.tex = 'Core/texture/Walk_road.bmp'
 
 class Bridge(Drawableobject):
@@ -288,43 +382,5 @@ class Bridge(Drawableobject):
 
         
         super().__init__(screen, sector)
+        self.name = "Bridge"
         self.tex = 'Core/texture/bridge.bmp'
-        
-"""
-FPS = 30
-
-clock = pygame.time.Clock()
-#screen = 1800 * 1000 and 48 * 33 map
-WIDTH = 1800
-HEIGHT = 1000
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_d, K_KP_ENTER
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-house = Beach(screen, (1, 1))
-pygame.init()
-finished = False
-
-while not finished:
-    
-    pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1800, 150), 0)
-    house.draw()
-    pygame.display.update()
-    clock.tick(FPS)
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            finished = True
-        
-
-
-    calculate_coard(objects, Player)
-
-    for object_type in objects:
-        for obj in object_type:
-            obj.draw
-"""
-
-
-
-

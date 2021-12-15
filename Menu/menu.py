@@ -28,6 +28,9 @@ class Menu:
         self.gamestatus = "new"
         self.click = pygame.mixer.Sound("Menu/click.ogg")
 
+
+
+
     def start(self):
         self.status = False
     

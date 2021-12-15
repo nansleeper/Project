@@ -72,6 +72,7 @@ class Car(pygame.sprite.Sprite):
       self.hit = 0
       self.t = 0 
       self.n = 0
+      self.time = 0
 
       self.side1 = 30
       self.side2 = 50
