@@ -61,7 +61,12 @@ for y_sector in range(33):
             print(main_map[y_sector][x_sector],'ERROR')
     Map_objects.append(Building_line)
 
+#cartraffic
+"""
+    def traffic_car(sectors):
 
+        
+"""
 pygame.init()
 
 
