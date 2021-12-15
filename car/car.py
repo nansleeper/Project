@@ -62,7 +62,7 @@ class Car(pygame.sprite.Sprite):
   def __init__(self, x, y):
       super(Car, self).__init__()
       '''
-      win - поверхность, color - цвет, speed -скорость, angle - угол, hit - параметр столкновения, t - время остановки машины, 
+      win - поверхность, color - цвет, speed -скорость, angle - угол в градусах, hit - параметр столкновения, t - время остановки машины, 
       n - определяет направление угла поворота 
       '''
       self.win = win
@@ -169,13 +169,6 @@ class Car_main(Car):
     '''
     center = self.rect.center
 
-    if event == 3:
-      center = self.rect.center
-      self.angle = (self.angle - 5) % 360
-      
-    if event == 4:
-      center = self.rect.center
-      self.angle = (self.angle + 5) % 360
     
     if event == 134:
       center = self.rect.center
@@ -388,10 +381,6 @@ if __name__ == '__main__':
 
           if keys[pygame.K_s]:
             motion = 2
-          if keys[pygame.K_d]:
-            motion = 3
-          if keys[pygame.K_a]:
-            motion = 4
           if keys[pygame.K_w] and keys[pygame.K_d] or (keys[pygame.K_w] and keys[pygame.K_a]):
             motion = 134
             if keys[pygame.K_w] and keys[pygame.K_d]:
