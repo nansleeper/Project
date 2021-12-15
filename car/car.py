@@ -399,14 +399,14 @@ if __name__ == '__main__':
           if not keys[pygame.K_w] and not keys[pygame.K_d] and not keys[pygame.K_a] and not keys[pygame.K_s]: 
             motion = 0
     
-        
+        cars_group_main.update(win, motion, n)
         for r in range(0,len(cars)):
           car_main.collisions(cars[r]) 
           if car_main.collisions(cars[r]) :
             cars_group_main.update(win, motion, n)
             cars[r].collisions(car_main)
 
-        cars_group_main.update(win, motion, n)
+       
         cars_group1.update(win, 2, 1, 90)
         cars_group2.update(win, 1, 1, 90)
         cars_group3.update(win, 2)
