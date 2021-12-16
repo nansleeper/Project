@@ -26,11 +26,40 @@ GREEN = (204, 255, 102)
 PINK = (255, 102, 255)
 COLOR = [GREEN, PINK]
 
+screen = pygame.display.set_mode((width, height))
+screen.fill(WHIGHT)
+
+
+class Road:
+  def __init__(self, x, y):
+    self.r_width = 100
+    self.x = x
+    self.y = y
+    if self.x > 0:
+      self.center1 = self.x + self.r_width/4 
+      self.center2 = self.x + self.r_width*3/4
+    else:
+      self.center1 = self.y + self.r_width/4
+      self.center2 = self.y + self.r_width*3/4
+
+  def parametrs():
+    return self.x, self.y, self.r_width
+
+  def drawing(self, win):
+    
+    if self.x > 0:
+      pygame.draw.polygon(win, GREY, [(self.x, self.y), (self.x + self.r_width, self.y),
+                               (self.x + self.r_width, height), (self.x, height)])
+
+    if self.y > 0:
+      pygame.draw.polygon(win, GREY, [(self.x, self.y), (width, self.y),
+                               (width, self.y + self.r_width), (self.x, self.y + self.r_width)])
+
 class Car(pygame.sprite.Sprite):
   '''
   Основной класс мишины, содержит главные параметры, организует движение неуправляемых машин
   '''
-  def __init__(self, x, y, win, alpha):
+  def __init__(self, x, y):
       super(Car, self).__init__()
       '''
       win - поверхность, color - цвет, speed -скорость, angle - угол в градусах, hit - параметр столкновения, t - время остановки машины, 
@@ -39,7 +68,7 @@ class Car(pygame.sprite.Sprite):
       self.win = win
       self.color = (128, 128, 128)
       self.speed = 3
-      self.angle = alpha
+      self.angle = 0
       self.hit = 0
       self.t = 0 
       self.n = 0
@@ -84,6 +113,8 @@ class Car(pygame.sprite.Sprite):
       else:
         self.rect.y += 1.5 * (-1)**n
 
+      if self.rect.top >= HEIGHT:
+        self.kill()
 
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
       win.blit(image, self.rect)
@@ -98,7 +129,7 @@ class Car(pygame.sprite.Sprite):
     self.rect.center = center
 
     pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-    self.win.blit(image, self.rect)
+    win.blit(image, self.rect)
 
 
 
@@ -201,6 +232,8 @@ class Car_main(Car):
         self.start = 1
         self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
       
+    if self.rect.top >= HEIGHT:
+      self.kill()
     '''
     отрисовка машинки
     '''
@@ -242,7 +275,7 @@ class Car_main(Car):
     self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
     pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-    self.win.blit(image, self.rect)
+    win.blit(image, self.rect)
 
     if self.t >= 1:
       self.not_colid = True
@@ -276,7 +309,6 @@ class Car_main(Car):
         if motion > 0:
           self.motion0 = motion
 
-"""
 road1 = Road(100, 0)
 road2 = Road(0, 100)
 road3 = Road(500, 0)
@@ -383,4 +415,3 @@ if __name__ == '__main__':
             
         clock.tick(FPS)
         pygame.display.update()
-"""
