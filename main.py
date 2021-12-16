@@ -5,6 +5,7 @@ from Player.player import Player
 import pygame
 from Menu.menu import Menu
 from Core.car import Car
+from Player.info_bar import show_infobar
 import math 
 
 pygame.mixer.init()
@@ -82,11 +83,11 @@ finished = False
 menu_pos = 0
 gamestatus = 'new'
 cars = [0]
-
+'''
 for i in range(6):
     cars.append(Car(2000, 2000, screen, 0))
     cars[i].t_unload = 2000
-
+'''
 
 while not finished:
     Map_activesectors = []
@@ -110,7 +111,7 @@ while not finished:
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
         Map_activesectors[i].draw()
-    
+    '''  
     for i in range(9):
         Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
         Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
@@ -132,7 +133,7 @@ while not finished:
     for i in range(len(Map_unloadsectors)):
         if str(Map_unloadsectors) == "hor" or str(Map_unloadsectors) == "vert":
             Map_unloadsectors.spawncar(cars)
-
+    
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
             obj.rotate = False
@@ -157,36 +158,9 @@ while not finished:
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
             obj.rotate = True
+    '''
 
-
-
-
-
-
-
-
-    info_screen = pygame.image.load('Core/texture/fonmain.bmp')
-    screen.blit(info_screen, (0, 0))
-    pygame.draw.polygon(screen, (255, 250, 0),
-                        ((120, 15), (172, 45), (172, 105), (120, 135), (68, 105), (68, 45), (120, 15)))
-    pygame.draw.polygon(screen, (248, 250, 251),
-                        ((120, 25), (163, 50), (163, 100), (120, 125), (77, 100), (77, 50), (120, 25)))
-    pygame.draw.polygon(screen, (255, 165, 0),
-                        ((120, 15), (172, 45), (172, 105), (120, 135), (68, 105), (68, 45), (120, 15)), 5)
-    pygame.draw.rect(screen, (255, 255, 255), (200, 40, 310, 70), 3)
-    pygame.draw.rect(screen, (155, 0, 0), (205, 45, 3 * player.health, 60))
-    if player.car:
-        icon_screen = pygame.image.load('Core/texture/carico.bmp')
-        icon_screen.set_colorkey((248, 250, 251))
-        screen.blit(icon_screen, (68, 30))
-    elif player.fire:
-        icon_screen = pygame.image.load('Core/texture/fireico.bmp')
-        icon_screen.set_colorkey((255, 255, 255))
-        screen.blit(icon_screen, (90, 40))
-    else:
-        icon_screen = pygame.image.load('Core/texture/playerico.bmp')
-        icon_screen.set_colorkey((248, 250, 251))
-        screen.blit(icon_screen, (70, 30))
+    show_infobar(screen, player)
     #pygame.display.update()
     #clock.tick(FPS)
     for event in pygame.event.get():
@@ -227,6 +201,7 @@ while not finished:
                 player.vy = 0
 
     player.move(Map_activesectors)
+    #player.move()
     player.draw(screen)
     pygame.display.update()
     clock.tick(FPS)
