@@ -9,10 +9,11 @@ class Car():
         self.hit - столкнулась ли машина
         self.playerstatus - True если playerr управляет ею 
         self.unable - True - если машина брошена
-        self.sector - сектор в глобальных координатах
+        self.sector - сектор в глобальных координатах (x, y)
         self.tex = textur
         self.t_unable - время, которое машина брошена
-        self.rotate
+        self.rotate = False поворачивает ли машина
+        self.traectory = [x, y, alpha] точка стремления в глобальных координатах
 
 
     def collisions(obj):
@@ -20,18 +21,21 @@ class Car():
             *******
         self.hit = True
 
-    def stop(obj):
+    def stop(obj, MAP_SECTOR):
         проверяет есть ли машина перед ней на определенном расстоянии interval 
         если есть - self.stop = True
         self.t_unbale += 1
+        if MAP_Sector = "cross":  если на перекрестке стоп если не его очередь ехать
+            if abs(MAP_Sector.angle - self.angle) > 45 and self.rotate == False:
+                self.stop = True
 
-    def move((x, y, alpha), dv = (0 w, 0 a, 0 s, 0 d)) - положение стремления
+    def move(dv = (0 w, 0 a, 0 s, 0 d)) 
         if not (self.playerstatus or self.stop):
-            к этому положения устремить машину
+            траектори - к этому положения устремить машину
         elif self.unable:
             self.t_unable += 1
         else:
-            человек управляет машиной с помощью dv
+            человек управляет машиной с помощью dv (второстепенная задача)
 
 
 

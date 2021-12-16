@@ -135,17 +135,29 @@ while not finished:
 
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
+            obj.rotate = False
             obj.traectory[0] = obj.globalcent[0] + 2 * obj.v * math.sin(obj.angle / 180 * math.pi)
             obj.traectory[1] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
                 37 * abs(math.sin(obj.angle / 180 * math.pi)) / math.sin(obj.angle / 180 * math.pi)
             obj.traectory[2] = (360 - 90 * abs(math.sin(obj.angle / 180 * math.pi)) / \
                 math.sin(obj.angle / 180 * math.pi)) % 360
         elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "vert":
+            obj.rotate = False
             obj.traectory[1] = obj.globalcent[0] + 2 * obj.v * math.cos(obj.angle / 180 * math.pi)
             obj.traectory[0] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
                 37 * abs(math.cos(obj.angle / 180 * math.pi)) / math.cos(obj.angle / 180 * math.pi)
             obj.traectory[2] = (90 - 90 * abs(math.cos(obj.angle / 180 * math.pi)) / \
                 math.cos(obj.angle / 180 * math.pi))
+        else:
+            if obj.rotate == False:
+                choices = []
+                for k in range(4):
+                    if Map_objects[obj.sector[1]][obj.sector[0]].ways[1][k] == True:
+                        choices.append(Map_objects[obj.sector[1]][obj.sector[0]].ways[1][k])
+                traectory = choice(choices)
+                obj.traectory = [traectory[0], traectory[1], traectory[2]]
+            obj.rotate = True
+
 
 
 
