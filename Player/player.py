@@ -37,28 +37,28 @@ class Player:
             player_screen = pygame.image.load('Core/texture/player.bmp')
             player_screen.set_colorkey((0, 0, 0))
             if self.napravl == [0.0, 1.0]:
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [0.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 180)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, 90)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, -90)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 45)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, -45)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 225)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 135)
-                screen.blit(player_screen, (900 - 20, 500 - 16))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
 
         elif v > 0:
             iter += 1
@@ -72,27 +72,27 @@ class Player:
                 player_screen = pygame.image.load('Core/texture/player_right.bmp')
             player_screen.set_colorkey((0, 0, 0))
             if self.napravl == [0.0, 1.0]:
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [0.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 180)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, 90)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, -90)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 45)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, -45)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [-1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 225)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
             elif self.napravl == [1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 135)
-                screen.blit(player_screen, (900 - 21, 500 - 15))
+                screen.blit(player_screen, (900 - 22, 500 - 22))
         else:
             print('Сворачивай программу, мы в поле комплексных чисел попали!')
