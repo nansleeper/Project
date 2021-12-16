@@ -4,6 +4,7 @@ from Core.draw_core import *
 from Player.player import Player
 import pygame
 from Menu.menu import Menu
+from Core.car import Car
 
 pygame.mixer.init()
 player = Player()
@@ -61,9 +62,14 @@ for y_sector in range(33):
             print(main_map[y_sector][x_sector],'ERROR')
     Map_objects.append(Building_line)
 
+for ysector in range(33):
+    for xsector in range(48):
+        if str(Map_objects[ysector][xsector]) == "cross":
+            Map_objects[ysector][xsector].parametrs(Map_objects)
+
 #cartraffic
 """
-    def traffic_car(sectors):
+    def traffic_car(unload_sectors):
 
         
 """
@@ -74,9 +80,16 @@ clock = pygame.time.Clock()
 finished = False
 menu_pos = 0
 gamestatus = 'new'
+cars = [0]
+
+for i in range(6):
+    cars.append(Car(2000, 2000, screen, 0))
+    cars[i].t = 2000
+
 
 while not finished:
     Map_activesectors = []
+    Map_unloadsectors = []
     while menu.status:
         menu.draw(gamestatus)
         pygame.display.update()
@@ -85,6 +98,8 @@ while not finished:
         finished = menu.finished
         break
     gamestatus = 'continue'
+
+    
     for x in (player.sector[0] - 3, player.sector[0] - 2,\
         player.sector[0] - 1, player.sector[0] + 3,\
              player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
@@ -94,6 +109,22 @@ while not finished:
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
         Map_activesectors[i].draw()
+    
+    for i in range(9):
+        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
+        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
+
+        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i).move((player.x, player.y))
+
+    for i in range(5):
+        Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] - 4)
+        Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] + 4)
+
+        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i).move((player.x, player.y))
+
+
     info_screen = pygame.image.load('Core/texture/fonmain.bmp')
     screen.blit(info_screen, (0, 0))
     pygame.draw.polygon(screen, (255, 250, 0),

@@ -1,5 +1,6 @@
 import pygame
 from random import choice
+from Core.car import Car
 
 class Drawableobject:
 
@@ -212,25 +213,49 @@ class Road(Drawableobject):
 
     def parametrs(self, maparray):
         if str(maparray[self.sector[1] - 1][self.sector[0]]) == 'vert':
-            if maparray[self.sector[1] - 1][self.sector[0]].ability == True:
+            if maparray[self.sector[1] - 1][self.sector[0]].able == True:
                 self.ways[0] = True
             else:
                 self.ways[0] = False
         if str(maparray[self.sector[1] + 1][self.sector[0]]) == 'vert':
-            if maparray[self.sector[1] + 1][self.sector[0]].ability == True:
+            if maparray[self.sector[1] + 1][self.sector[0]].able == True:
                 self.ways[2] = True
             else:
                 self.ways[2] = False
         if str(maparray[self.sector[1]][self.sector[0] + 1]) == 'hor':
-            if maparray[self.sector[1]][self.sector[0] + 1].ability == True:
+            if maparray[self.sector[1]][self.sector[0] + 1].able == True:
                 self.ways[1] = True
             else:
                 self.ways[1] = False
         if str(maparray[self.sector[1]][self.sector[0] - 1]) == 'hor':
-            if maparray[self.sector[1]][self.sector[0] - 1].ability == True:
+            if maparray[self.sector[1]][self.sector[0] - 1].able == True:
                 self.ways[3] = True
             else:
                 self.ways[3] = False
+
+        def spawncar(self, cars):
+            i = 0
+            for obj in cars:
+                i += 1
+                if obj.t > 200:
+                    if self.name == 'hor':
+                        if self.cent > 900:
+                            cars[i] = Car(self.cent[0], self.cent[1] - 37)
+                            cars[i].angle = 270
+                        else:
+                            cars[i] = Car(self.cent[0], self.cent[1] + 37)
+                            self.angle = 90
+                    if self.name == 'vert':
+                        if self.cent > 500:
+                            cars[i] = Car(self.cent[0] + 37, self.cent[1], self.sector)
+                            cars[i].angle = 0
+                        else:
+                            cars[i] = Car(self.cent[0] - 37, self.cent[1], self.sector)
+                            self.angle = 180
+
+
+                
+
 
 
         
