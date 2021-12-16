@@ -5,6 +5,7 @@ from Player.player import Player
 import pygame
 from Menu.menu import Menu
 from Core.car import Car
+import math 
 
 pygame.mixer.init()
 player = Player()
@@ -84,7 +85,7 @@ cars = [0]
 
 for i in range(6):
     cars.append(Car(2000, 2000, screen, 0))
-    cars[i].t = 2000
+    cars[i].t_unload = 2000
 
 
 while not finished:
@@ -114,15 +115,42 @@ while not finished:
         Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
         Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
 
-        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i).move((player.x, player.y))
-        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] - 3, \
+            player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] + 3, \
+            player.sector[0] - 4 + i).move((player.x, player.y))
 
     for i in range(5):
         Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] - 4)
         Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] + 4)
 
-        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i).move((player.x, player.y))
-        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] - 3, \
+            player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(player.sector[1] + 3, \
+            player.sector[0] - 4 + i).move((player.x, player.y))
+
+    for i in range(len(Map_unloadsectors)):
+        if str(Map_unloadsectors) == "hor" or str(Map_unloadsectors) == "vert":
+            Map_unloadsectors.spawncar(cars)
+
+    for obj in cars:
+        if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
+            obj.traectory[0] = obj.globalcent[0] + 2 * obj.v * math.sin(obj.angle / 180 * math.pi)
+            obj.traectory[1] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
+                37 * abs(math.sin(obj.angle / 180 * math.pi)) / math.sin(obj.angle / 180 * math.pi)
+            obj.traectory[2] = (360 - 90 * abs(math.sin(obj.angle / 180 * math.pi)) / \
+                math.sin(obj.angle / 180 * math.pi)) % 360
+        elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "vert":
+            obj.traectory[1] = obj.globalcent[0] + 2 * obj.v * math.cos(obj.angle / 180 * math.pi)
+            obj.traectory[0] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
+                37 * abs(math.cos(obj.angle / 180 * math.pi)) / math.cos(obj.angle / 180 * math.pi)
+            obj.traectory[2] = (90 - 90 * abs(math.cos(obj.angle / 180 * math.pi)) / \
+                math.cos(obj.angle / 180 * math.pi))
+
+
+
+
+
 
 
     info_screen = pygame.image.load('Core/texture/fonmain.bmp')

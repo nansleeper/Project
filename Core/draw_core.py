@@ -237,20 +237,20 @@ class Road(Drawableobject):
             i = 0
             for obj in cars:
                 i += 1
-                if obj.t > 200:
+                if obj.t_unable > 200 or abs(obj.cent[0] - 900) < 1200 or abs(obj.cent[1] - 500 < 800):
                     if self.name == 'hor':
                         if self.cent > 900:
-                            cars[i] = Car(self.cent[0], self.cent[1] - 37)
+                            cars[i] = Car(self.globalcent[0], self.globalcent[1] - 37)
                             cars[i].angle = 270
                         else:
-                            cars[i] = Car(self.cent[0], self.cent[1] + 37)
+                            cars[i] = Car(self.globalcent[0], self.globalcent[1] + 37)
                             self.angle = 90
                     if self.name == 'vert':
                         if self.cent > 500:
-                            cars[i] = Car(self.cent[0] + 37, self.cent[1], self.sector)
+                            cars[i] = Car(self.globalcent[0] + 37, self.globalcent[1])
                             cars[i].angle = 0
                         else:
-                            cars[i] = Car(self.cent[0] - 37, self.cent[1], self.sector)
+                            cars[i] = Car(self.globalcent[0] - 37, self.globalcent[1])
                             self.angle = 180
 
 
