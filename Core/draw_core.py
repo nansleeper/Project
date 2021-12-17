@@ -12,6 +12,7 @@ class Drawableobject:
         self.tex = tex
         self.hitbox = (0, 0)
         self.name = 'Drawable.object'
+        self.time = 0
 
     
     def __str__(self):
@@ -28,6 +29,7 @@ class Drawableobject:
             System_coord = (player_coord[0] - 900, player_coord[1] - 500)
             self.cent = (self.globalcent[0] - System_coord[0],\
                 self.globalcent[1] - System_coord[1])
+            self.time += 1
     
     def draw(self):
         tex = pygame.image.load(self.tex)
@@ -207,31 +209,39 @@ class Road(Drawableobject):
             self.tex = 'Core/texture/vert.bmp'
         elif orient == "cross":
             self.tex = 'Core/texture/cross.bmp'
-            self.ways = [True, True, True, True]
+            self.ways = [[True, True, True, True], [0, 0, 0, 0]]
             self.movestatus = True
         self.able = ability
 
     def parametrs(self, maparray):
         if str(maparray[self.sector[1] - 1][self.sector[0]]) == 'vert':
             if maparray[self.sector[1] - 1][self.sector[0]].able == True:
-                self.ways[0] = True
+                self.ways[0][0] = True
+                self.ways[1][0] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 0)
             else:
-                self.ways[0] = False
+                self.ways[0][0] = False
+                self.ways[0][1] = False
         if str(maparray[self.sector[1] + 1][self.sector[0]]) == 'vert':
             if maparray[self.sector[1] + 1][self.sector[0]].able == True:
-                self.ways[2] = True
+                self.ways[0][2] = True
+                self.ways[1][2] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 180)
             else:
-                self.ways[2] = False
+                self.ways[0][2] = False
+                self.ways[0][1] = False
         if str(maparray[self.sector[1]][self.sector[0] + 1]) == 'hor':
             if maparray[self.sector[1]][self.sector[0] + 1].able == True:
-                self.ways[1] = True
+                self.ways[0][1] = True
+                self.ways[1][1] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 90)
             else:
-                self.ways[1] = False
+                self.ways[0][1] = False
+                self.ways[0][1] = False
         if str(maparray[self.sector[1]][self.sector[0] - 1]) == 'hor':
             if maparray[self.sector[1]][self.sector[0] - 1].able == True:
-                self.ways[3] = True
+                self.ways[0][3] = True
+                self.ways[1][3] = (maparray[self.sector[1] - 1][self.sector[0]].globalcent, 270)
             else:
-                self.ways[3] = False
+                self.ways[0][3] = False
+                self.ways[0][1] = False
 
         def spawncar(self, cars):
             i = 0
@@ -252,6 +262,23 @@ class Road(Drawableobject):
                         else:
                             cars[i] = Car(self.globalcent[0] - 37, self.globalcent[1])
                             self.angle = 180
+        def move(self, player_coord):
+            '''
+            Пересчитывает координаты дома в систему отсчёта игрока
+            player_coord - коррдинаты игрока, двумерный список/кортеж
+            '''
+            System_coord = (player_coord[0] - 900, player_coord[1] - 500)
+            self.cent = (self.globalcent[0] - System_coord[0],\
+                self.globalcent[1] - System_coord[1])
+            self.time += 1
+            if self.time % 200 < 40:
+                self.angle = 0
+            elif self.time % 200 < 90 and self.time % 200 > 100:
+                self.angle = 90
+            elif self.time % 200 < 140 and self.time % 200 > 150:
+                self.angle = 180
+            elif self.time % 200 < 190 and self.time % 200 > 200:
+                self.angle = 270
 
 
                 
