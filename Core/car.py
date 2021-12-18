@@ -4,9 +4,9 @@ from pygame.draw import *
 
 class Car():
     def __init__(self, win, globalcent, angle, playerstatus = False):
-        self.globalcent = globalcent 
+        self.globalcent = [globalcent[0], globalcent[1]]
         self.win = win
-        self.cent = (0, 0)
+        self.cent = [0, 0]
         self.v = 5
         self.direction_v = []
         self.dv = ()
@@ -23,6 +23,7 @@ class Car():
         self.n = 2 
         self.start = 0
         self.t = 0
+        self.color = (0, 0, 0)
 
         self.not_colid = True
         self.first_collid = False
@@ -80,19 +81,28 @@ class Car():
 
             self.t += 0.005
 
-            self.cent = self.globalcent - player.coards
+            self.cent[0] = self.globalcent[0] - player.coards[0] + 900
+            self.cent[1] = self.globalcent[1] - player.coards[1] + 500
 
           else:
-
-            self.direction_v.append((self.traectory[0] - self.globalcent[0]) / abs(self.traectory[0] - self.globalcent[0]))
-            self.direction_v.append((self.traectory[1] - self.globalcent[1]) / abs(self.traectory[1] - self.globalcent[1]))
-            self.direction_v.append((self.traectory[2] - self.angle) / abs(self.traectory[2] - self.angle))
+            if abs(self.traectory[0] - self.globalcent[0]) != 0:
+              self.direction_v.append((self.traectory[0] - self.globalcent[0]) / abs(self.traectory[0] - self.globalcent[0]))
+            else:
+              self.direction_v.append(0)
+            if abs(self.traectory[1] - self.globalcent[1]) != 0:
+              self.direction_v.append((self.traectory[1] - self.globalcent[1]) / abs(self.traectory[1] - self.globalcent[1]))
+            else:
+              self.direction_v.append(0)
+            if abs(self.traectory[2] - self.angle) != 0:
+              self.direction_v.append((self.traectory[2] - self.angle) / abs(self.traectory[2] - self.angle))
+            else:
+              self.direction_v.append(0)
 
             if abs(self.traectory[2] - self.angle) <= 180:
-                self.angle = (self.angle - self.direction_v[2] * self.speed/2) % 360
+                self.angle = (self.angle - self.direction_v[2] * self.v/2) % 360
 
             else:
-                self.angle = (self.angle + self.direction_v[2] * self.speed/2) % 360
+                self.angle = (self.angle + self.direction_v[2] * self.v/2) % 360
 
             image = pygame.transform.rotate(self.surface, self.angle)
             self.rect = image.get_rect()
@@ -105,14 +115,15 @@ class Car():
             self.rect.y = self.globalcent[1]
 
             center = self.rect.center
-            self.angle = (self.angle - ((-1)**n) * self.speed/2) % 360
 
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
             self.win.blit(image, self.rect)
 
             self.direction_v.clear()
 
-            self.cent = self.globalcent - player.coards
+            self.cent[0] = self.globalcent[0] - player.coards[0] + 900
+            self.cent[1] = self.globalcent[1] - player.coards[1] + 500
+            
 
             '''
             траектори - к этому положения устремить машину
@@ -128,7 +139,8 @@ class Car():
             self.rect.center = center
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
 
-            self.cent = self.globalcent - player.coards
+            self.cent[0] = self.globalcent[0] - player.coards[0] + 900
+            self.cent[1] = self.globalcent[1] - player.coards[1] + 500
 
             self.win.blit(image, self.rect)
 
@@ -163,14 +175,14 @@ class Car():
                     self.n = 1
 
                   center = self.rect.center
-                  self.angle = (self.angle - ((-1)**n) * self.speed/2) % 360
+                  self.angle = (self.angle - ((-1)**n) * self.v/2) % 360
 
               if self.dv[2] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
                   if self.dv[1] != 0:
                       self.n = 1
 
                   center = self.rect.center
-                  self.angle = (self.angle + ((-1)**n) * self.speed/2) % 360
+                  self.angle = (self.angle + ((-1)**n) * self.v/2) % 360
               '''
               Поворачивает прямоугольник
               '''
@@ -210,7 +222,8 @@ class Car():
               '''
               отрисовка машинки
               '''
-              self.cent = self.globalcent - player.coards
+              self.cent[0] = self.globalcent[0] - player.coards[0] + 900
+              self.cent[1] = self.globalcent[1] - player.coards[1] + 500
               pygame.draw.rect(self.surface, self.color, (0, 0, self.side1, self.side2))
               self.win.blit(image, self.rect)
 

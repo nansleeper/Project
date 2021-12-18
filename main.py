@@ -140,7 +140,7 @@ while not finished:
     
     for i in range(len(Map_unloadsectors)):
         if str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert":
-            Map_unloadsectors[i].spawncar(cars)
+            Map_unloadsectors[i].spawncar(screen, cars)
     
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
@@ -168,6 +168,10 @@ while not finished:
             obj.rotate = True
         else:
             obj.stop = True
+
+    for obj in cars:
+        obj.move(player)
+        print(obj.cent)
 
     
 

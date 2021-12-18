@@ -8,6 +8,7 @@ class Player:
     def __init__(self):
         self.x = 2800
         self.y = 2800
+        self.coards = [self.x, self.y]
         self.car = False
         self.fire = False
         self.health = 100
@@ -21,6 +22,7 @@ class Player:
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
             Flag = True
+            self.coards = [self.x, self.y]
             for obj in objects:
                 if obj.hitbox[0] > abs(obj.cent[0] - 900 - self.vx) - self.hitbox and \
                     obj.hitbox[1] > abs(obj.cent[1] - 500 - self.vy) - self.hitbox:
