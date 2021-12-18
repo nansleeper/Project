@@ -6,7 +6,7 @@ import pygame
 from Menu.menu import Menu
 from Core.car import Car
 from Player.info_bar import show_infobar
-import math 
+import math
 
 pygame.mixer.init()
 player = Player()
@@ -108,6 +108,17 @@ while not finished:
         for y in (player.sector[1] - 2, player.sector[1] - 1,\
             player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_activesectors.append(Map_objects[y][x])
+     # Iterate over sectors immediately behind the active ones,
+     # generating people there.
+     for x in (player.sector[0] - 4, player.sector[0] + 4):
+        for y in (player.sector[1] - 3, player.sector[1] + 3):
+            x = Map_objects[y][x].center[0] + 100
+            y = Map_objects[y][x].center[1] + 100
+            People.people.birth(x, y)
+            # Generate a couple of people sometimes.
+            if random.choice([True, False]):
+                x -= 30
+                People.people.birth(x, y)
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
         Map_activesectors[i].draw()
@@ -218,7 +229,4 @@ while not finished:
 
 pygame.mixer.quit()
 pygame.quit()
-
-
-
 
