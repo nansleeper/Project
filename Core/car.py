@@ -3,7 +3,8 @@ import pygame
 from pygame.draw import *
 
 class Car():
-    def __init__(globalcent, textur, angle, playerstatus = False):
+    def __init__(win, globalcent, angle, playerstatus = False):
+        self.win = win
         self.globalcent = globalcent 
         self.cent = globalcent - player.coards
         self.v = 5
@@ -38,7 +39,7 @@ class Car():
 
     def collisions(obj):
         if self.rect.colliderect(obj.rect):
-        self.hit = True
+            self.hit = True
 
     def stop(obj, MAP_SECTOR):
         '''
@@ -56,12 +57,15 @@ class Car():
                     self.stop = True
 
         self.t_unbale += 1
-        if MAP_Sector = "cross":  если на перекрестке стоп если не его очередь ехать
+        if MAP_Sector == "cross":  
             if abs(MAP_Sector.angle - self.angle) > 45 and self.rotate == False:
                 self.stop = True
 
 
-    def move(dv = (0 w, 0 a, 0 s, 0 d)) 
+    def move(dv):
+        '''
+        dv = (0 w, 0 a, 0 s, 0 d)
+        '''
         self.dv = dv
         if not (self.playerstatus):
           if self.stop and self.t < 1:
@@ -127,23 +131,23 @@ class Car():
             '''
             человек управляет машиной с помощью dv (второстепенная задача)
             '''
-          if self.hit and self.t >= 1:
+            if self.hit and self.t >= 1:
 
-            self.t = 0
-            self.v = 0
-            self.not_colid = False
-          if self.not_colid == False:
-            self.after_collid = 0
-            self.col_update()
-          if self.not_colid == True:
-
-            if self.after_collid == 1 and (self.dv == self.motion0 or (self.dv[0] == self.motion0[0] or self.dv[2] == self.motion0[2])):
               self.t = 0
-              self.vx = 0
-              self.vy = 0
-              self.col_update()
+              self.v = 0
               self.not_colid = False
-            
+            if self.not_colid == False:
+              self.after_collid = 0
+              self.col_update()
+            if self.not_colid == True:
+
+              if self.after_collid == 1 and (self.dv == self.motion0 or (self.dv[0] == self.motion0[0] or self.dv[2] == self.motion0[2])):
+                self.t = 0
+                self.vx = 0
+                self.vy = 0
+                self.col_update()
+                self.not_colid = False
+              
             else:
               
               if self.dv[0] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
@@ -193,7 +197,7 @@ class Car():
               self.after_collid = 0
 
               if not 0 in dv:
-                self.motion0 = dv
+                  self.motion0 = dv
                   center = self.rect.center
               '''
               отрисовка машинки
