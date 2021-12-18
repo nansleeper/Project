@@ -3,7 +3,7 @@ import pygame
 from pygame.draw import *
 
 class Car():
-    def __init__(globalcent, textur, angle, playerstatus = False):
+    def __init__(self, globalcent, textur, angle, playerstatus = False):
         self.globalcent = globalcent 
         self.cent = globalcent - player.coards
         self.v = 5
@@ -36,11 +36,11 @@ class Car():
         self.surface.set_colorkey((255,255,255, 0))
         self.rect = self.surface.get_rect(center=(self.globalcent[0], self.globalcent[1]))
 
-    def collisions(obj):
+    def collisions(self, obj):
         if self.rect.colliderect(obj.rect):
-        self.hit = True
+          self.hit = True
 
-    def stop(obj, MAP_SECTOR):
+    def stop(self, obj, MAP_Sector):
         '''
         проверяет есть ли машина перед ней на определенном расстоянии interval 
         если есть - self.stop = True
@@ -56,12 +56,12 @@ class Car():
                     self.stop = True
 
         self.t_unbale += 1
-        if MAP_Sector = "cross":  если на перекрестке стоп если не его очередь ехать
+        if MAP_Sector = "cross":
             if abs(MAP_Sector.angle - self.angle) > 45 and self.rotate == False:
                 self.stop = True
 
 
-    def move(dv = (0 w, 0 a, 0 s, 0 d)) 
+    def move(self, dv = (0, 0, 0, 0)) 
         self.dv = dv
         if not (self.playerstatus):
           if self.stop and self.t < 1:
