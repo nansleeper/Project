@@ -63,7 +63,7 @@ class Car():
                 self.stop = True
 
 
-    def move(self, dv, player):
+    def move(self, player = False, dv = [0, 0, 0, 0]):
         '''
         dv = (0 w, 0 a, 0 s, 0 d)
         '''
@@ -79,6 +79,8 @@ class Car():
             self.win.blit(image, self.rect)
 
             self.t += 0.005
+
+            self.cent = self.globalcent - player.coards
 
           else:
 
@@ -110,6 +112,8 @@ class Car():
 
             self.direction_v.clear()
 
+            self.cent = self.globalcent - player.coards
+
             '''
             траектори - к этому положения устремить машину
 
@@ -123,6 +127,9 @@ class Car():
             self.rect = image.get_rect()
             self.rect.center = center
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
+
+            self.cent = self.globalcent - player.coards
+
             self.win.blit(image, self.rect)
 
 
