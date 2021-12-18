@@ -250,14 +250,14 @@ class Road(Drawableobject):
                     print(obj.cent)
                     if self.name == 'hor':
                         if self.cent[0] > 900:
-                            cars[i] = Car(self.screen, (self.globalcent[0], self.globalcent[1] - 37), 270)
+                            cars[i] = Car(screen, (self.globalcent[0], self.globalcent[1] - 37), 270)
                         else:
-                            cars[i] = Car(self.screen, (self.globalcent[0], self.globalcent[1] + 37), 90)
+                            cars[i] = Car(screen, (self.globalcent[0], self.globalcent[1] + 37), 90)
                     if self.name == 'vert':
                         if self.cent[1] > 500:
-                            cars[i] = Car(self.screen, (self.globalcent[0] + 37, self.globalcent[1]), 0)
+                            cars[i] = Car(screen.tex, (self.globalcent[0] + 37, self.globalcent[1]), 0)
                         else:
-                            cars[i] = Car(self.tex, (self.globalcent[0] - 37, self.globalcent[1]), 180)
+                            cars[i] = Car(screen.tex, (self.globalcent[0] - 37, self.globalcent[1]), 180)
                 i += 1
 
     def move(self, player_coord):
