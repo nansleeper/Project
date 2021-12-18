@@ -17,10 +17,12 @@ def vector_sum(a, b):
 
 
 class Human:
-    minFahm = 10 ** 18
-    def __init__(self, x, y, r=30):
-        Human.minFahm -= 1
-        self.fahm = Human.minFahm
+    min_fahm = 10 ** 18
+    def __init__(self, x, y, r=100):
+        Human.min_fahm -= 1
+        self.is_stoopid = False
+        self.fahm = Human.min_fahm
+        self.steps_done = 0
         self.coords = (x, y)
         self.velocity = (0, 0)
         min_velocity = 3.
@@ -28,8 +30,8 @@ class Human:
             self.velocity = np.random.randint(-4 * min_velocity, 4 * min_velocity, size=(2)).astype(float)
         self.velocity = (self.velocity[0], self.velocity[1])
 
-        self.orientation = 0
-        self.wishedOrientation = 0
+        self.orientation = np.angle([self.velocity[0]+self.velocity[1]*1j], deg=True)
+        self.wished_orientation = self.orientation
 
         if type(r) in (tuple, list, np.array):
             self.r = random.uniform(r[0], r[1])
@@ -44,8 +46,15 @@ class Human:
 
 
     def move(self, dt = 1, Map_activesectors = []):
+        is_active = False
+        for sector in Map_activesectors:
+            if self.collides2(sector.center, 300):
+                is_active = True
+        #if not is_active:
+            #self.is_alive = False
+            #return
         rotation = 10
-        self.orientation = self.wishedOrientation;
+        self.orientation = self.wished_orientation
         for attempts in range(360 // rotation + 1):
             class Dzu:
                 pass
@@ -61,21 +70,29 @@ class Human:
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
             for sector in Map_activesectors:
+                if sector in ['House1', 'House2', 'House3'] and \
+                self.collides2(sector.center, HOUSE_SIDE): # How long is the side of a house?
+                    canMove = False
+                    self.wished_orientation = self.orientation
+            for sector in Map_activesectors:
                 if sector in ['CrossRoad', 'HorRoad', 'VertRoad', \
                 'VertRoadUnable', 'HorRoadUnable', 'DownBorder', 'LeftBorder', \
                 'UpBorder', 'RightBorder', 'Water', 'Bridge'] and \
                 self.collides2(sector.center, 300):
                     canMove = False
-                    self.wishedOrientation = self.orientation
+                    self.wished_orientation = self.orientation
             if canMove == True:
+                self.is_stoopid = False
+                self.steps_done += 1
                 self.coords = cp.deepcopy(copy.coords)
                 return
                 # print("Rotating...")
             self.orientation += rotation
             self.velocity = (self.velocity[0] * math.cos(rotation) - self.velocity[1] * math.sin(rotation),
                              self.velocity[0] * math.sin(rotation) + self.velocity[1] * math.cos(rotation))
-        Human.minFahm -= 1
-        fahm = Human.minFahm
+        self.is_stoopid = True
+        Human.min_fahm -= 1
+        fahm = Human.min_fahm
 
 
     def collides1(self, rhs):
@@ -100,12 +117,20 @@ class Human:
     def render(self):
         surface=self.surface
         if self.is_alive:
-            koldunov = pygame.image.load('people/koldunov.jpg')
+            roja = '/home/rubo/Project/people/chuvak'
+            if self.is_stoopid:
+                roja += '1'
+            else:
+                roja += str((self.steps_done) % 15 + 1)
+            roja += '.png'
+            #roja = 'people/koldunov.jpg'
+            koldunov = pygame.image.load(roja)
             koldunov.set_colorkey((0,0,0))
             koldunov = koldunov.convert_alpha()
             correct_scale = 2 * self.r
-            correct_scale *= (abs(math.sin(self.orientation)) +
-                              abs(math.cos(self.orientation)))
+            orientation = np.angle([self.velocity[0]+self.velocity[1]*1j], deg=True)
+            correct_scale *= (abs(math.sin(orientation)) +
+                              abs(math.cos(orientation)))
             correct_scale = math.ceil(2 * self.r / correct_scale)
             correct_scale = math.ceil(self.r)
             koldunov = pygame.transform.scale(koldunov, (correct_scale, correct_scale));
@@ -124,6 +149,7 @@ GREEN = (204, 255, 102)
 PINK = (255, 102, 255)
 COLOR = [GREEN, PINK]
 
+"""
 screen = pygame.display.set_mode((800, 1000))
 screen.fill(WHIGHT)
 
@@ -138,24 +164,45 @@ pygame.display.update()
 clock = pygame.time.Clock()
 gameover = False
 
-people = []
-def initPeople():
+
+def birth(x, y):
+    # Don't overpopulate the mini-city.
+    if len(people) > 20:
+        return
+    people.append(Human(x, y, (30, 40)))
+
+
+def init_people():
     zibil = 5
     for i in range(zibil):
         for j in range(zibil):
-            people.append(Human((i + 1) * 800 / (zibil + 1),
-                                (j + 1) * 800 / (zibil + 1), (30, 40)))
+            birth((i + 1) * 800 / (zibil + 1), (j + 1) * 800 / (zibil + 1))
 
 
-def movePeople():
+def move_people():
     for idiot in people:
         idiot.move()
+
+
+def tick(Map_activesectors):
+    global people
+    for idiot in people:
+        if idiot.is_alive:
+            idiot.move(1, Map_activesectors)
+            idiot.render()
+    living_people = []
+    for idiot in people:
+        if idiot.is_alive:
+            living_people.append(idiot)
+        else:
+            print('du gyot es,')
+    people = living_people
 
 
 #if __name__ == '__main__':
 def run_randomly_eat_stuff(Map_activesectors):
     pygame.init()
-    initPeople()
+    init_people()
     SCREEN = (WIDTH, HEIGHT) = (1200, 800)
     win = pygame.display.set_mode(SCREEN, pygame.NOFRAME)
 
@@ -164,10 +211,9 @@ def run_randomly_eat_stuff(Map_activesectors):
         clock = pygame.time.Clock()
         clock.tick(FPS)
         display.fill((0, 0, 0))
-        for idiot in people:
-            if idiot.is_alive:
-                idiot.move(1, Map_activesectors)
-                idiot.render()
+        tick(Map_activesectors)
         pygame.display.update()
 
-do_shit([])
+people = []
+run_randomly_eat_stuff([])
+"""
