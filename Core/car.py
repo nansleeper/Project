@@ -3,7 +3,7 @@ import pygame
 from pygame.draw import *
 
 class Car():
-    def __init__(self, win, globalcent, textur, angle, playerstatus = False):
+    def __init__(self, win, globalcent,angle, playerstatus = False):
         self.globalcent = globalcent 
         self.win = win
         self.cent = 0
@@ -16,7 +16,7 @@ class Car():
         self.playerstatus = playerstatus
         self.unable = False
         self.sector = [0, 0]
-        self.tex = textur
+        #self.tex = textur
         self.t_unable = 0
         self.rotate = False 
         self.traectory = [0, 0, 0]
