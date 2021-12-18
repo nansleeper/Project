@@ -1,6 +1,6 @@
 import pygame
 from random import choice
-from Core.car import Car
+#from Core.car import Car
 
 class Drawableobject:
 

@@ -6,8 +6,8 @@ iter = 0
 class Player:
 
     def __init__(self):
-        self.x = 1800
-        self.y = 1800
+        self.x = 2800
+        self.y = 2800
         self.car = False
         self.fire = False
         self.health = 100

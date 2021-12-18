@@ -149,6 +149,7 @@ GREEN = (204, 255, 102)
 PINK = (255, 102, 255)
 COLOR = [GREEN, PINK]
 
+"""
 screen = pygame.display.set_mode((800, 1000))
 screen.fill(WHIGHT)
 
@@ -215,3 +216,4 @@ def run_randomly_eat_stuff(Map_activesectors):
 
 people = []
 run_randomly_eat_stuff([])
+"""

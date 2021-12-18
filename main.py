@@ -4,9 +4,11 @@ from Core.draw_core import *
 from Player.player import Player
 import pygame
 from Menu.menu import Menu
-from Core.car import Car
+#from Core.car import Car
 from Player.info_bar import show_infobar
-import math
+import math 
+import random
+from people.people import *
 
 pygame.mixer.init()
 player = Player()
@@ -69,12 +71,7 @@ for ysector in range(33):
         if str(Map_objects[ysector][xsector]) == "cross":
             Map_objects[ysector][xsector].parametrs(Map_objects)
 
-#cartraffic
-"""
-    def traffic_car(unload_sectors):
 
-        
-"""
 pygame.init()
 
 
@@ -83,11 +80,13 @@ finished = False
 menu_pos = 0
 gamestatus = 'new'
 cars = [0]
-'''
+"""
 for i in range(6):
     cars.append(Car(2000, 2000, screen, 0))
     cars[i].t_unload = 2000
-'''
+"""
+
+
 
 while not finished:
     Map_activesectors = []
@@ -101,28 +100,27 @@ while not finished:
         break
     gamestatus = 'continue'
 
-    
-    for x in (player.sector[0] - 3, player.sector[0] - 2,\
-        player.sector[0] - 1, player.sector[0] + 3,\
-             player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
-        for y in (player.sector[1] - 2, player.sector[1] - 1,\
-            player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
+    for x in (player.sector[0] - 3, player.sector[0] - 2, player.sector[0] - 1, player.sector[0] + 3, player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
+        for y in (player.sector[1] - 2, player.sector[1] - 1, player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_activesectors.append(Map_objects[y][x])
-     # Iterate over sectors immediately behind the active ones,
-     # generating people there.
-     for x in (player.sector[0] - 4, player.sector[0] + 4):
+    
+    # Iterate over sectors immediately behind the active ones,
+    # generating people there.       
+    for x in (player.sector[0] - 4, player.sector[0] + 4):
         for y in (player.sector[1] - 3, player.sector[1] + 3):
-            x = Map_objects[y][x].center[0] + 100
-            y = Map_objects[y][x].center[1] + 100
-            People.people.birth(x, y)
+            print(x, y)
+            coardx = Map_objects[y][x].cent[0] + 100
+            coardy = Map_objects[y][x].cent[1] + 100
+            People.people.birth(coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
                 x -= 30
                 People.people.birth(x, y)
+
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
         Map_activesectors[i].draw()
-    '''  
+    """
     for i in range(9):
         Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
         Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
@@ -140,7 +138,7 @@ while not finished:
             player.sector[0] - 4 + i).move((player.x, player.y))
         Map_unloadsectors.append(player.sector[1] + 3, \
             player.sector[0] - 4 + i).move((player.x, player.y))
-
+    
     for i in range(len(Map_unloadsectors)):
         if str(Map_unloadsectors) == "hor" or str(Map_unloadsectors) == "vert":
             Map_unloadsectors.spawncar(cars)
@@ -169,7 +167,18 @@ while not finished:
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
             obj.rotate = True
-    '''
+
+    for obj in cars:
+        obj.move()
+        obj.draw()
+        
+    """
+
+
+
+
+
+
 
     show_infobar(screen, player)
     #pygame.display.update()
@@ -212,7 +221,6 @@ while not finished:
                 player.vy = 0
 
     player.move(Map_activesectors)
-    #player.move()
     player.draw(screen)
     pygame.display.update()
     clock.tick(FPS)
@@ -229,4 +237,7 @@ while not finished:
 
 pygame.mixer.quit()
 pygame.quit()
+
+
+
 
