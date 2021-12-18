@@ -120,11 +120,8 @@ while not finished:
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
         Map_activesectors[i].draw()
-<<<<<<< HEAD
       
-=======
-    """
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
+
     for i in range(9):
         Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
         Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
@@ -171,22 +168,7 @@ while not finished:
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
             obj.rotate = True
-<<<<<<< HEAD
-    
-=======
 
-    for obj in cars:
-        obj.move()
-        obj.draw()
-        
-    """
-
-
-
-
-
-
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
 
     show_infobar(screen, player)
     #pygame.display.update()
