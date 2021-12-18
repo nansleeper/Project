@@ -3,10 +3,10 @@ import pygame
 from pygame.draw import *
 
 class Car():
-    def __init__(self, win, globalcent,angle, playerstatus = False):
+    def __init__(self, win, globalcent, angle, playerstatus = False):
         self.globalcent = globalcent 
         self.win = win
-        self.cent = 0
+        self.cent = (0, 0)
         self.v = 5
         self.direction_v = []
         self.dv = ()
@@ -15,7 +15,7 @@ class Car():
         self.hit = False
         self.playerstatus = playerstatus
         self.unable = False
-        self.sector = [0, 0]
+        self.sector = [globalcent[0] // 300, globalcent[1] // 300]
         #self.tex = textur
         self.t_unable = 0
         self.rotate = False 

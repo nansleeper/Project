@@ -1,6 +1,6 @@
 import pygame
 from random import choice
-#from Core.car import Car
+from Core.car import Car
 
 class Drawableobject:
 
@@ -243,26 +243,24 @@ class Road(Drawableobject):
                 self.ways[0][3] = False
                 self.ways[0][1] = False
 
-        def spawncar(self, cars):
+    def spawncar(self, cars):
             i = 0
             for obj in cars:
-                i += 1
-                if obj.t_unable > 200 or abs(obj.cent[0] - 900) < 1200 or abs(obj.cent[1] - 500 < 800):
+                if (int(obj.t_unable) >= 200) or (abs(obj.cent[0] - 900) >= 1200) or (abs(obj.cent[1] - 500) >= 800):
+                    print(obj.cent)
                     if self.name == 'hor':
-                        if self.cent > 900:
-                            cars[i] = Car(self.text, self.globalcent[0], self.globalcent[1] - 37)
-                            cars[i].angle = 270
+                        if self.cent[0] > 900:
+                            cars[i] = Car(self.screen, (self.globalcent[0], self.globalcent[1] - 37), 270)
                         else:
-                            cars[i] = Car(self.text, self.globalcent[0], self.globalcent[1] + 37)
-                            self.angle = 90
+                            cars[i] = Car(self.screen, (self.globalcent[0], self.globalcent[1] + 37), 90)
                     if self.name == 'vert':
-                        if self.cent > 500:
-                            cars[i] = Car(self.text, self.globalcent[0] + 37, self.globalcent[1])
-                            cars[i].angle = 0
+                        if self.cent[1] > 500:
+                            cars[i] = Car(self.screen, (self.globalcent[0] + 37, self.globalcent[1]), 0)
                         else:
-                            cars[i] = Car(self.text, self.globalcent[0] - 37, self.globalcent[1])
-                            self.angle = 180
-        def move(self, player_coord):
+                            cars[i] = Car(self.tex, (self.globalcent[0] - 37, self.globalcent[1]), 180)
+                i += 1
+
+    def move(self, player_coord):
             '''
             Пересчитывает координаты дома в систему отсчёта игрока
             player_coord - коррдинаты игрока, двумерный список/кортеж

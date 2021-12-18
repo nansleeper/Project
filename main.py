@@ -139,25 +139,25 @@ while not finished:
         Map_unloadsectors[19 + i * 2].move((player.x, player.y))
     
     for i in range(len(Map_unloadsectors)):
-        if str(Map_unloadsectors) == "hor" or str(Map_unloadsectors) == "vert":
-            Map_unloadsectors.spawncar(cars)
+        if str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert":
+            Map_unloadsectors[i].spawncar(cars)
     
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
             obj.rotate = False
             obj.traectory[0] = obj.globalcent[0] + 2 * obj.v * math.sin(obj.angle / 180 * math.pi)
-            obj.traectory[1] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
+            obj.traectory[1] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent[1] + \
                 37 * abs(math.sin(obj.angle / 180 * math.pi)) / math.sin(obj.angle / 180 * math.pi)
             obj.traectory[2] = (360 - 90 * abs(math.sin(obj.angle / 180 * math.pi)) / \
                 math.sin(obj.angle / 180 * math.pi)) % 360
         elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "vert":
             obj.rotate = False
             obj.traectory[1] = obj.globalcent[0] + 2 * obj.v * math.cos(obj.angle / 180 * math.pi)
-            obj.traectory[0] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent + \
+            obj.traectory[0] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent[0] + \
                 37 * abs(math.cos(obj.angle / 180 * math.pi)) / math.cos(obj.angle / 180 * math.pi)
             obj.traectory[2] = (90 - 90 * abs(math.cos(obj.angle / 180 * math.pi)) / \
                 math.cos(obj.angle / 180 * math.pi))
-        else:
+        elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "cross":
             if obj.rotate == False:
                 choices = []
                 for k in range(4):
@@ -166,6 +166,9 @@ while not finished:
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
             obj.rotate = True
+        else:
+            obj.stop = True
+
     
 
 
