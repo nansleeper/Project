@@ -4,7 +4,7 @@ from Core.draw_core import *
 from Player.player import Player
 import pygame
 from Menu.menu import Menu
-#from Core.car import Car
+from Core.car import Car
 from Player.info_bar import show_infobar
 import math 
 import random
@@ -79,12 +79,12 @@ clock = pygame.time.Clock()
 finished = False
 menu_pos = 0
 gamestatus = 'new'
-cars = [0]
-"""
+cars = []
+
 for i in range(6):
     cars.append(Car(2000, 2000, screen, 0))
     cars[i].t_unload = 2000
-"""
+
 
 
 
@@ -103,7 +103,7 @@ while not finished:
     for x in (player.sector[0] - 3, player.sector[0] - 2, player.sector[0] - 1, player.sector[0] + 3, player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
         for y in (player.sector[1] - 2, player.sector[1] - 1, player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_activesectors.append(Map_objects[y][x])
-    
+    """
     # Iterate over sectors immediately behind the active ones,
     # generating people there.       
     for x in (player.sector[0] - 4, player.sector[0] + 4):
@@ -116,6 +116,7 @@ while not finished:
             if random.choice([True, False]):
                 x -= 30
                 People.people.birth(x, y)
+    """
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
@@ -123,22 +124,19 @@ while not finished:
       
 
     for i in range(9):
-        Map_unloadsectors.append(player.sector[1] - 3, player.sector[0] - 4 + i)
-        Map_unloadsectors.append(player.sector[1] + 3, player.sector[0] - 4 + i)
+        Map_unloadsectors.append(Map_objects[player.sector[1] - 3][player.sector[0] - 4 + i])
 
-        Map_unloadsectors.append(player.sector[1] - 3, \
-            player.sector[0] - 4 + i).move((player.x, player.y))
-        Map_unloadsectors.append(player.sector[1] + 3, \
-            player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors.append(Map_objects[player.sector[1] + 3][player.sector[0] - 4 + i])
+
+        Map_unloadsectors[i * 2].move((player.x, player.y))
+        Map_unloadsectors[i * 2 + 1].move((player.x, player.y))
 
     for i in range(5):
-        Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] - 4)
-        Map_unloadsectors.append(player.sector[1] - 2 + i, player.sector[0] + 4)
+        Map_unloadsectors.append(Map_objects[player.sector[1] - 2 + i][player.sector[0] - 4])
+        Map_unloadsectors.append(Map_objects[player.sector[1] - 2 + i][player.sector[0] + 4])
 
-        Map_unloadsectors.append(player.sector[1] - 3, \
-            player.sector[0] - 4 + i).move((player.x, player.y))
-        Map_unloadsectors.append(player.sector[1] + 3, \
-            player.sector[0] - 4 + i).move((player.x, player.y))
+        Map_unloadsectors[18 + i * 2].move((player.x, player.y))
+        Map_unloadsectors[19 + i * 2].move((player.x, player.y))
     
     for i in range(len(Map_unloadsectors)):
         if str(Map_unloadsectors) == "hor" or str(Map_unloadsectors) == "vert":
@@ -168,6 +166,7 @@ while not finished:
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
             obj.rotate = True
+    
 
 
     show_infobar(screen, player)

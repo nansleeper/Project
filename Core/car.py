@@ -3,14 +3,10 @@ import pygame
 from pygame.draw import *
 
 class Car():
-<<<<<<< HEAD
-    def __init__(win, globalcent, angle, playerstatus = False):
-        self.win = win
-=======
-    def __init__(self, globalcent, textur, angle, playerstatus = False):
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
+    def __init__(self, win, globalcent, textur, angle, playerstatus = False):
         self.globalcent = globalcent 
-        self.cent = globalcent - player.coards
+        self.win = win
+        self.cent = 0
         self.v = 5
         self.direction_v = []
         self.dv = ()
@@ -43,11 +39,7 @@ class Car():
 
     def collisions(self, obj):
         if self.rect.colliderect(obj.rect):
-<<<<<<< HEAD
-            self.hit = True
-=======
           self.hit = True
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
 
     def stop(self, obj, MAP_Sector):
         '''
@@ -65,23 +57,16 @@ class Car():
                     self.stop = True
 
         self.t_unbale += 1
-<<<<<<< HEAD
-        if MAP_Sector == "cross":  
-=======
-        if MAP_Sector = "cross":
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
+
+        if MAP_Sector == "cross":
             if abs(MAP_Sector.angle - self.angle) > 45 and self.rotate == False:
                 self.stop = True
 
 
-<<<<<<< HEAD
-    def move(dv):
+    def move(self, dv, player):
         '''
         dv = (0 w, 0 a, 0 s, 0 d)
         '''
-=======
-    def move(self, dv = (0, 0, 0, 0)) 
->>>>>>> bd7656658f861514c72a407cdadf08ba7e768183
         self.dv = dv
         if not (self.playerstatus):
           if self.stop and self.t < 1:
@@ -91,7 +76,7 @@ class Car():
             self.rect = image.get_rect()
             self.rect.center = center
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-            win.blit(image, self.rect)
+            self.win.blit(image, self.rect)
 
             self.t += 0.005
 
@@ -109,7 +94,7 @@ class Car():
 
             image = pygame.transform.rotate(self.surface, self.angle)
             self.rect = image.get_rect()
-            self.rect.center = center
+            center = self.rect.center
 
             self.globalcent[0] += self.v * self.direction_v[0] * abs(math.sin(self.angle))
             self.globalcent[1] += self.v * self.direction_v[1] * abs(math.cos(self.angle))
@@ -121,7 +106,7 @@ class Car():
             self.angle = (self.angle - ((-1)**n) * self.speed/2) % 360
 
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-            win.blit(image, self.rect)
+            self.win.blit(image, self.rect)
 
             self.direction_v.clear()
 
@@ -138,7 +123,7 @@ class Car():
             self.rect = image.get_rect()
             self.rect.center = center
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-            win.blit(image, self.rect)
+            self.win.blit(image, self.rect)
 
 
 
@@ -220,7 +205,7 @@ class Car():
               '''
               self.cent = self.globalcent - player.coards
               pygame.draw.rect(self.surface, self.color, (0, 0, self.side1, self.side2))
-              win.blit(image, self.rect)
+              self.win.blit(image, self.rect)
 
     def col_update(self):
 
@@ -239,7 +224,7 @@ class Car():
       self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
       pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
-      win.blit(image, self.rect)
+      self.win.blit(image, self.rect)
 
       if self.t >= 1:
         self.not_colid = True

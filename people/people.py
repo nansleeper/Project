@@ -16,6 +16,8 @@ def vector_sum(a, b):
     return (a[0] + b[0], a[1] + b[1])
 
 
+
+
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
@@ -163,6 +165,7 @@ display = pygame.display.set_mode(SIDES)
 pygame.display.update()
 clock = pygame.time.Clock()
 gameover = False
+"""
 
 
 def birth(x, y):
@@ -198,7 +201,7 @@ def tick(Map_activesectors):
             print('du gyot es,')
     people = living_people
 
-
+"""
 #if __name__ == '__main__':
 def run_randomly_eat_stuff(Map_activesectors):
     pygame.init()
