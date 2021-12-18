@@ -82,7 +82,7 @@ gamestatus = 'new'
 cars = []
 
 for i in range(6):
-    cars.append(Car(2000, 2000, screen, 0))
+    cars.append(Car(screen, [2000, 2000], 0))
     cars[i].t_unload = 2000
 
 
