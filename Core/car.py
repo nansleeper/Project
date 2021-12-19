@@ -23,7 +23,7 @@ class Car():
         self.n = 2 
         self.start = 0
         self.t = 0
-        self.color = (0, 0, 0)
+        self.color = (128, 128, 128)
 
         self.not_colid = True
         self.first_collid = False
@@ -64,7 +64,7 @@ class Car():
                 self.stop = True
 
 
-    def move(self, player = False, dv = [0, 0, 0, 0]):
+    def move(self, player, dv = [0, 0, 0, 0]):
         '''
         dv = (0 w, 0 a, 0 s, 0 d)
         '''
@@ -111,8 +111,8 @@ class Car():
             self.globalcent[0] += self.v * self.direction_v[0] * abs(math.sin(self.angle))
             self.globalcent[1] += self.v * self.direction_v[1] * abs(math.cos(self.angle))
 
-            self.rect.x = self.globalcent[0]
-            self.rect.y = self.globalcent[1]
+            self.rect.x = self.globalcent[0] - player.coards[0] + 900
+            self.rect.y = self.globalcent[1] - player.coards[1] + 500
 
             center = self.rect.center
 
@@ -147,7 +147,7 @@ class Car():
 
 
 
-        else:
+        if self.playerstatus == True:
             '''
             человек управляет машиной с помощью dv (второстепенная задача)
             '''
