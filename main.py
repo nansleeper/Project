@@ -1,4 +1,4 @@
-from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_KP_ENTER, K_m, K_s, K_w
+from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_KP_ENTER, K_m, K_s, K_w, K_f
 from map_array.globalmap import main_map
 from Core.draw_core import *
 from Player.player import Player
@@ -13,6 +13,8 @@ from people.people import *
 pygame.mixer.init()
 player = Player()
 cars = []
+dv = [0, 0, 0, 0]
+playerstatus = False
 #screen = 1800 * 1000 and 48 * 33 map
 WIDTH = 1800
 HEIGHT = 1000
@@ -143,16 +145,19 @@ while not finished:
 
     for i in range(len(Map_unloadsectors)):
         if str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert":
-            cars.append(Map_unloadsectors[i].spawncar(screen))
+            if len(cars) <= 30:
+              cars.append(Map_unloadsectors[i].spawncar(screen))
     
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
+            
             obj.rotate = False
             obj.traectory[0] = obj.globalcent[0] + 2 * obj.v * math.sin(obj.angle / 180 * math.pi)
             obj.traectory[1] = Map_objects[obj.sector[1]][obj.sector[0]].globalcent[1] + \
                 37 * abs(math.sin(obj.angle / 180 * math.pi)) / math.sin(obj.angle / 180 * math.pi)
             obj.traectory[2] = (360 - 90 * abs(math.sin(obj.angle / 180 * math.pi)) / \
                 math.sin(obj.angle / 180 * math.pi)) % 360
+            
         elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "vert":
             obj.rotate = False
             obj.traectory[1] = obj.globalcent[0] + 2 * obj.v * math.cos(obj.angle / 180 * math.pi)
@@ -161,21 +166,20 @@ while not finished:
             obj.traectory[2] = (90 - 90 * abs(math.cos(obj.angle / 180 * math.pi)) / \
                 math.cos(obj.angle / 180 * math.pi))
         elif str(Map_objects[obj.sector[1]][obj.sector[0]]) == "cross":
-            if obj.rotate == False:
+            '''if obj.rotate == False:
                 choices = []
                 for k in range(4):
                     if Map_objects[obj.sector[1]][obj.sector[0]].ways[1][k] == True:
                         choices.append(Map_objects[obj.sector[1]][obj.sector[0]].ways[1][k])
                 traectory = choice(choices)
                 obj.traectory = [traectory[0], traectory[1], traectory[2]]
+            '''
             obj.rotate = True
         else:
-            obj.stop = True
+            cars.pop(cars.index(obj))
 
-    for obj in cars:
-        obj.move(player)
 
-    
+  
 
 
     show_infobar(screen, player)
@@ -193,6 +197,7 @@ while not finished:
         elif event.type == pygame.KEYDOWN:
             if event.key == K_d:
                 player.vx = 10
+                dv[1] = 1
             elif event.key == K_m:
                 menu.mapstatus = True
                 while menu.mapstatus:
@@ -204,26 +209,38 @@ while not finished:
                     menu.status = True
             elif event.key == K_a:
                 player.vx = - 10
+                dv[3] = 1
             elif event.key == K_s:
                 player.vy = 10
+                dv[2] = 1
             elif event.key == K_w:
                 player.vy = - 10
+                dv[0] = 1
+            elif event.key == K_f:
+                playerstatus = True
         elif event.type == pygame.KEYUP:
             if event.key == K_d:
                 player.vx = 0
+                dv[1] = 0
             elif event.key == K_a:
                 player.vx = 0
+                dv[3] = 0
             elif event.key == K_s:
                 player.vy = 0
+                dv[2] = 0
             elif event.key == K_w:
                 player.vy = 0
-
+                dv[0] = 0
+            #elif event.key == K_f:
+            #    playerstatus = True
+   
     player.move(Map_activesectors)
     player.draw(screen)
 
     for obj in cars:
         obj.move(player)
-        print(obj.cent)
+          
+
 
     pygame.display.update()
     clock.tick(FPS)
