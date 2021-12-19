@@ -12,6 +12,7 @@ from people.people import *
 
 pygame.mixer.init()
 player = Player()
+cars = []
 #screen = 1800 * 1000 and 48 * 33 map
 WIDTH = 1800
 HEIGHT = 1000
@@ -81,9 +82,11 @@ menu_pos = 0
 gamestatus = 'new'
 cars = []
 
+'''
 for i in range(6):
     cars.append(Car(screen, [2000, 2000], 0))
     cars[i].t_unload = 2000
+'''
 
 
 
@@ -137,10 +140,13 @@ while not finished:
 
         Map_unloadsectors[18 + i * 2].move((player.x, player.y))
         Map_unloadsectors[19 + i * 2].move((player.x, player.y))
-    
+
+    print(len(Map_unloadsectors))
     for i in range(len(Map_unloadsectors)):
+        print(2)
         if str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert":
-            Map_unloadsectors[i].spawncar(screen, cars)
+            cars.append(Map_unloadsectors[i].spawncar(screen))
+            print(1)
     
     for obj in cars:
         if str(Map_objects[obj.sector[1]][obj.sector[0]]) == "hor":
