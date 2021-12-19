@@ -196,7 +196,7 @@ while not finished:
             mouse_coard = event.pos
         elif event.type == pygame.KEYDOWN:
             if event.key == K_d:
-                player.vx = 10
+                player.vx = player.v
                 dv[1] = 1
             elif event.key == K_m:
                 menu.mapstatus = True
@@ -208,16 +208,18 @@ while not finished:
                 else:
                     menu.status = True
             elif event.key == K_a:
-                player.vx = - 10
+                player.vx = - player.v
                 dv[3] = 1
             elif event.key == K_s:
-                player.vy = 10
+                player.vy = player.v
                 dv[2] = 1
             elif event.key == K_w:
-                player.vy = - 10
+                player.vy = - player.v
                 dv[0] = 1
-            elif event.key == K_f:
-                playerstatus = True
+            elif event.key == K_f and player.car:
+                player.car = False
+            elif event.key == K_f and not(player.car):
+                player.car = True
         elif event.type == pygame.KEYUP:
             if event.key == K_d:
                 player.vx = 0

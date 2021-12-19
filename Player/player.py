@@ -15,6 +15,7 @@ class Player:
         self.sector = (self.x // 300, self.y // 300)
         self.vx = 0
         self.vy = 0
+        self.v = 10
         self.napravl = [0.0, 1.0]
         self.hitbox = 10
 
@@ -47,65 +48,81 @@ class Player:
         global iter
         v = (self.vx)**2 + (self.vy)**2
         if v == 0:
-            player_screen = pygame.image.load('Core/texture/player.bmp')
+            if self.car:
+                player_screen = pygame.Surface((30, 50))
+                player_screen.fill((128, 128, 128))
+                self.v = 20
+                sh = [15, 25]
+            else:
+                player_screen = pygame.image.load('Core/texture/player.bmp')
+                self.v = 10
+                sh = [22, 22]
             player_screen.set_colorkey((0, 0, 0))
             if self.napravl == [0.0, 1.0]:
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[0], 500 - sh[1]))
             elif self.napravl == [0.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 180)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[0], 500 - sh[1]))
             elif self.napravl == [1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, 90)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[0]))
             elif self.napravl == [-1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, -90)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[0]))
             elif self.napravl == [1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 45)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [-1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, -45)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [-1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 225)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 135)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
 
         elif v > 0:
             iter += 1
-            self.napravl[0] = -self.vx / 10
-            self.napravl[1] = -self.vy / 10
+            self.napravl[0] = -self.vx / self.v
+            self.napravl[1] = -self.vy / self.v
             if iter > 1000 and iter % 2 == 0:
                 iter = 0
-            if iter % 8 > 3:
-                player_screen = pygame.image.load('Core/texture/player_left.bmp')
+            if self.car:
+                self.v = 20
+                sh = [15, 25]
+                player_screen = pygame.Surface((30, 50))
+                player_screen.fill((128, 128, 128))
             else:
-                player_screen = pygame.image.load('Core/texture/player_right.bmp')
+                self.v = 10
+                sh = [22, 22]
+                if iter % 8 > 3:
+                    player_screen = pygame.image.load('Core/texture/player_left.bmp')
+                else:
+                    player_screen = pygame.image.load('Core/texture/player_right.bmp')
             player_screen.set_colorkey((0, 0, 0))
             if self.napravl == [0.0, 1.0]:
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[0], 500 - sh[1]))
             elif self.napravl == [0.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 180)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[0], 500 - sh[1]))
             elif self.napravl == [1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, 90)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[0]))
             elif self.napravl == [-1.0, 0.0]:
                 player_screen = pygame.transform.rotate(player_screen, -90)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[0]))
             elif self.napravl == [1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 45)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [-1.0, 1.0]:
                 player_screen = pygame.transform.rotate(player_screen, -45)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [-1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 225)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
             elif self.napravl == [1.0, -1.0]:
                 player_screen = pygame.transform.rotate(player_screen, 135)
-                screen.blit(player_screen, (900 - 22, 500 - 22))
+                screen.blit(player_screen, (900 - sh[1], 500 - sh[1]))
         else:
             print('Сворачивай программу, мы в поле комплексных чисел попали!')
