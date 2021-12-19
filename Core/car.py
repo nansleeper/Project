@@ -3,8 +3,8 @@ import pygame
 from pygame.draw import *
 
 class Car():
-    def __init__(self, win, globalcent, angle, playerstatus = False):
-        self.globalcent = [globalcent[0], globalcent[1]]
+    def __init__(self, win, globalcent, angle):
+        self.globalcent = globalcent
         self.win = win
         self.cent = [0, 0]
         self.v = 5
@@ -13,9 +13,9 @@ class Car():
         self.angle = angle 
         self.stop = False
         self.hit = False
-        self.playerstatus = playerstatus
+        self.playerstatus = False
         self.unable = False
-        self.sector = [globalcent[0] // 300, globalcent[1] // 300]
+        self.sector = [int(globalcent[0] // 300), int(globalcent[1] // 300)]
         #self.tex = textur
         self.t_unable = 0
         self.rotate = False 
@@ -64,11 +64,13 @@ class Car():
                 self.stop = True
 
 
-    def move(self, player, dv = [0, 0, 0, 0]):
+    def move(self, player, dv = [0, 0, 0, 0], playerstatus = False):
         '''
         dv = (0 w, 0 a, 0 s, 0 d)
         '''
+        self.playerstatus = playerstatus
         self.dv = dv
+        center = (player.coards[0], player.coards[1])
         if not (self.playerstatus):
           if self.stop and self.t < 1:
 
@@ -84,7 +86,10 @@ class Car():
             self.cent[0] = self.globalcent[0] - player.coards[0] + 900
             self.cent[1] = self.globalcent[1] - player.coards[1] + 500
 
+            self.sector = [int(self.globalcent[0] // 300), int(self.globalcent[1] // 300)]
+
           else:
+            '''
             if abs(self.traectory[0] - self.globalcent[0]) != 0:
               self.direction_v.append((self.traectory[0] - self.globalcent[0]) / abs(self.traectory[0] - self.globalcent[0]))
             else:
@@ -103,13 +108,18 @@ class Car():
 
             else:
                 self.angle = (self.angle + self.direction_v[2] * self.v/2) % 360
+            '''
 
             image = pygame.transform.rotate(self.surface, self.angle)
             self.rect = image.get_rect()
             center = self.rect.center
+            '''
 
             self.globalcent[0] += self.v * self.direction_v[0] * abs(math.sin(self.angle))
             self.globalcent[1] += self.v * self.direction_v[1] * abs(math.cos(self.angle))
+            '''
+            self.globalcent[0] += self.v * math.sin(math.radians(self.angle))
+            self.globalcent[1] += self.v * math.cos(math.radians(self.angle))
 
             self.rect.x = self.globalcent[0] - player.coards[0] + 900
             self.rect.y = self.globalcent[1] - player.coards[1] + 500
@@ -123,6 +133,8 @@ class Car():
 
             self.cent[0] = self.globalcent[0] - player.coards[0] + 900
             self.cent[1] = self.globalcent[1] - player.coards[1] + 500
+
+            self.sector = [int(self.globalcent[0] // 300), int(self.globalcent[1] // 300)]
             
 
             '''
@@ -144,6 +156,8 @@ class Car():
 
             self.win.blit(image, self.rect)
 
+            self.sector = [int(self.globalcent[0] // 300), int(self.globalcent[1] // 300)]
+
 
 
 
@@ -162,70 +176,72 @@ class Car():
             if self.not_colid == True:
 
               if self.after_collid == 1 and (self.dv == self.motion0 or (self.dv[0] == self.motion0[0] or self.dv[2] == self.motion0[2])):
-                self.t = 0
-                self.vx = 0
-                self.vy = 0
-                self.col_update()
-                self.not_colid = False
+                  self.t = 0
+                  self.vx = 0
+                  self.vy = 0
+                  self.col_update()
+                  self.not_colid = False
               
-            else:
-              
-              if self.dv[0] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
-                  if self.dv[1] != 0:
-                    self.n = 1
+              else:
+                  
+                  if self.dv[0] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
+                      if self.dv[1] != 0:
+                        self.n = 1
 
-                  center = self.rect.center
-                  self.angle = (self.angle - ((-1)**n) * self.v/2) % 360
+                      center = self.rect.center
+                      self.angle = (self.angle - ((-1)**n) * self.v/2) % 360
 
-              if self.dv[2] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
-                  if self.dv[1] != 0:
-                      self.n = 1
+                  if self.dv[2] != 0 and (self.dv[1] != 0 or self.dv[3] != 0):
+                      if self.dv[1] != 0:
+                          self.n = 1
 
-                  center = self.rect.center
-                  self.angle = (self.angle + ((-1)**n) * self.v/2) % 360
-              '''
-              Поворачивает прямоугольник
-              '''
-              image = pygame.transform.rotate(self.surface, self.angle)
-              self.rect = image.get_rect()
-              self.rect.center = center
+                      center = self.rect.center
+                      self.angle = (self.angle + ((-1)**n) * self.v/2) % 360
+                  '''
+                  Поворачивает прямоугольник
+                  '''
+                  image = pygame.transform.rotate(self.surface, self.angle)
+                  self.rect = image.get_rect()
+                  self.rect.center = center
 
-              if self.dv[0] != 0:
+                  if self.dv[0] != 0:
 
-                self.globalcent[1] -= self.v * math.cos(math.radians(360-self.angle))
-                self.globalcent[0] += self.v * math.sin(math.radians(360-self.angle))
-                self.rect.y = self.globalcent[1]
-                self.rect.x = self.globalcent[0]
-                if self.start > 0:
-                  self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
-                if self.start == 0:
-                  self.start = 1
-                  self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
+                    player.y -= self.v * math.cos(math.radians(360-self.angle))
+                    player.x += self.v * math.sin(math.radians(360-self.angle))
+                    self.rect.y = player.y
+                    self.rect.x = player.x
+                    if self.start > 0:
+                      self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
+                    if self.start == 0:
+                      self.start = 1
+                      self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
-              if self.dv[2] != 0 :
+                  if self.dv[2] != 0 :
 
-                self.globalcent[1] += self.v * math.cos(math.radians(360-self.angle))
-                self.globalcent[0] -= self.v * math.sin(math.radians(360-self.angle))
-                self.rect.y = self.globalcent[1]
-                self.rect.x = self.globalcent[0]
-                if self.start > 0:
-                  self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
-                if self.start == 0:
-                  self.start = 1
-                  self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
+                    player.y += self.v * math.cos(math.radians(360-self.angle))
+                    player.x -= self.v * math.sin(math.radians(360-self.angle))
+                    self.rect.y = player.y
+                    self.rect.x = player.x
+                    if self.start > 0:
+                      self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
+                    if self.start == 0:
+                      self.start = 1
+                      self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
-              self.after_collid = 0
+                  self.after_collid = 0
 
-              if not 0 in dv:
-                  self.motion0 = dv
-                  center = self.rect.center
-              '''
-              отрисовка машинки
-              '''
-              self.cent[0] = self.globalcent[0] - player.coards[0] + 900
-              self.cent[1] = self.globalcent[1] - player.coards[1] + 500
-              pygame.draw.rect(self.surface, self.color, (0, 0, self.side1, self.side2))
-              self.win.blit(image, self.rect)
+                  if not 0 in dv:
+                      self.motion0 = dv
+                      center = self.rect.center
+                  '''
+                  отрисовка машинки
+                  '''
+                  self.cent[0] = player.x
+                  self.cent[1] = player.y
+                  pygame.draw.rect(self.surface, self.color, (0, 0, self.side1, self.side2))
+                  self.win.blit(image, self.rect)
+                  self.sector = [int(player.coards[0] // 300), int(player.coards[1] // 300)]
+
 
     def col_update(self):
 
@@ -238,8 +254,8 @@ class Car():
       image = pygame.transform.rotate(self.surface, self.angle)
       self.rect = image.get_rect()
 
-      self.rect.x = self.globalcent[0]
-      self.rect.y = self.globalcent[1]
+      self.rect.x = player.coards[0]
+      self.rect.y = player.coards[1]
       
       self.rect.center = (self.rect.x - int(pygame.Surface.get_width(self.surface)/2), self.rect.y - int(pygame.Surface.get_height(self.surface)/2))
 
@@ -250,3 +266,10 @@ class Car():
         self.not_colid = True
         self.hit = False
         self.after_collid = 1
+
+    def man_in_car(self, player):
+        if (abs(player.coards[0] - self.globalcent[0]) <= self.side2 + 5) and (abs(player.coards[1] - self.globalcent[1]) <= self.side2 + 5):
+            return True
+
+        else:
+            return False
