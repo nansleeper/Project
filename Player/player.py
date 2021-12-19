@@ -21,6 +21,7 @@ class Player:
     def move(self, objects):
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
+            print(self.x,self.y)
             Flag = True
             self.coards = [self.x, self.y]
             for obj in objects:
@@ -30,6 +31,16 @@ class Player:
             if Flag == True:
                 self.x += self.vx
                 self.y += self.vy
+        self.sector = (self.x // 300, self.y // 300)
+
+    def move_in_car(self,  car):
+        if ((int(car.cent[0])) // 300 >= 3) and ((int(car.cent[1])) // 300 >= 2) \
+            and ((int(car.cent[0])) // 300 <= 44) and ((int(car.cent[1])) // 300 <= 29):
+            Flag = True
+          
+            if Flag == True:
+                self.x = car.cent[0]
+                self.y = car.cent[1]
         self.sector = (self.x // 300, self.y // 300)
 
     def draw(self, screen):
