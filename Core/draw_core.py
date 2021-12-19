@@ -201,6 +201,7 @@ class Road(Drawableobject):
 
         super().__init__(screen, sector)
         self.name = orient
+        self.variant = [False, True]
         if orient == "hor":
             self.ways = (True, False, True, False)
             self.tex = 'Core/texture/hor.bmp'
@@ -248,13 +249,15 @@ class Road(Drawableobject):
             #for obj in cars:
             #if (int(obj.t_unable) >= 200) or (abs(obj.cent[0] - 900) >= 1200) or (abs(obj.cent[1] - 500) >= 800):
             if self.name == 'hor':
+                if choice(self.variant):
                 #if self.cent[0] > 900:
-                self.car = Car(screen, (self.globalcent[0], self.globalcent[1] - 37), 270)
-                print("!!!!!!!!", self.globalcent)
-                #else:
-                self.car = Car(screen, (self.globalcent[0], self.globalcent[1] + 37), 90)
+                    self.car = Car(screen, (self.globalcent[0] - 37, self.globalcent[1]), 270)
+                    print("!!!!!!!!", self.globalcent)
+                else:
+                    self.car = Car(screen, (self.globalcent[0] + 37, self.globalcent[1]), 90)
             if self.name == 'vert':
-                if self.cent[1] > 500:
+                if choice(self.variant):
+                #if self.cent[1] > 500:
                     self.car = Car(screen, (self.globalcent[0] + 37, self.globalcent[1]), 0)
                 else:
                     self.car = Car(screen, (self.globalcent[0] - 37, self.globalcent[1]), 180)

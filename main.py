@@ -220,6 +220,11 @@ while not finished:
 
     player.move(Map_activesectors)
     player.draw(screen)
+
+    for obj in cars:
+        obj.move(player)
+        print(obj.cent)
+
     pygame.display.update()
     clock.tick(FPS)
     '''
