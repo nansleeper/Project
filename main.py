@@ -144,7 +144,7 @@ while not finished:
     print(len(Map_unloadsectors))
     for i in range(len(Map_unloadsectors)):
         print(2)
-        if str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert":
+        if (str(Map_unloadsectors[i]) == "hor" or str(Map_unloadsectors[i]) == "vert") :
             cars.append(Map_unloadsectors[i].spawncar(screen))
             print(1)
     
@@ -174,10 +174,6 @@ while not finished:
             obj.rotate = True
         else:
             obj.stop = True
-
-    for obj in cars:
-        obj.move(player)
-        print(obj.cent)
 
     
 
@@ -224,6 +220,11 @@ while not finished:
 
     player.move(Map_activesectors)
     player.draw(screen)
+
+    for obj in cars:
+        obj.move(player)
+        print(obj.cent)
+
     pygame.display.update()
     clock.tick(FPS)
     '''
