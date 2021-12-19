@@ -201,7 +201,8 @@ class Road(Drawableobject):
 
         super().__init__(screen, sector)
         self.name = orient
-        self.variant = [False, True]
+        self.variant = [11, 12, 21, 22] 
+        self.variant0 = 0
         if orient == "hor":
             self.ways = (True, False, True, False)
             self.tex = 'Core/texture/hor.bmp'
@@ -246,21 +247,39 @@ class Road(Drawableobject):
 
     def spawncar(self, screen):
             i = 0
+            self.variant0 = choice(self.variant)
             #for obj in cars:
             #if (int(obj.t_unable) >= 200) or (abs(obj.cent[0] - 900) >= 1200) or (abs(obj.cent[1] - 500) >= 800):
             if self.name == 'hor':
-                if choice(self.variant):
+                if self.variant0//10 == 1:
                 #if self.cent[0] > 900:
-                    self.car = Car(screen, (self.globalcent[0] - 37, self.globalcent[1]), 270)
-                    print("!!!!!!!!", self.globalcent)
-                else:
-                    self.car = Car(screen, (self.globalcent[0] + 37, self.globalcent[1]), 90)
+                    if self.variant0%10 == 1:
+                        self.car = Car(screen, [self.globalcent[0], self.globalcent[1] + 27], 90)
+                        print("!!!!!!!!", self.globalcent)
+                    if self.variant0%10 == 2:
+                        self.car = Car(screen, [self.globalcent[0], self.globalcent[1] + 102], 90)
+
+
+                if self.variant0//10 == 2:
+                    if self.variant0%10 == 1:
+                        self.car = Car(screen, [self.globalcent[0], self.globalcent[1] - 47] , 270)
+                    if self.variant0%10 == 2:
+                        self.car = Car(screen, [self.globalcent[0], self.globalcent[1] - 122], 270)
+
+
             if self.name == 'vert':
-                if choice(self.variant):
+                if self.variant0//10 == 1:
                 #if self.cent[1] > 500:
-                    self.car = Car(screen, (self.globalcent[0] + 37, self.globalcent[1]), 0)
-                else:
-                    self.car = Car(screen, (self.globalcent[0] - 37, self.globalcent[1]), 180)
+                    if self.variant0%10 == 1:
+                        self.car = Car(screen, [self.globalcent[0] + 27, self.globalcent[1]], 180)
+                    if self.variant0%10 == 2:
+                        self.car = Car(screen, [self.globalcent[0] + 102, self.globalcent[1]], 180)
+
+                if self.variant0//10 == 2:
+                    if self.variant0%10 == 1:
+                        self.car = Car(screen, [self.globalcent[0] - 47, self.globalcent[1]], 0)
+                    if self.variant0%10 == 2:
+                        self.car = Car(screen, [self.globalcent[0] - 122, self.globalcent[1]], 0)
 
             return self.car
             i += 1
