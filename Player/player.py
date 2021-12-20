@@ -6,6 +6,18 @@ iter = 0
 class Player:
 
     def __init__(self):
+        '''
+        Класс объектов игрока
+        х, у - координаты игрока
+        coards - список из этих координта
+        car, fire - флаги отвечающие на то, в машине персонаж или нет, стреляет он или нет
+        health - здоровье игрока
+        sector - список из номеров сектора в котором находится игрок по осям х и у
+        vx, vy - скорость по осям
+        v - модуль максимальной скорости по осям
+        napravl - список из двух элементов указывающий направление
+        hitbox - размер хитбокса
+        '''
         self.x = 2800
         self.y = 2800
         self.coards = [self.x, self.y]
@@ -20,6 +32,10 @@ class Player:
         self.hitbox = 10
 
     def move(self, objects):
+        '''
+        Функция движения персонажа
+        objects - список объектов с которыми он может столкнутся
+        '''
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
             print(self.x,self.y)
@@ -32,9 +48,13 @@ class Player:
             if Flag == True:
                 self.x += self.vx
                 self.y += self.vy
-        self.sector = (self.x // 300, self.y // 300)
+        self.sector = (self.x // 300, self.y // 300
 
     def move_in_car(self,  car):
+        '''
+        Функция движения в машине
+        car - машина в которой происходит движение
+        '''
         if ((int(car.cent[0])) // 300 >= 3) and ((int(car.cent[1])) // 300 >= 2) \
             and ((int(car.cent[0])) // 300 <= 44) and ((int(car.cent[1])) // 300 <= 29):
             Flag = True
@@ -45,6 +65,10 @@ class Player:
         self.sector = (self.x // 300, self.y // 300)
 
     def draw(self, screen):
+        '''
+        Функция отрисовки
+        screen - экран на котором идет отрисовка
+        '''
         global iter
         v = (self.vx)**2 + (self.vy)**2
         if v == 0:
