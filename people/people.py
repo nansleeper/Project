@@ -129,7 +129,7 @@ class Human:
             #roja = 'people/koldunov.jpg'
             e, st = 0, 0
             if len(Map_activesectors) > 0:
-                e = cp.deepcopy(Map_activesectors[0].globalcent)
+                e = cp.deepcopy(Map_activesectors[0].cent)
                 st = cp.deepcopy(Map_activesectors[0].globalcent)
             else:
                 e = (0, 0)
