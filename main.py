@@ -114,8 +114,8 @@ while not finished:
     for x in (player.sector[0] - 4, player.sector[0] + 4):
         for y in (player.sector[1] - 3, player.sector[1] + 3):
             print(x, y)
-            coardx = Map_objects[y][x].cent[0] + 100
-            coardy = Map_objects[y][x].cent[1] + 100
+            coardx = Map_objects[y][x].globalcent[0] + 100
+            coardy = Map_objects[y][x].globalcent[1] + 100
             people = People.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):

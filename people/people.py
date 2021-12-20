@@ -49,8 +49,11 @@ class Human:
     def move(self, dt, people, Map_activesectors):
         is_active = False
         for sector in Map_activesectors:
-            if self.collides2(sector.cent, 300):
+            if self.collides2(sector.globalcent, 300):
                 is_active = True
+            if point_distance(self.coords, sector.globalcent) > 3500:
+                is_alive = False
+                return
         #if not is_active:
             #self.is_alive = False
             #return
@@ -72,13 +75,13 @@ class Human:
                     canMove = False
             for sector in Map_activesectors:
                 if str(sector) in ['House'] and \
-                self.collides2(sector.cent, 170): # How long is the side of a house?
+                self.collides2(sector.globalcent, 170): # How long is the side of a house?
                     canMove = False
                     self.wished_orientation = self.orientation
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
-                self.collides2(sector.cent, 300):
+                self.collides2(sector.globalcent, 300):
                     canMove = False
                     self.wished_orientation = self.orientation
             if canMove == True:
@@ -124,8 +127,13 @@ class Human:
                 roja += str((self.steps_done) % 15 + 1)
             roja += '.png'
             #roja = 'people/koldunov.jpg'
-            e = cp.deepcopy(Map_activesectors[0].cent)
-            st = cp.deepcopy(Map_activesectors[0].globalcent)
+            e, st = 0, 0
+            if len(Map_activesectors) > 0:
+                e = cp.deepcopy(Map_activesectors[0].globalcent)
+                st = cp.deepcopy(Map_activesectors[0].globalcent)
+            else:
+                e = (0, 0)
+                st = (0, 0)
             e = (e[0], e[1])
             st = (-st[0], -st[1])
             to_screen = vector_sum(st, e)
