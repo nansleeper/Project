@@ -49,7 +49,7 @@ class Human:
     def move(self, dt, people, Map_activesectors):
         is_active = False
         for sector in Map_activesectors:
-            if self.collides2(sector.center, 300):
+            if self.collides2(sector.cent, 300):
                 is_active = True
         #if not is_active:
             #self.is_alive = False
@@ -72,14 +72,14 @@ class Human:
                     canMove = False
             for sector in Map_activesectors:
                 if sector in ['House1', 'House2', 'House3'] and \
-                self.collides2(sector.center, HOUSE_SIDE): # How long is the side of a house?
+                self.collides2(sector.cent, HOUSE_SIDE): # How long is the side of a house?
                     canMove = False
                     self.wished_orientation = self.orientation
             for sector in Map_activesectors:
                 if sector in ['CrossRoad', 'HorRoad', 'VertRoad', \
                 'VertRoadUnable', 'HorRoadUnable', 'DownBorder', 'LeftBorder', \
                 'UpBorder', 'RightBorder', 'Water', 'Bridge'] and \
-                self.collides2(sector.center, 300):
+                self.collides2(sector.cent, 300):
                     canMove = False
                     self.wished_orientation = self.orientation
             if canMove == True:
