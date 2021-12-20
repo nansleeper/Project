@@ -48,7 +48,7 @@ class Player:
             if Flag == True:
                 self.x += self.vx
                 self.y += self.vy
-        self.sector = (self.x // 300, self.y // 300
+        self.sector = (self.x // 300, self.y // 300)
 
     def move_in_car(self,  car):
         '''

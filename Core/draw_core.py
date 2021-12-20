@@ -173,13 +173,16 @@ class House(Drawableobject):
                     pygame.draw.polygon(self.screen, self.color_win, window)
                     pygame.draw.polygon(self.screen, (0, 0, 0), window, 1)
 
-        def draw(self, spect_coord = (900, 500, 700)):
+        def draw1(self):
+            tex = pygame.image.load(self.textures[1])
+            self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
+
+        def draw2(self, spect_coord = (900, 500, 700)):
             '''
             :param spect_coor - список/кортеж из трех элементов - трехмерных координат точки наблюдения
             отрисовывает дом вцелом, вызывая функции в правильном порядке
             '''
-            tex = pygame.image.load(self.textures[1])
-            self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
+            
             if (self.cent[0] - spect_coord[0]) ** 2 > (self.cent[1] - spect_coord[1])**2:
                 self.draw_ywall(spect_coord)
                 self.draw_xwall(spect_coord)
