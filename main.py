@@ -118,7 +118,7 @@ while not finished:
             people = People.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
-                coardx -= 30
+                coardx -= 70
                 people = People.birth(people, coardx, coardy)
 
     for i in range(len(Map_activesectors)):
