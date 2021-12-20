@@ -73,11 +73,11 @@ class Human:
                         return
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
-            for sector in Map_activesectors:
-                if str(sector) in ['House'] and \
-                self.collides2(sector.globalcent, 170): # How long is the side of a house?
-                    canMove = False
-                    self.wished_orientation = self.orientation
+            #for sector in Map_activesectors:
+            #    if str(sector) in ['House'] and \
+            #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
+            #        canMove = False
+            #        self.wished_orientation = self.orientation
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
@@ -96,7 +96,9 @@ class Human:
         print('lavn el qunem')
         print(self.coords)
         for sector in Map_activesectors:
-            print(sector.globalcent)
+            if str(sector) in ['Cross', 'Hor', 'Vert', \
+            'Border', 'Water', 'Bridge']:
+                print(sector.globalcent)
         self.is_stoopid = True
         Human.min_fahm -= 1
         fahm = Human.min_fahm
