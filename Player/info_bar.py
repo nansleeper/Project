@@ -2,6 +2,11 @@ import pygame
 from Player.player import Player
 
 def show_infobar(screen, player):
+    '''
+    Функция отрисовывает строку информации сверху.
+    screen - экран на котором она отрисовывается
+    player - персонаж, чьё состояние оно отображает
+    '''
     info_screen = pygame.image.load('Core/texture/fonmain.bmp')
     screen.blit(info_screen, (0, 0))
     pygame.draw.polygon(screen, (255, 250, 0),
