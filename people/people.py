@@ -19,7 +19,7 @@ def vector_sum(a, b):
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
-        r = 12
+        r = 18
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
