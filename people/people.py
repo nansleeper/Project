@@ -50,7 +50,6 @@ class Player:
         Flag = False
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
-            print(self.x,self.y)
             Flag = True
             self.coards = [self.x, self.y]
             for obj in objects:
@@ -275,7 +274,6 @@ class Human:
         for c in (0, 1):
             for border in (center[c] - side / 2, center[c] + side / 2):
                 if abs(self.coords[c] - border) < 1:#self.r:
-                if abs(self.coords[c] - border) < 1:#self.r:
 
                     return True
         for vertex in ((center[c] - side / 2, center[c] - side / 2), \
@@ -283,7 +281,6 @@ class Human:
                        (center[c] + side / 2, center[c] - side / 2), \
                        (center[c] + side / 2, center[c] + side / 2)):
 
-            if point_distance(self.coords, vertex) < 1:#self.r:
             if point_distance(self.coords, vertex) < 1:#self.r:
 
                 return True

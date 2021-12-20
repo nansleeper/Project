@@ -38,7 +38,6 @@ class Player:
         '''
         if ((self.x + self.vx) // 300 >= 3) and ((self.y + self.vy) // 300 >= 2) \
             and ((self.x + self.vx) // 300 <= 44) and ((self.y + self.vy) // 300 <= 29):
-            print(self.x,self.y)
             Flag = True
             self.coards = [self.x, self.y]
             for obj in objects:

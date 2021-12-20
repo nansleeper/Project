@@ -29,6 +29,8 @@ class Car():
         self.unable = False
         self.sector = [int(globalcent[0] // 300), int(globalcent[1] // 300)]
         self.t_unable = 0
+        self.direction_v = []
+        self.traectory = [0, 0, 0]
         self.rotate = False 
         self.n = 2 
         self.start = 0

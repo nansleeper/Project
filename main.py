@@ -8,7 +8,6 @@ from Core.car import Car
 from Player.info_bar import show_infobar
 import math 
 import random
-import people.people as People
 
 pygame.mixer.init()
 player = Player()
@@ -92,7 +91,6 @@ for i in range(6):
 
 
 
-people = []
 while not finished:
     Map_activesectors = []
     Map_unloadsectors = []
@@ -109,6 +107,8 @@ while not finished:
         for y in (player.sector[1] - 2, player.sector[1] - 1, player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_activesectors.append(Map_objects[y][x])
     
+
+    """
     # Iterate over sectors immediately behind the active ones,
     # generating people there.       
     for x in range(player.sector[0] - 4, player.sector[0] + 4):
@@ -122,6 +122,7 @@ while not finished:
             if random.choice([True, False]):
                 coardx -= 70
                 people = People.birth(people, coardx, coardy)
+    """
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
@@ -181,11 +182,13 @@ while not finished:
         else:
             cars.pop(cars.index(obj))
         
-    for obj in cars:
-            obj.move(player)
+    
     player.move(Map_activesectors)
     player.draw(screen)
-    People.tick(screen, people, Map_activesectors)
+    for obj in cars:
+            obj.move(player)
+
+    #People.tick(screen, people, Map_activesectors)
         
     for i in range(len(Map_activesectors)):
         if str(Map_activesectors[i]) == "House":
