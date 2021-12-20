@@ -19,7 +19,7 @@ def vector_sum(a, b):
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
-        r = 15
+        r = 25
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -73,11 +73,11 @@ class Human:
                         return
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
-            #for sector in Map_activesectors:
-            #    if str(sector) in ['House'] and \
-            #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
-            #        canMove = False
-            #        self.wished_orientation = self.orientation
+            for sector in Map_activesectors:
+                if str(sector) in ['House'] and \
+                self.collides2(sector.globalcent, 170): # How long is the side of a house?
+                    canMove = False
+                    self.wished_orientation = self.orientation
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
@@ -93,6 +93,7 @@ class Human:
             self.orientation += rotation
             self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
                              self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
+        print('lavn el qunem')
         self.is_stoopid = True
         Human.min_fahm -= 1
         fahm = Human.min_fahm
