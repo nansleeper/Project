@@ -125,6 +125,7 @@ class Human:
                 roja += str((self.steps_done) % 15 + 1)
             roja += '.png'
             #roja = 'people/koldunov.jpg'
+            print(roja)
             koldunov = pygame.image.load(roja)
             koldunov.set_colorkey((0,0,0))
             koldunov = koldunov.convert_alpha()
@@ -203,4 +204,4 @@ def run_randomly_eat_stuff(Map_activesectors):
         people = tick(display, people, Map_activesectors)
         pygame.display.update()
 
-# run_randomly_eat_stuff([])
+#run_randomly_eat_stuff([])

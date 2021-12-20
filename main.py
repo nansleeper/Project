@@ -8,7 +8,7 @@ from Core.car import Car
 from Player.info_bar import show_infobar
 import math 
 import random
-from people.people import *
+import people.people as People
 
 pygame.mixer.init()
 player = Player()
@@ -116,11 +116,11 @@ while not finished:
             print(x, y)
             coardx = Map_objects[y][x].cent[0] + 100
             coardy = Map_objects[y][x].cent[1] + 100
-            people = People.people.birth(people, coardx, coardy)
+            people = People.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
                 x -= 30
-                people = People.people.birth(x, y)
+                people = People.birth(x, y)
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
