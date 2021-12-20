@@ -115,7 +115,7 @@ class Human:
         return False
 
 
-    def render(self, display):
+    def render(self, display, Map_activesectors):
         surface=self.surface
         if self.is_alive:
             roja = 'people/chuvak'
@@ -145,10 +145,6 @@ class Human:
             display.blit(koldunov, (self.coords[0] - self.r + to_screen[0], self.coords[1] - self.r + to_screen[1]))
 
 
-    def update(self, display):
-        self.render(display)
-
-
 def birth(people, x, y):
     # Don't overpopulate the mini-city.
     if len(people) > 20:
@@ -176,7 +172,7 @@ def tick(display, people, Map_activesectors):
         if idiot.is_alive:
             idiot.move(1, people, Map_activesectors)
             print('Rendering an idiot...')
-            idiot.render(display)
+            idiot.render(display, Map_activesectors)
     living_people = []
     for idiot in people:
         if idiot.is_alive:
