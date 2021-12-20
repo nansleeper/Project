@@ -94,6 +94,9 @@ class Human:
             self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
                              self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
         print('lavn el qunem')
+        print(self.coords)
+        for sector in Map_activesectors:
+            print(sector.globalcent)
         self.is_stoopid = True
         Human.min_fahm -= 1
         fahm = Human.min_fahm
