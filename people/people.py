@@ -84,6 +84,10 @@ class Human:
                 self.collides2(sector.globalcent, 305):
                     canMove = False
                     self.wished_orientation = self.orientation
+                    canMove = True
+                    self.orientation += 180
+                    self.orientation %= 360
+                    self.wished_orientation = self.orientation
             if canMove == True:
                 self.is_stoopid = False
                 self.steps_done += 1
