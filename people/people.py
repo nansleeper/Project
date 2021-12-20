@@ -81,7 +81,7 @@ class Human:
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
-                self.collides2(sector.globalcent, 300):
+                self.collides2(sector.globalcent, 500):
                     canMove = False
                     self.wished_orientation = self.orientation
             if canMove == True:
@@ -113,6 +113,9 @@ class Human:
                        (center[c] + side / 2, center[c] - side / 2), \
                        (center[c] + side / 2, center[c] + side / 2)):
             if point_distance(self.coords, vertex) < self.r:
+                return True
+        if center[0] - side / 2 <= self.coords[0] and self.coords[0] <= center[0] + side / 2:
+            if center[1] - side / 2 <= self.coords[1] and self.coords[1] <= center[1] + side / 2:
                 return True
         return False
 

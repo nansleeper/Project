@@ -115,6 +115,8 @@ while not finished:
         for y in range(player.sector[1] - 3, player.sector[1] + 3):
             coardx = Map_objects[y][x].globalcent[0] + 100
             coardy = Map_objects[y][x].globalcent[1] + 100
+            if str(Map_objects[y][x]) != "House":
+                continue
             people = People.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
