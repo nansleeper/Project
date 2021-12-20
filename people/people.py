@@ -158,7 +158,7 @@ class Human:
             correct_scale *= (abs(math.sin(orientation)) +
                               abs(math.cos(orientation)))
             correct_scale = math.ceil(2 * self.r / correct_scale)
-            #correct_scale = math.ceil(self.r)
+            correct_scale = math.ceil(2 * self.r)
             koldunov = pygame.transform.scale(koldunov, (correct_scale, correct_scale));
             koldunov = pygame.transform.rotate(koldunov, self.orientation);
             display.blit(koldunov, (self.coords[0] - self.r + to_screen[0], self.coords[1] - self.r + to_screen[1]))
