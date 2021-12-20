@@ -51,7 +51,7 @@ class Human:
         for sector in Map_activesectors:
             if self.collides2(sector.globalcent, 300):
                 is_active = True
-            if point_distance(self.coords, sector.globalcent) > 3500:
+            if abs(self.coords[1] - sector.globalcent[1]) > 1300 or point_distance(self.coords, sector.globalcent) > 2000:
                 is_alive = False
                 return
         #if not is_active:
@@ -73,11 +73,11 @@ class Human:
                         return
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
-            for sector in Map_activesectors:
-                if str(sector) in ['House'] and \
-                self.collides2(sector.globalcent, 170): # How long is the side of a house?
-                    canMove = False
-                    self.wished_orientation = self.orientation
+            #for sector in Map_activesectors:
+            #    if str(sector) in ['House'] and \
+            #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
+            #        canMove = False
+            #        self.wished_orientation = self.orientation
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
