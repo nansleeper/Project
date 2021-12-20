@@ -92,7 +92,7 @@ for i in range(6):
 
 
 
-
+people = []
 while not finished:
     Map_activesectors = []
     Map_unloadsectors = []
