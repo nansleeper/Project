@@ -5,6 +5,12 @@ from Core.car import Car
 class Drawableobject:
 
     def __init__(self, screen, sector, tex = 0):
+        '''
+        Класс рисуемых объектов
+        screen - экран на котором отрисовывается объект
+        sector - кортеж/список из двух элементов соответствующий номеру сектора по х и у
+        tex - текстура объекта
+        '''
         self.cent = (sector[0] * 300 + 150, sector[1] * 300 + 150)
         self.sector = sector
         self.globalcent = (self.cent[0], self.cent[1])
@@ -16,6 +22,7 @@ class Drawableobject:
 
     
     def __str__(self):
+        '''Возвращает имя объекта'''
         return self.name
     
 
@@ -32,6 +39,7 @@ class Drawableobject:
             self.time += 1
     
     def draw(self):
+        '''Отрисовывает объект'''
         tex = pygame.image.load(self.tex)
         self.screen.blit(tex, (self.cent[0] - 150, self.cent[1] - 150))
 
@@ -195,8 +203,12 @@ def proect(coord, spect_coord = (900, 500, 1000)):
 class Road(Drawableobject):
 
     def __init__(self, screen, sector, orient, ability):
-
-        'orientation - vert, hor or cross'
+        '''
+        screen - экран на котором отрисовывается объект
+        sector - кортеж/список из двух элемнетов соответствующий номеру сектора где объект расположен по оси х и у
+        orient - вид дороги: hor - горизонтально риентирована, vert - вертикально ориентирована, cross - перекресток
+        ability - булева переменная, если по дороге можно ездить == True, если нельзя == False
+        '''
 
 
         super().__init__(screen, sector)
@@ -216,6 +228,10 @@ class Road(Drawableobject):
         self.able = ability
 
     def parametrs(self, maparray):
+        '''
+        Функция определяет в какую сторону может ехат по дороге машина
+        maparray - двумерный массив представляющий карту
+        '''
         if str(maparray[self.sector[1] - 1][self.sector[0]]) == 'vert':
             if maparray[self.sector[1] - 1][self.sector[0]].able == True:
                 self.ways[0][0] = True
@@ -246,6 +262,10 @@ class Road(Drawableobject):
                 self.ways[0][1] = False
 
     def spawncar(self, screen):
+            '''
+            Создает машинку
+            screen - экран на котором она появится
+            '''
             i = 0
             self.variant0 = choice(self.variant)
             #for obj in cars:
@@ -312,7 +332,11 @@ class Road(Drawableobject):
 class Beach(Drawableobject):
 
     def __init__(self, screen, sector):
-
+        '''
+        Объект пляж
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Beach"
         self.tex = 'Core/texture/beach.bmp'
@@ -320,8 +344,11 @@ class Beach(Drawableobject):
 class Park(Drawableobject):
 
     def __init__(self, screen, sector):
-
-        
+        '''
+        Объект парк
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Park"
         self.tex = 'Core/texture/park.bmp'
@@ -329,8 +356,11 @@ class Park(Drawableobject):
 class DownBorder(Drawableobject):
 
     def __init__(self, screen, sector):
-
-        
+        '''
+        Объект граница сверху
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Border"
         self.tex = 'Core/texture/downborder.bmp'
@@ -338,8 +368,11 @@ class DownBorder(Drawableobject):
 class UpBorder(Drawableobject):
 
     def __init__(self, screen, sector):
-
-        
+        '''
+        Объект граница снизу
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Border"
         self.tex = 'Core/texture/upborder.bmp'
@@ -347,7 +380,11 @@ class UpBorder(Drawableobject):
 class LeftBorder(Drawableobject):
 
     def __init__(self, screen, sector):
-        
+        '''
+        Объект граница слева
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Border"
         self.tex = 'Core/texture/leftborder.bmp'
@@ -355,7 +392,11 @@ class LeftBorder(Drawableobject):
 class RightBorder(Drawableobject):
 
     def __init__(self, screen, sector):
-
+        '''
+        Объект граница справа
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         
         super().__init__(screen, sector)
         self.name = "Border"
@@ -364,6 +405,11 @@ class RightBorder(Drawableobject):
 class Water(Drawableobject):
 
     def __init__(self, screen, sector):
+        '''
+        Объект вода
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         super().__init__(screen, sector)
         self.name = "Water"
         self.time = 0
@@ -380,7 +426,7 @@ class Water(Drawableobject):
             self.time += 1
         
     def draw(self):
-
+        '''Отриовывает объект'''
         if self.time % 20 < 10:
             self.tex = 'Core/texture/water1.bmp'
         else:
@@ -391,7 +437,11 @@ class Water(Drawableobject):
 class WalkingRoad(Drawableobject):
 
     def __init__(self, screen, sector):
-
+        '''
+        Объект дорожка для прогулок
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         
         super().__init__(screen, sector)
         self.name = "WalkingRoad"
@@ -400,7 +450,11 @@ class WalkingRoad(Drawableobject):
 class Bridge(Drawableobject):
 
     def __init__(self, screen, sector):
-
+        '''
+        Объект мост
+        screen - экран на котором отрисовывается объект
+        sector - двумерный кортеж/список из двух элементов соответствующий номерам сектора по осям х и у
+        '''
         
         super().__init__(screen, sector)
         self.name = "Bridge"
