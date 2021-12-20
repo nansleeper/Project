@@ -49,8 +49,11 @@ class Human:
     def move(self, dt, people, Map_activesectors):
         is_active = False
         for sector in Map_activesectors:
-            if self.collides2(sector.cent, 300):
+            if self.collides2(sector.globalcent, 300):
                 is_active = True
+            if abs(self.coords[1] - sector.globalcent[1]) > 1300 or point_distance(self.coords, sector.globalcent) > 2000:
+                is_alive = False
+                return
         #if not is_active:
             #self.is_alive = False
             #return
@@ -70,16 +73,15 @@ class Human:
                         return
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
+            #for sector in Map_activesectors:
+            #    if str(sector) in ['House'] and \
+            #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
+            #        canMove = False
+            #        self.wished_orientation = self.orientation
             for sector in Map_activesectors:
-                if sector in ['House1', 'House2', 'House3'] and \
-                self.collides2(sector.cent, 170): # How long is the side of a house?
-                    canMove = False
-                    self.wished_orientation = self.orientation
-            for sector in Map_activesectors:
-                if sector in ['CrossRoad', 'HorRoad', 'VertRoad', \
-                'VertRoadUnable', 'HorRoadUnable', 'DownBorder', 'LeftBorder', \
-                'UpBorder', 'RightBorder', 'Water', 'Bridge'] and \
-                self.collides2(sector.cent, 300):
+                if str(sector) in ['Cross', 'Hor', 'Vert', \
+                'Border', 'Water', 'Bridge'] and \
+                self.collides2(sector.globalcent, 500):
                     canMove = False
                     self.wished_orientation = self.orientation
             if canMove == True:
@@ -112,10 +114,13 @@ class Human:
                        (center[c] + side / 2, center[c] + side / 2)):
             if point_distance(self.coords, vertex) < self.r:
                 return True
+        if center[0] - side / 2 <= self.coords[0] and self.coords[0] <= center[0] + side / 2:
+            if center[1] - side / 2 <= self.coords[1] and self.coords[1] <= center[1] + side / 2:
+                return True
         return False
 
 
-    def render(self, display):
+    def render(self, display, Map_activesectors):
         surface=self.surface
         if self.is_alive:
             roja = 'people/chuvak'
@@ -125,7 +130,16 @@ class Human:
                 roja += str((self.steps_done) % 15 + 1)
             roja += '.png'
             #roja = 'people/koldunov.jpg'
-            print(roja)
+            e, st = 0, 0
+            if len(Map_activesectors) > 0:
+                e = cp.deepcopy(Map_activesectors[0].cent)
+                st = cp.deepcopy(Map_activesectors[0].globalcent)
+            else:
+                e = (0, 0)
+                st = (0, 0)
+            e = (e[0], e[1])
+            st = (-st[0], -st[1])
+            to_screen = vector_sum(st, e)
             koldunov = pygame.image.load(roja)
             koldunov.set_colorkey((0,0,0))
             koldunov = koldunov.convert_alpha()
@@ -137,11 +151,7 @@ class Human:
             correct_scale = math.ceil(self.r)
             koldunov = pygame.transform.scale(koldunov, (correct_scale, correct_scale));
             koldunov = pygame.transform.rotate(koldunov, self.orientation);
-            display.blit(koldunov, (self.coords[0] - self.r, self.coords[1] - self.r))
-
-
-    def update(self, display):
-        self.render(display)
+            display.blit(koldunov, (self.coords[0] - self.r + to_screen[0], self.coords[1] - self.r + to_screen[1]))
 
 
 def birth(people, x, y):
@@ -166,12 +176,10 @@ def move_people(people, Map_activesectors):
 
 
 def tick(display, people, Map_activesectors):
-    print("tick...")
     for idiot in people:
         if idiot.is_alive:
             idiot.move(1, people, Map_activesectors)
-            print('Rendering an idiot...')
-            idiot.render(display)
+            idiot.render(display, Map_activesectors)
     living_people = []
     for idiot in people:
         if idiot.is_alive:

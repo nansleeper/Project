@@ -275,7 +275,6 @@ class Road(Drawableobject):
                 #if self.cent[0] > 900:
                     if self.variant0%10 == 1:
                         self.car = Car(screen, [self.globalcent[0], self.globalcent[1] + 27], 90)
-                        print("!!!!!!!!", self.globalcent)
                     if self.variant0%10 == 2:
                         self.car = Car(screen, [self.globalcent[0], self.globalcent[1] + 102], 90)
 

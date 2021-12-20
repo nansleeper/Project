@@ -111,16 +111,17 @@ while not finished:
     
     # Iterate over sectors immediately behind the active ones,
     # generating people there.       
-    for x in (player.sector[0] - 4, player.sector[0] + 4):
-        for y in (player.sector[1] - 3, player.sector[1] + 3):
-            print(x, y)
-            coardx = Map_objects[y][x].cent[0] + 100
-            coardy = Map_objects[y][x].cent[1] + 100
+    for x in range(player.sector[0] - 4, player.sector[0] + 4):
+        for y in range(player.sector[1] - 3, player.sector[1] + 3):
+            coardx = Map_objects[y][x].globalcent[0] + 100
+            coardy = Map_objects[y][x].globalcent[1] + 100
+            if str(Map_objects[y][x]) != "House":
+                continue
             people = People.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
-                x -= 30
-                people = People.birth(people, x, y)
+                coardx -= 70
+                people = People.birth(people, coardx, coardy)
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))

@@ -246,7 +246,6 @@ class Car():
     def col_update(self):
 
       self.t += self.dt
-      print(self.t)
       
       if self.v <= 5:
         self.v += 2
