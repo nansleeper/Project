@@ -16,7 +16,6 @@ def vector_sum(a, b):
     return (a[0] + b[0], a[1] + b[1])
 
 class Player:
-
     def __init__(self, x, y):
         '''
         Класс объектов игрока
@@ -297,7 +296,7 @@ class Human:
     def render(self, display, Map_activesectors):
         surface=self.surface
         if self.is_alive:
-            roja = 'people/chuvak'
+            roja = './people/chuvak'
             if self.is_stoopid:
                 roja += '1'
             else:
