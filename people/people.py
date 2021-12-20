@@ -1,4 +1,4 @@
-emport math
+import math
 import random
 import copy as cp
 from random import randint, choice
@@ -126,8 +126,8 @@ class Human:
             roja += '.png'
             #roja = 'people/koldunov.jpg'
             print(roja)
-            e = copy.deepcopy(Map_activesectors[0].selfcent)
-            st = copy.deepcopy(Map_activesectors[0].selfglobalcent)
+            e = cp.deepcopy(Map_activesectors[0].cent)
+            st = cp.deepcopy(Map_activesectors[0].globalcent)
             e = (e[0], e[1])
             st = (-st[0], -st[1])
             to_screen = vector_sum(st, e)
@@ -170,7 +170,7 @@ def move_people(people, Map_activesectors):
         idiot.move(1, people, Map_activesectors)
 
 
-def (display, people, Map_activesectors):
+def tick(display, people, Map_activesectors):
     print("tick...")
     for idiot in people:
         if idiot.is_alive:
