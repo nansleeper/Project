@@ -71,14 +71,13 @@ class Human:
                     #print(idiot.coords, ' ', copy.coords)
                     canMove = False
             for sector in Map_activesectors:
-                if sector in ['House1', 'House2', 'House3'] and \
+                if str(sector) in ['House'] and \
                 self.collides2(sector.cent, 170): # How long is the side of a house?
                     canMove = False
                     self.wished_orientation = self.orientation
             for sector in Map_activesectors:
-                if sector in ['CrossRoad', 'HorRoad', 'VertRoad', \
-                'VertRoadUnable', 'HorRoadUnable', 'DownBorder', 'LeftBorder', \
-                'UpBorder', 'RightBorder', 'Water', 'Bridge'] and \
+                if str(sector) in ['Cross', 'Hor', 'Vert', \
+                'Border', 'Water', 'Bridge'] and \
                 self.collides2(sector.cent, 300):
                     canMove = False
                     self.wished_orientation = self.orientation
