@@ -110,19 +110,19 @@ class Human:
 
     def collides1(self, rhs):
         distance = ((self.coords[0] - rhs.coords[0]) ** 2 + (self.coords[1] - rhs.coords[1]) ** 2) ** 0.5
-        return distance < self.r + rhs.r
+        return distance < 1 + 1 #self.r + rhs.r
 
 
     def collides2(self, center, side):
         for c in (0, 1):
             for border in (center[c] - side / 2, center[c] + side / 2):
-                if abs(self.coords[c] - border) < self.r:
+                if abs(self.coords[c] - border) < 1#self.r:
                     return True
         for vertex in ((center[c] - side / 2, center[c] - side / 2), \
                        (center[c] - side / 2, center[c] + side / 2), \
                        (center[c] + side / 2, center[c] - side / 2), \
                        (center[c] + side / 2, center[c] + side / 2)):
-            if point_distance(self.coords, vertex) < self.r:
+            if point_distance(self.coords, vertex) < 1#self.r:
                 return True
         if center[0] - side / 2 <= self.coords[0] and self.coords[0] <= center[0] + side / 2:
             if center[1] - side / 2 <= self.coords[1] and self.coords[1] <= center[1] + side / 2:
