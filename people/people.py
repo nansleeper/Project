@@ -129,7 +129,7 @@ class Human:
             e = copy.deepcopy(Map_activesectors[0].selfcent)
             st = copy.deepcopy(Map_activesectors[0].selfglobalcent)
             e = (e[0], e[1])
-            st = (-st[0], -st[0])
+            st = (-st[0], -st[1])
             to_screen = vector_sum(st, e)
             koldunov = pygame.image.load(roja)
             koldunov.set_colorkey((0,0,0))
