@@ -113,7 +113,7 @@ while not finished:
     # generating people there.       
     for x in range(player.sector[0] - 4, player.sector[0] + 4):
         for y in range(player.sector[1] - 3, player.sector[1] + 3):
-            coardx = Map_objects[y][x].globalcent[0] + 120
+            coardx = Map_objects[y][x].globalcent[0] + 130
             coardy = Map_objects[y][x].globalcent[1] + 100
             if str(Map_objects[y][x]) != "House":
                 continue
