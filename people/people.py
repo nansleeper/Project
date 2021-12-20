@@ -124,7 +124,6 @@ class Human:
                 roja += str((self.steps_done) % 15 + 1)
             roja += '.png'
             #roja = 'people/koldunov.jpg'
-            print(roja)
             e = cp.deepcopy(Map_activesectors[0].cent)
             st = cp.deepcopy(Map_activesectors[0].globalcent)
             e = (e[0], e[1])
@@ -166,11 +165,9 @@ def move_people(people, Map_activesectors):
 
 
 def tick(display, people, Map_activesectors):
-    print("tick...")
     for idiot in people:
         if idiot.is_alive:
             idiot.move(1, people, Map_activesectors)
-            print('Rendering an idiot...')
             idiot.render(display, Map_activesectors)
     living_people = []
     for idiot in people:
