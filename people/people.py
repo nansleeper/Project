@@ -16,18 +16,11 @@ def vector_sum(a, b):
     return (a[0] + b[0], a[1] + b[1])
 
 
-def build_traject():
-    t = []
-    for i = 0
-    return t
-
-
 class Human:
-    traject = build_traject
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
         r = 14
-        step = 0
+        self.step = 0
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -76,7 +69,7 @@ class Human:
             copy.r = cp.deepcopy(self.r)
             copy.coords = vector_sum(copy.coords, self.velocity * dt)
             canMove = True
-            if steps > 280 / point_distance((0, 0), self.velocity):
+            if self.step > 280 / point_distance((0, 0), self.velocity):
                 rotation = 90
                 step = 0
             else:
