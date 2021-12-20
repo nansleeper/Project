@@ -125,7 +125,10 @@ while not finished:
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
-        Map_activesectors[i].draw()
+        if str(Map_activesectors[i]) != "House":
+            Map_activesectors[i].draw()
+        else:
+            Map_activesectors[i].draw1()
       
 
     for i in range(9):
@@ -177,6 +180,16 @@ while not finished:
             obj.rotate = True
         else:
             cars.pop(cars.index(obj))
+        
+    for obj in cars:
+            obj.move(player)
+    player.move(Map_activesectors)
+    player.draw(screen)
+    People.tick(screen, people, Map_activesectors)
+        
+    for i in range(len(Map_activesectors)):
+        if str(Map_activesectors[i]) == "House":
+            Map_activesectors[i].draw2()
 
 
   
@@ -236,12 +249,8 @@ while not finished:
             #elif event.key == K_f:
             #    playerstatus = True
    
-    player.move(Map_activesectors)
-    player.draw(screen)
-    People.tick(screen, people, Map_activesectors)
+    
 
-    for obj in cars:
-        obj.move(player)
           
 
 

@@ -16,10 +16,18 @@ def vector_sum(a, b):
     return (a[0] + b[0], a[1] + b[1])
 
 
+def build_traject():
+    t = []
+    for i = 0
+    return t
+
+
 class Human:
+    traject = build_traject
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
-        r = 25
+        r = 14
+        step = 0
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -57,6 +65,7 @@ class Human:
         #if not is_active:
             #self.is_alive = False
             #return
+
         rotation = 10
         self.orientation = self.wished_orientation
         for attempts in range(360 // rotation + 1):
@@ -67,45 +76,51 @@ class Human:
             copy.r = cp.deepcopy(self.r)
             copy.coords = vector_sum(copy.coords, self.velocity * dt)
             canMove = True
-            for idiot in people:
-                if idiot != self and idiot.is_alive and idiot.collides1(copy):
-                    if self.fahm < idiot.fahm:
-                        return
-                    #print(idiot.coords, ' ', copy.coords)
-                    canMove = False
-            #for sector in Map_activesectors:
-            #    if str(sector) in ['House'] and \
-            #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
-            #        canMove = False
-            #        self.wished_orientation = self.orientation
-            for sector in Map_activesectors:
-                if str(sector) in ['Cross', 'Hor', 'Vert', \
-                'Border', 'Water', 'Bridge'] and \
-                self.collides2(sector.globalcent, 305):
-                    canMove = False
-                    self.wished_orientation = self.orientation
-                    canMove = True
-                    self.orientation += 180
-                    self.orientation %= 360
-                    self.wished_orientation = self.orientation
+            if steps > 280 / point_distance((0, 0), self.velocity):
+                rotation = 90
+                step = 0
+            else:
+                rotation = 0
+        #    for idiot in people:
+        #        if idiot != self and idiot.is_alive and idiot.collides1(copy):
+        #            if self.fahm < idiot.fahm:
+        #                return
+        #            #print(idiot.coords, ' ', copy.coords)
+        #            canMove = False
+        #    #for sector in Map_activesectors:
+        #    #    if str(sector) in ['House'] and \
+        #    #    self.collides2(sector.globalcent, 170): # How long is the side of a house?
+        #    #        canMove = False
+        #    #        self.wished_orientation = self.orientation
+        #    for sector in Map_activesectors:
+        #        if str(sector) in ['Cross', 'Hor', 'Vert', \
+        #        'Border', 'Water', 'Bridge'] and \
+        #        self.collides2(sector.globalcent, 305):
+        #            canMove = False
+        #            self.wished_orientation = self.orientation
+        #            #canMove = True
+        #            #self.orientation += 90
+        #            #self.orientation %= 360
+        #            #self.wished_orientation = self.orientation
             if canMove == True:
                 self.is_stoopid = False
                 self.steps_done += 1
+                self.step += 1
                 self.coords = cp.deepcopy(copy.coords)
                 return
-                # print("Rotating...")
-            self.orientation += rotation
-            self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
-                             self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
+        #        # print("Rotating...")
+        #    self.orientation += rotation
+        #    self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
+        #                     self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
         #print('lavn el qunem')
         #print(self.coords)
-        for sector in Map_activesectors:
-            if str(sector) in ['Cross', 'Hor', 'Vert', \
-            'Border', 'Water', 'Bridge']:
-                print(sector.globalcent)
-        self.is_stoopid = True
-        Human.min_fahm -= 1
-        fahm = Human.min_fahm
+        #for sector in Map_activesectors:
+        #    if str(sector) in ['Cross', 'Hor', 'Vert', \
+        #    'Border', 'Water', 'Bridge']:
+        #        print(sector.globalcent)
+        #self.is_stoopid = True
+        #Human.min_fahm -= 1
+        #fahm = Human.min_fahm
 
 
     def collides1(self, rhs):
@@ -116,13 +131,21 @@ class Human:
     def collides2(self, center, side):
         for c in (0, 1):
             for border in (center[c] - side / 2, center[c] + side / 2):
+<<<<<<< HEAD
                 if abs(self.coords[c] - border) < 1 #self.r:
+=======
+                if abs(self.coords[c] - border) < 1:#self.r:
+>>>>>>> 87eb0e4afde0856d48ea795cc41e263235b330f3
                     return True
         for vertex in ((center[c] - side / 2, center[c] - side / 2), \
                        (center[c] - side / 2, center[c] + side / 2), \
                        (center[c] + side / 2, center[c] - side / 2), \
                        (center[c] + side / 2, center[c] + side / 2)):
+<<<<<<< HEAD
             if point_distance(self.coords, vertex) < 1 #self.r:
+=======
+            if point_distance(self.coords, vertex) < 1:#self.r:
+>>>>>>> 87eb0e4afde0856d48ea795cc41e263235b330f3
                 return True
         if center[0] - side / 2 <= self.coords[0] and self.coords[0] <= center[0] + side / 2:
             if center[1] - side / 2 <= self.coords[1] and self.coords[1] <= center[1] + side / 2:
@@ -158,7 +181,7 @@ class Human:
             correct_scale *= (abs(math.sin(orientation)) +
                               abs(math.cos(orientation)))
             correct_scale = math.ceil(2 * self.r / correct_scale)
-            correct_scale = math.ceil(self.r)
+            correct_scale = math.ceil(2 * self.r)
             koldunov = pygame.transform.scale(koldunov, (correct_scale, correct_scale));
             koldunov = pygame.transform.rotate(koldunov, self.orientation);
             display.blit(koldunov, (self.coords[0] - self.r + to_screen[0], self.coords[1] - self.r + to_screen[1]))
