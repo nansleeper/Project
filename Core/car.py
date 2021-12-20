@@ -3,76 +3,95 @@ import pygame
 from pygame.draw import *
 
 class Car():
+    '''
+    Класс машин, реализует движение неуправляемых и управляемых машин машин
+    '''
     def __init__(self, win, globalcent, angle):
+        '''
+        win - поверхность, на которой отрисовывается машина, globalcent - глобальные координаты для машины,
+        angle - первоначальный угол поворота машины, отсчитывается против часовой стрелки, 0 соответсвует вертикальное положение
+        self.v - скорость машины, self.avast - остановка машины, self.hit - проверка на столкновение, self.playerstatus - проверка на присутствие человека в машине,
+        self.unable - определяет брошенную машину, self.sector - определяет сектор нахождения машины,self.t_unable - время после того, как машину бросили ,  
+        self.rotate - определяет поворот при столкновении, self.n - параметр для направления движения, self.start - определяе старт для управляемой машины,
+        self.t - вреемф после солкновения, self.color - цвет машины, self.not_colid - проверка на столкновение, self.first_collid - первое столкновение,
+        self.motion0 - последнее направление перед столкновением,
+        self.angle_colid - угол столкновения, self.after_col - направление после столкновения, self.side1 - одна сторона машины, self.side2 - вторая сторона машины 
+        '''
         self.globalcent = globalcent
         self.win = win
         self.cent = [0, 0]
         self.v = 5
-        self.direction_v = []
         self.dv = ()
         self.angle = angle 
-        self.stop = False
+        self.avast = False
         self.hit = False
         self.playerstatus = False
         self.unable = False
         self.sector = [int(globalcent[0] // 300), int(globalcent[1] // 300)]
-        #self.tex = textur
         self.t_unable = 0
         self.rotate = False 
-        self.traectory = [0, 0, 0]
         self.n = 2 
         self.start = 0
         self.t = 0
         self.color = (128, 128, 128)
-
         self.not_colid = True
         self.first_collid = False
         self.motion0 = []
         self.angle_col = 0
         self.after_collid = 0
-
         self.side1 = 30
         self.side2 = 50
 
+        '''
+        Задаётся маленькая поверхность, внутри которой помещён прямоугольник
+        '''
         self.surface = pygame.Surface((self.side1, self.side2), pygame.SRCALPHA,32)
         self.surface.set_colorkey((255,255,255, 0))
         self.rect = self.surface.get_rect(center=(self.globalcent[0], self.globalcent[1]))
 
     def collisions(self, obj):
+        '''
+        проверка на столкноввение двух машин
+        '''
         if self.rect.colliderect(obj.rect):
           self.hit = True
 
     def stop(self, obj, MAP_Sector):
         '''
-        проверяет есть ли машина перед ней на определенном расстоянии interval 
-        если есть - self.stop = True
+        проверяет есть ли машина перед ней на определенном расстоянии interval, 
+        если есть - self.avast = True
         '''
 
         if self.playerstatus == False:
             if self.angle == 0 or self.angle == 180:
                 if abs(self.y - obj.y) <= 3/2 * self.side2:
-                    self.stop = True
+                    self.avast = True
 
             if self.angle == 90 or self.angle == 270:
                 if abs(self.x - obj.x) <= 3/2 * self.side2:
-                    self.stop = True
+                    self.avast = True
 
         self.t_unbale += 1
 
         if MAP_Sector == "cross":
             if abs(MAP_Sector.angle - self.angle) > 45 and self.rotate == False:
-                self.stop = True
+                self.avast = True
 
 
     def move(self, player, dv = [0, 0, 0, 0], playerstatus = False):
         '''
-        dv = (0 w, 0 a, 0 s, 0 d)
+        функция задающая движение и отрисовку
+        dv = (0 w, 0 a, 0 s, 0 d) - передаёт события с клавиатуры
+        player - несёт в себе информацию о положении центра, нужен для пересчитывания координат
         '''
         self.playerstatus = playerstatus
         self.dv = dv
         center = (player.coards[0], player.coards[1])
         if not (self.playerstatus):
-          if self.stop and self.t < 1:
+          if self.avast and self.t < 1:
+            '''
+            Функция для остановки неуправляемых машин
+            '''
 
             center = self.rect.center
             image = pygame.transform.rotate(self.surface, -self.angle)
@@ -90,34 +109,12 @@ class Car():
 
           else:
             '''
-            if abs(self.traectory[0] - self.globalcent[0]) != 0:
-              self.direction_v.append((self.traectory[0] - self.globalcent[0]) / abs(self.traectory[0] - self.globalcent[0]))
-            else:
-              self.direction_v.append(0)
-            if abs(self.traectory[1] - self.globalcent[1]) != 0:
-              self.direction_v.append((self.traectory[1] - self.globalcent[1]) / abs(self.traectory[1] - self.globalcent[1]))
-            else:
-              self.direction_v.append(0)
-            if abs(self.traectory[2] - self.angle) != 0:
-              self.direction_v.append((self.traectory[2] - self.angle) / abs(self.traectory[2] - self.angle))
-            else:
-              self.direction_v.append(0)
-
-            if abs(self.traectory[2] - self.angle) <= 180:
-                self.angle = (self.angle - self.direction_v[2] * self.v/2) % 360
-
-            else:
-                self.angle = (self.angle + self.direction_v[2] * self.v/2) % 360
+            функция движения неуправляемых машин
             '''
-
+  
             image = pygame.transform.rotate(self.surface, self.angle)
             self.rect = image.get_rect()
             center = self.rect.center
-            '''
-
-            self.globalcent[0] += self.v * self.direction_v[0] * abs(math.sin(self.angle))
-            self.globalcent[1] += self.v * self.direction_v[1] * abs(math.cos(self.angle))
-            '''
             self.globalcent[0] += self.v * math.sin(math.radians(self.angle))
             self.globalcent[1] += self.v * math.cos(math.radians(self.angle))
 
@@ -125,24 +122,23 @@ class Car():
             self.rect.y = self.globalcent[1] - player.coards[1] + 500
 
             center = self.rect.center
-
+            '''
+            Отрисовка
+            '''
             pygame.draw.rect(self.surface, self.color, (0,0, self.side1, self.side2))
             self.win.blit(image, self.rect)
-
-            self.direction_v.clear()
-
+            '''
+            перевод глобальных координат в локальные
+            '''
             self.cent[0] = self.globalcent[0] - player.coards[0] + 900
             self.cent[1] = self.globalcent[1] - player.coards[1] + 500
 
             self.sector = [int(self.globalcent[0] // 300), int(self.globalcent[1] // 300)]
             
-
-            '''
-            траектори - к этому положения устремить машину
-
-
-            '''
         elif self.unable:
+            '''
+            функция для брошенной машины
+            '''
             self.t_unable += 1
 
             center = self.rect.center
@@ -163,7 +159,7 @@ class Car():
 
         if self.playerstatus == True:
             '''
-            человек управляет машиной с помощью dv (второстепенная задача)
+            человек управляет машиной с помощью клавиатуры
             '''
             if self.hit and self.t >= 1:
 
@@ -244,6 +240,9 @@ class Car():
 
 
     def col_update(self):
+      '''
+      задаёт движение машины после столкновения
+      '''
 
       self.t += self.dt
       
@@ -267,6 +266,9 @@ class Car():
         self.after_collid = 1
 
     def man_in_car(self, player):
+        '''
+        проверяет наличие человека в машине
+        '''
         if (abs(player.coards[0] - self.globalcent[0]) <= self.side2 + 5) and (abs(player.coards[1] - self.globalcent[1]) <= self.side2 + 5):
             return True
 
