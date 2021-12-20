@@ -165,7 +165,6 @@ class Player:
         else:
             print('Сворачивай программу, мы в поле комплексных чисел попали!')
 class Human:
-    traject = build_traject
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
         self.inner = Player(x, y);
@@ -217,7 +216,7 @@ class Human:
             if self.inner.move(Map_activesectors):
                 self.is_stoopid = False
                 self.steps_done += 1
-                self.step += 1
+                #self.step += 1
                 self.coords = (self.inner.x, self.inner.y) #cp.deepcopy(copy.coords)
             #class Dzu:
             #    pass
