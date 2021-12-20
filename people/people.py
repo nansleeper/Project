@@ -72,7 +72,7 @@ class Human:
                     canMove = False
             for sector in Map_activesectors:
                 if sector in ['House1', 'House2', 'House3'] and \
-                self.collides2(sector.cent, HOUSE_SIDE): # How long is the side of a house?
+                self.collides2(sector.cent, 170): # How long is the side of a house?
                     canMove = False
                     self.wished_orientation = self.orientation
             for sector in Map_activesectors:
@@ -104,7 +104,7 @@ class Human:
     def collides2(self, center, side):
         for c in (0, 1):
             for border in (center[c] - side / 2, center[c] + side / 2):
-                if math.abs(self.coords[c] - border) < self.r:
+                if abs(self.coords[c] - border) < self.r:
                     return True
         for vertex in ((center[c] - side / 2, center[c] - side / 2), \
                        (center[c] - side / 2, center[c] + side / 2), \
@@ -166,9 +166,11 @@ def move_people(people, Map_activesectors):
 
 
 def tick(display, people, Map_activesectors):
+    print("tick...")
     for idiot in people:
         if idiot.is_alive:
             idiot.move(1, people, Map_activesectors)
+            print('Rendering an idiot...')
             idiot.render(display)
     living_people = []
     for idiot in people:
