@@ -97,8 +97,8 @@ class Human:
             self.orientation += rotation
             self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
                              self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
-        print('lavn el qunem')
-        print(self.coords)
+        #print('lavn el qunem')
+        #print(self.coords)
         for sector in Map_activesectors:
             if str(sector) in ['Cross', 'Hor', 'Vert', \
             'Border', 'Water', 'Bridge']:
