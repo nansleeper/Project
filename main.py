@@ -120,7 +120,7 @@ while not finished:
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
                 x -= 30
-                people = People.birth(x, y)
+                people = People.birth(people, x, y)
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))

@@ -118,7 +118,7 @@ class Human:
     def render(self, display):
         surface=self.surface
         if self.is_alive:
-            roja = '/home/rubo/Project/people/chuvak'
+            roja = 'people/chuvak'
             if self.is_stoopid:
                 roja += '1'
             else:
