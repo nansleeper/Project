@@ -108,7 +108,7 @@ while not finished:
     for x in (player.sector[0] - 3, player.sector[0] - 2, player.sector[0] - 1, player.sector[0] + 3, player.sector[0] + 2, player.sector[0] + 1, player.sector[0]):
         for y in (player.sector[1] - 2, player.sector[1] - 1, player.sector[1] + 2, player.sector[1] + 1, player.sector[1]):
                 Map_activesectors.append(Map_objects[y][x])
-    """
+    
     # Iterate over sectors immediately behind the active ones,
     # generating people there.       
     for x in (player.sector[0] - 4, player.sector[0] + 4):
@@ -116,12 +116,11 @@ while not finished:
             print(x, y)
             coardx = Map_objects[y][x].cent[0] + 100
             coardy = Map_objects[y][x].cent[1] + 100
-            People.people.birth(coardx, coardy)
+            people = People.people.birth(people, coardx, coardy)
             # Generate a couple of people sometimes.
             if random.choice([True, False]):
                 x -= 30
-                People.people.birth(x, y)
-    """
+                people = People.people.birth(x, y)
 
     for i in range(len(Map_activesectors)):
         Map_activesectors[i].move((player.x, player.y))
@@ -238,6 +237,7 @@ while not finished:
    
     player.move(Map_activesectors)
     player.draw(screen)
+    People.tick(screen, people, Map_activesectors)
 
     for obj in cars:
         obj.move(player)

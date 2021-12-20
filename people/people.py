@@ -16,11 +16,10 @@ def vector_sum(a, b):
     return (a[0] + b[0], a[1] + b[1])
 
 
-
-
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
+        r = 30
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -47,7 +46,7 @@ class Human:
         self.is_alive = True
 
 
-    def move(self, dt = 1, Map_activesectors = []):
+    def move(self, dt, people, Map_activesectors):
         is_active = False
         for sector in Map_activesectors:
             if self.collides2(sector.center, 300):
@@ -90,8 +89,8 @@ class Human:
                 return
                 # print("Rotating...")
             self.orientation += rotation
-            self.velocity = (self.velocity[0] * math.cos(rotation) - self.velocity[1] * math.sin(rotation),
-                             self.velocity[0] * math.sin(rotation) + self.velocity[1] * math.cos(rotation))
+            self.velocity = (self.velocity[0] * math.cos(self.orientation) - self.velocity[1] * math.sin(self.orientation),
+                             self.velocity[0] * math.sin(self.orientation) + self.velocity[1] * math.cos(self.orientation))
         self.is_stoopid = True
         Human.min_fahm -= 1
         fahm = Human.min_fahm
@@ -116,7 +115,7 @@ class Human:
         return False
 
 
-    def render(self):
+    def render(self, display):
         surface=self.surface
         if self.is_alive:
             roja = '/home/rubo/Project/people/chuvak'
@@ -140,72 +139,59 @@ class Human:
             display.blit(koldunov, (self.coords[0] - self.r, self.coords[1] - self.r))
 
 
-    def update(self):
-        self.render(self.surface)
+    def update(self, display):
+        self.render(display)
 
 
-GREY = (77, 77, 77)
-BLACK = (0, 0, 0)
-WHIGHT = (255, 255, 255)
-GREEN = (204, 255, 102)
-PINK = (255, 102, 255)
-COLOR = [GREEN, PINK]
-
-"""
-screen = pygame.display.set_mode((800, 1000))
-screen.fill(WHIGHT)
-
-pygame.init()
-
-FPS = 5
-SIDES = [1690, 690]
-
-display = pygame.display.set_mode(SIDES)
-
-pygame.display.update()
-clock = pygame.time.Clock()
-gameover = False
-"""
-
-
-def birth(x, y):
+def birth(people, x, y):
     # Don't overpopulate the mini-city.
     if len(people) > 20:
-        return
+        return people
     people.append(Human(x, y, (30, 40)))
+    return people
 
 
-def init_people():
+def init_people(people):
     zibil = 5
     for i in range(zibil):
         for j in range(zibil):
-            birth((i + 1) * 800 / (zibil + 1), (j + 1) * 800 / (zibil + 1))
+            people = birth(people, (i + 1) * 800 / (zibil + 1), (j + 1) * 800 / (zibil + 1))
+    return people
 
 
-def move_people():
+def move_people(people, Map_activesectors):
     for idiot in people:
-        idiot.move()
+        idiot.move(1, people, Map_activesectors)
 
 
-def tick(Map_activesectors):
-    global people
+def tick(display, people, Map_activesectors):
     for idiot in people:
         if idiot.is_alive:
-            idiot.move(1, Map_activesectors)
-            idiot.render()
+            idiot.move(1, people, Map_activesectors)
+            idiot.render(display)
     living_people = []
     for idiot in people:
         if idiot.is_alive:
             living_people.append(idiot)
-        else:
-            print('du gyot es,')
     people = living_people
+    return people
 
-"""
 #if __name__ == '__main__':
 def run_randomly_eat_stuff(Map_activesectors):
     pygame.init()
-    init_people()
+
+    FPS = 5
+    SIDES = [1690, 690]
+
+    display = pygame.display.set_mode(SIDES)
+
+    pygame.display.update()
+    clock = pygame.time.Clock()
+    gameover = False
+
+    pygame.init()
+    people = []
+    people = init_people(people)
     SCREEN = (WIDTH, HEIGHT) = (1200, 800)
     win = pygame.display.set_mode(SCREEN, pygame.NOFRAME)
 
@@ -214,9 +200,7 @@ def run_randomly_eat_stuff(Map_activesectors):
         clock = pygame.time.Clock()
         clock.tick(FPS)
         display.fill((0, 0, 0))
-        tick(Map_activesectors)
+        people = tick(display, people, Map_activesectors)
         pygame.display.update()
 
-people = []
-run_randomly_eat_stuff([])
-"""
+# run_randomly_eat_stuff([])
