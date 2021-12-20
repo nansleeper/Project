@@ -19,7 +19,7 @@ def vector_sum(a, b):
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
-        r = 30
+        r = 15
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -81,7 +81,7 @@ class Human:
             for sector in Map_activesectors:
                 if str(sector) in ['Cross', 'Hor', 'Vert', \
                 'Border', 'Water', 'Bridge'] and \
-                self.collides2(sector.globalcent, 500):
+                self.collides2(sector.globalcent, 305):
                     canMove = False
                     self.wished_orientation = self.orientation
             if canMove == True:
