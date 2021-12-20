@@ -19,7 +19,7 @@ def vector_sum(a, b):
 class Human:
     min_fahm = 10 ** 18
     def __init__(self, x, y, r=100):
-        r = 25
+        r = 12
         Human.min_fahm -= 1
         self.is_stoopid = False
         self.fahm = Human.min_fahm
@@ -85,7 +85,7 @@ class Human:
                     canMove = False
                     self.wished_orientation = self.orientation
                     canMove = True
-                    self.orientation += 180
+                    self.orientation += 90
                     self.orientation %= 360
                     self.wished_orientation = self.orientation
             if canMove == True:
